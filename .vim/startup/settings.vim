@@ -20,7 +20,7 @@ set so=7
 " Turn on the WiLd menu
 set wildmenu
 
-ys show current position
+" Show current position
 set ruler
 
 " Height of the command bar
@@ -58,12 +58,31 @@ set mat=2
 
 " No annoying sound on errors
 set noerrorbells
+set novisualbell
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Colors
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+try
+    colorscheme peaksea
+catch
+endtry
+
+set background=dark
 
 " Add a bit extra margin to the left
 set foldcolumn=1
 
 " Enable syntax highliting
 syntax enable
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Files, backups and undo
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Turn backup off, since most stuff is in SVN, git et.c anyway...
+set nobackup
+set nowb
+set noswapfile
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
