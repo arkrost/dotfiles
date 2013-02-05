@@ -4,6 +4,7 @@ filetype indent on
 
 " Load custom settings
 source ~/.vim/startup/settings.vim
+source ~/.vim/startup/mappings.vim
 
 "=================== VAM =====================
 set runtimepath+=~/.vim/addons/vim-addon-manager
