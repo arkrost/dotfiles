@@ -30,3 +30,5 @@ RPROMPT='[%*]'
 # aliases
 alias ls='ls --color=auto'
 alias grep='grep --colour=auto'
+alias ..='cd ..'
+alias c='clear'

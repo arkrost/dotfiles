@@ -16,4 +16,4 @@ map <leader>tn :tabnew<cr>
 map <leader>tt :tabnext<cr>
 " Save & quit
 map <leader>w :w!<cr>
-map <leader>q :q!<cr>
+map <leader>q :q<cr>
