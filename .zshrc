@@ -24,7 +24,7 @@ HISTFILE=~/.histfile
 # prompt settings
 autoload -U colors && colors
 setopt PROMPT_SUBST
-PROMPT='%{$fg[magenta]%}%n%{$reset_color%} at %{$fg[yellow]%}%m%{$reset_color%} in %{$fg[green]%}%~%{$reset_color%} ☿ '
+PROMPT='%(#.%{$fg[red]%}%n%{$reset_color%}.%{$fg[magenta]%}%n%{$reset_color%} at %{$fg[yellow]%}%m%{$reset_color%}) in %{$fg[green]%}%~%{$reset_color%} # '
 RPROMPT='[%*]'
 
 # aliases
