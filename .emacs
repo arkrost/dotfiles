@@ -9,6 +9,9 @@
 ;; Locally-installed packages (non-ELPA)
 (push "~/.emacs.d/local/" load-path)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Executable path
+(setq exec-path (append exec-path '("~/.lein")))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Init
