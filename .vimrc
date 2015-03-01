@@ -6,17 +6,35 @@ endif
 call neobundle#begin(expand('~/.vim/bundle'))
 
 NeoBundleFetch 'Shougo/neobundle.vim'
+
 NeoBundle 'altercation/vim-colors-solarized'
+
 NeoBundle 'scrooloose/nerdtree'
+let g:NERDTreeChDirMode=2
+map <C-n> :NERDTreeToggle<cr> 
+
 NeoBundle 'scrooloose/nerdcommenter'
+map <C-c> <leader>c<space>
+
 NeoBundle 'mattn/emmet-vim'
+autocmd FileType html imap <C-e> <C-y>,
+autocmd FileType html map <C-e> <C-y>,
+
 NeoBundle 'Valloric/YouCompleteMe', {
-    \    'build' : { 'others' : './install.sh' }
+    \    'build' : { 'unix' : './install.sh' }
     \ }
 
+NeoBundle 'tpope/vim-fugitive'
+
+NeoBundle 'rust-lang/rust.vim'
+
+NeoBundle 'bling/vim-airline'
+let g:airline#themes#base16#constant = 1
+let g:airline_theme              = 'base16'
+let g:airline_powerline_fonts    = 1
+
+
 call neobundle#end()
- "vundle
-"Plugin 'Valloric/YouCompleteMe'
 filetype plugin indent on
 NeoBundleCheck
 " encoding
@@ -52,15 +70,5 @@ if has('gui_running')
     set guioptions-=L
     set guioptions-=m
 endif
-" NERD Tree
-let g:NERDTreeChDirMode=2
 " Mappings
 map <C-h> :noh<cr>
- " nerd tree
-map <C-n> :NERDTreeToggle<cr> 
- " nerd commenter
-map <C-c> <leader>c<space>
- " emmet
-autocmd FileType html imap <C-e> <C-y>,
- " emmet
-autocmd FileType html map <C-e> <C-y>,
