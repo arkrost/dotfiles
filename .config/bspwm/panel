@@ -1,0 +1,53 @@
+#! /bin/sh
+
+DIR=$(dirname $0)
+
+if [ $(pgrep -cx panel) -gt 1 ] ; then
+    printf "%s\n" "The panel is already running." >&2
+    exit 1
+fi
+
+trap 'trap - TERM; kill 0' INT TERM QUIT EXIT
+
+source "$DIR/config"
+
+[ -e "$PANEL_FIFO" ] && rm "$PANEL_FIFO"
+mkfifo "$PANEL_FIFO"
+
+clock() {
+    while true; do
+        date +"$P_CLOCK%a %H:%M"
+        sleep 1
+    done
+}
+
+layout() {
+    echo "$P_KBD_LAYOUT$(xkb-switch -p)"
+    while true; do
+        echo "$P_KBD_LAYOUT$(xkb-switch -w -p)"
+    done
+}
+
+
+bspc config top_padding $PANEL_HEIGHT
+bspc control --subscribe > "$PANEL_FIFO" &
+clock  > "$PANEL_FIFO" &
+layout > "$PANEL_FIFO" &
+
+
+handler() {
+    while read -r event ; do
+	    case $event in
+        $E_TO_DESKTOP*)
+            bspc desktop -f ${event#$E_TO_DESKTOP}
+            ;;
+        $E_TOGGLE_KBD*)
+            xkb-switch -n
+            ;;
+        esac
+    done
+}
+
+cat "$PANEL_FIFO" | $DIR/panel_bar | bar-aint-recursive -g x$PANEL_HEIGHT -f "$PANEL_FONT_FAMILY" -F "$COLOR_FOREGROUND" -B "$COLOR_BACKGROUND" | handler & 
+
+wait
