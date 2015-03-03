@@ -55,6 +55,8 @@ set hidden
 
 " status
 set number
+set cursorline
+set scrolloff=5
 set laststatus=2
 set statusline=\%F%m%r%h\ %w\ [%l,%v][%p%%]
 
@@ -75,9 +77,9 @@ endif
 map <C-h> :noh<cr>
 
 " Airline
-let g:airline#themes#base16#constant = 1
-let g:airline_theme = 'base16'
-let g:airline_powerline_fonts = 1
+let g:airline#themes#base16#constant=1
+let g:airline_theme='base16'
+let g:airline_powerline_fonts=1
 
 " NERD Tree
 let g:NERDTreeChDirMode=2
