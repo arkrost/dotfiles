@@ -9,7 +9,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 
 NeoBundle 'bling/vim-airline'
 
-NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'chriskempson/base16-vim'
 
 NeoBundle 'scrooloose/nerdtree'
 
@@ -65,7 +65,7 @@ syntax on
 set t_Co=256
 set background=dark
 let g:solarized_termcolors=256
-colorscheme solarized
+colorscheme base16-tomorrow
 if has('gui_running') 
     set guifont=Meslo\ LG\ S\ for\ Powerline:h15 
     set guioptions-=r
@@ -77,7 +77,7 @@ endif
 map <C-h> :noh<cr>
 
 " Airline
-let g:airline#themes#base16#constant=1
+"let g:airline#themes#base16#constant=1
 let g:airline_theme='base16'
 let g:airline_powerline_fonts=1
 
