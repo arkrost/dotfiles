@@ -9,7 +9,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 
 NeoBundle 'bling/vim-airline'
 
-NeoBundle 'chriskempson/base16-vim'
+NeoBundle 'chriskempson/vim-tomorrow-theme'
 
 NeoBundle 'scrooloose/nerdtree'
 
@@ -64,8 +64,7 @@ set statusline=\%F%m%r%h\ %w\ [%l,%v][%p%%]
 syntax on
 set t_Co=256
 set background=dark
-let g:solarized_termcolors=256
-colorscheme base16-tomorrow
+colorscheme Tomorrow-Night
 if has('gui_running') 
     set guifont=Meslo\ LG\ S\ for\ Powerline:h15 
     set guioptions-=r
@@ -77,9 +76,8 @@ endif
 map <C-h> :noh<cr>
 
 " Airline
-"let g:airline#themes#base16#constant=1
-let g:airline_theme='base16'
 let g:airline_powerline_fonts=1
+let g:airline_theme='tomorrow'
 
 " NERD Tree
 let g:NERDTreeChDirMode=2
