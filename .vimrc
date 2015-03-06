@@ -42,7 +42,7 @@ set autoindent
 set shiftwidth=4
 set tabstop=4
 
-" search 
+" search
 set ignorecase
 set hlsearch
 set incsearch
@@ -60,13 +60,17 @@ set scrolloff=5
 set laststatus=2
 set statusline=\%F%m%r%h\ %w\ [%l,%v][%p%%]
 
+" invisibles
+set listchars=tab:▸•,eol:¬,trail:•
+set list
+
 " colors
 syntax on
 set t_Co=256
 set background=dark
 colorscheme Tomorrow-Night
-if has('gui_running') 
-    set guifont=Meslo\ LG\ S\ for\ Powerline:h15 
+if has('gui_running')
+    set guifont=Meslo\ LG\ S\ for\ Powerline:h15
     set guioptions-=r
     set guioptions-=L
     set guioptions-=m
@@ -81,7 +85,7 @@ let g:airline_theme='tomorrow'
 
 " NERD Tree
 let g:NERDTreeChDirMode=2
-map <C-n> :NERDTreeToggle<cr> 
+map <C-n> :NERDTreeToggle<cr>
 
 " NERD commenter
 map <C-c> <leader>c<space>
