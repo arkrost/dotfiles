@@ -7,6 +7,12 @@ call neobundle#begin(expand('~/.vim/bundle'))
 
 NeoBundleFetch 'Shougo/neobundle.vim'
 
+NeoBundle 'Shougo/neocomplete.vim'
+
+NeoBundle 'Shougo/neosnippet.vim'
+
+NeoBundle 'Shougo/neosnippet-snippets'
+
 NeoBundle 'bling/vim-airline'
 
 NeoBundle 'chriskempson/vim-tomorrow-theme'
@@ -16,13 +22,6 @@ NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'scrooloose/nerdcommenter'
 
 NeoBundle 'mattn/emmet-vim'
-
-NeoBundle 'Valloric/YouCompleteMe', {
-    \    'build' : {
-    \               'unix' : './install.sh',
-    \               'mac'  : './install.sh'
-    \              }
-    \ }
 
 NeoBundle 'tpope/vim-fugitive'
 
@@ -55,7 +54,6 @@ set hidden
 
 " status
 set number
-set cursorline
 set scrolloff=5
 set laststatus=2
 set statusline=\%F%m%r%h\ %w\ [%l,%v][%p%%]
@@ -63,6 +61,14 @@ set statusline=\%F%m%r%h\ %w\ [%l,%v][%p%%]
 " invisibles
 set listchars=tab:▸•,eol:¬,trail:•
 set list
+
+" spell
+set spelllang=ru,en
+
+" Keymap
+set keymap=russian-jcukenwin
+set iminsert=0
+set imsearch=0
 
 " colors
 syntax on
@@ -78,6 +84,25 @@ endif
 
 " Mappings
 map <C-h> :noh<cr>
+map <C-L> :set spell!<cr>
+
+" Русская раскладка
+imap <C-L> <C-^>
+
+" NeoComplete
+let g:neocomplete#enable_at_startup = 1
+
+" NeoSnippet
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)"
+\: pumvisible() ? "\<C-n>" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)"
+\: "\<TAB>"
 
 " Airline
 let g:airline_powerline_fonts=1
