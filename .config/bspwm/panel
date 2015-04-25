@@ -37,17 +37,20 @@ layout > "$PANEL_FIFO" &
 
 handler() {
     while read -r event ; do
-	    case $event in
+        case $event in
         $E_TO_DESKTOP*)
             bspc desktop -f ${event#$E_TO_DESKTOP}
             ;;
-        $E_TOGGLE_KBD*)
+        $E_TOGGLE_KBD)
             xkb-switch -n
+            ;;
+        $E_TOGGLE_LAYOUT)
+            bspc desktop -l next
             ;;
         esac
     done
 }
 
-cat "$PANEL_FIFO" | $DIR/panel_bar | bar-aint-recursive -g x$PANEL_HEIGHT -f "$PANEL_FONT_FAMILY" -F "$COLOR_FOREGROUND" -B "$COLOR_BACKGROUND" | handler & 
+cat "$PANEL_FIFO" | $DIR/panel_bar | lemonbar -g x$PANEL_HEIGHT -f "$PANEL_FONT_FAMILY" -F "$COLOR_FOREGROUND" -B "$COLOR_BACKGROUND" | handler & 
 
 wait
