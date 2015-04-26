@@ -20,9 +20,11 @@ bspc monitor -d I II III IV
 
 export _JAVA_AWT_WM_NONREPARENTING=1
 
-sxhkd -c "$(dirname $0)/sxhkdrc" &
+sxhkd -c &
 $(dirname $0)/panel &
 xmodmap $HOME/.Xmodmap &
+compton & 
+dunst &
 start-pulseaudio-x11 &
 nitrogen --restore &
 xsetroot -cursor_name left_ptr

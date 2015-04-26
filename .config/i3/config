@@ -122,7 +122,7 @@ client.urgent		#a5a5a5		#a5a5a5		#a5a5a5		#a5a5a5
 
 # bar
 bar {
-        status_command ~/.i3/conky-i3bar
+    status_command i3status
 	position top
 	font pango:Inconsolata 13
 	
@@ -139,4 +139,4 @@ bar {
 
 
 # autostart
-exec --no-startup-id feh --bg-tile ~/Pictures/squirell-need-more-coffee.jpg
+exec --no-startup-id nitrogen --restore
