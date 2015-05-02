@@ -17,13 +17,17 @@ bspc config urgent_border_color "#9f7155"
 bspc config focused_locked_border_color "#9a875f"
 
 bspc monitor -d I II III IV 
+for d in $(bspc query -D); do
+    bspc desktop $d -l monocle
+done
 
 export _JAVA_AWT_WM_NONREPARENTING=1
 
 sxhkd -c &
 $(dirname $0)/panel/panel &
-xmodmap $HOME/.Xmodmap &
 dunst &
 start-pulseaudio-x11 &
+xmodmap $HOME/.Xmodmap 
 xsetroot -cursor_name left_ptr
-xsetroot -solid "#34322e" &
+xsetroot -solid "#34322e" 
+nitrogen --restore
