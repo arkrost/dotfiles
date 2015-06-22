@@ -1,33 +1,21 @@
-" neobundle
-if has('vim_starting')
-    set runtimepath+=~/.nvim/bundle/neobundle.vim/
-endif
+call plug#begin(expand('~/.nvim/plugged'))
 
-call neobundle#begin(expand('~/.nvim/bundle'))
+Plug 'bling/vim-airline'
 
-NeoBundleFetch 'Shougo/neobundle.vim'
+Plug 'morhetz/gruvbox'
 
-NeoBundle 'Shougo/neosnippet.vim'
+Plug 'scrooloose/nerdtree'
 
-NeoBundle 'Shougo/neosnippet-snippets'
+Plug 'scrooloose/nerdcommenter'
 
-NeoBundle 'bling/vim-airline'
+Plug 'tpope/vim-fugitive'
 
-NeoBundle 'chriskempson/vim-tomorrow-theme'
+Plug 'rust-lang/rust.vim'
 
-NeoBundle 'scrooloose/nerdtree'
+Plug 'Valloric/YouCompleteMe', { 'do' : './install.sh' }
 
-NeoBundle 'scrooloose/nerdcommenter'
-
-NeoBundle 'mattn/emmet-vim'
-
-NeoBundle 'tpope/vim-fugitive'
-
-NeoBundle 'rust-lang/rust.vim'
-
-call neobundle#end()
+call plug#end()
 filetype plugin indent on
-NeoBundleCheck
 
 " encoding
 set encoding=utf-8
@@ -47,14 +35,13 @@ set incsearch
 " backup
 set nobackup
 set noswapfile
-set nowb
+set nowritebackup
 set hidden
 
 " status
 set number
 set scrolloff=5
 set laststatus=2
-set statusline=\%F%m%r%h\ %w\ [%l,%v][%p%%]
 
 " invisibles
 set listchars=tab:▸•,eol:¬,trail:•
@@ -63,7 +50,10 @@ set list
 " spell
 set spelllang=ru,en
 
-" Keymap
+" clipboard
+set clipboard+=unnamedplus
+
+" keymap
 set keymap=russian-jcukenwin
 set iminsert=0
 set imsearch=0
@@ -72,39 +62,22 @@ set imsearch=0
 syntax on
 set t_Co=256
 set background=dark
-colorscheme Tomorrow-Night
-if has('gui_running')
-    set guifont=Meslo\ LG\ S\ for\ Powerline:h15
-    set guioptions-=r
-    set guioptions-=L
-    set guioptions-=m
-endif
+colorscheme gruvbox
 
-" Mappings
+" mappings
 map <C-h> :noh<cr>
 map <C-L> :set spell!<cr>
 
-" Русская раскладка
+" arrows
+map <Up> gk
+map <Down> gj
+
+" русская раскладка
 imap <C-L> <C-^>
 
-" NeoComplete
-let g:neocomplete#enable_at_startup = 1
-
-" NeoSnippet
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
-
-imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: pumvisible() ? "\<C-n>" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: "\<TAB>"
-
-" Airline
+" airline
 let g:airline_powerline_fonts=1
-let g:airline_theme='tomorrow'
+let g:airline_theme='gruvbox'
 
 " NERD Tree
 let g:NERDTreeChDirMode=2
@@ -112,7 +85,3 @@ map <C-n> :NERDTreeToggle<cr>
 
 " NERD commenter
 map <C-c> <leader>c<space>
-
-" Emmet
-autocmd FileType html imap <C-e> <C-y>,
-autocmd FileType html map <C-e> <C-y>,
