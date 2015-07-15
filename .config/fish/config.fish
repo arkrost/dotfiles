@@ -30,3 +30,7 @@ end
 function fish_right_prompt
   set_color normal; printf '[%s]' (date +%H:%M:%S)
 end
+
+function !!
+  eval sudo $history[1]
+end
