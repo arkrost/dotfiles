@@ -14,7 +14,6 @@ PROMPT='%(#.%{$fg[red]%}%n%{$reset_color%}.%{$fg[magenta]%}%n%{$reset_color%} at
 RPROMPT='[%*]'
 
 # aliases
-#alias ls='ls --color=auto'
 alias grep='grep --colour=auto'
 alias ..='cd ..'
 alias c='clear'

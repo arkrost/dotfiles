@@ -1,4 +1,4 @@
-call plug#begin(expand('~/.nvim/plugged'))
+call plug#begin(expand('~/.config/nvim/plugged'))
 
 Plug 'bling/vim-airline'
 
@@ -10,9 +10,7 @@ Plug 'scrooloose/nerdcommenter'
 
 Plug 'tpope/vim-fugitive'
 
-Plug 'rust-lang/rust.vim'
-
-Plug 'Valloric/YouCompleteMe', { 'do' : './install.sh' }
+Plug 'Shougo/deoplete.nvim'
 
 call plug#end()
 filetype plugin indent on
@@ -59,6 +57,7 @@ set iminsert=0
 set imsearch=0
 
 " colors
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 syntax on
 set t_Co=256
 set background=dark
