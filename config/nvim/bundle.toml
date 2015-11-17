@@ -1,0 +1,8 @@
+[[plugins]]
+repository = 'morhetz/gruvbox'
+
+[[plugins]]
+repository = 'bling/vim-airline'
+
+[[plugins]]
+repository = 'Shougo/deoplete.nvim'
