@@ -1,11 +1,10 @@
-" neobundle
-set runtimepath+=~/.config/nvim/bundle/neobundle.vim/
-call neobundle#begin(expand('~/.config/nvim/bundle/'))
-NeoBundleFetch 'Shougo/neobundle.vim' " self update
-call neobundle#load_toml('~/.config/nvim/bundle.toml', {})
-call neobundle#end()
+" plugins
+call plug#begin(expand('~/.config/nvim/plugged'))
+Plug 'bling/vim-airline'
+Plug 'morhetz/gruvbox'
+Plug 'Shougo/deoplete.nvim'
+call plug#end()
 filetype plugin indent on
-NeoBundleCheck
 
 " indent
 set expandtab
