@@ -1,3 +1,11 @@
+# zle
+bindkey '\e[H' beginning-of-line # Home
+bindkey '\e[F' end-of-line # End
+bindkey '\e[A' history-beginning-search-backward # Up
+bindkey '\e[B' history-beginning-search-forward # Down
+bindkey ';5D' backward-word # Ctrl-Left 
+bindkey ';5C' forward-word # Ctrl-Right
+
 # completion settings
 autoload -U compinit && compinit
 setopt completealiases
