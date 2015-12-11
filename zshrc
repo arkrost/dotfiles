@@ -1,27 +1,26 @@
-# zle
-bindkey '\e[H' beginning-of-line # Home
-bindkey '\e[F' end-of-line # End
-bindkey '\e[A' history-beginning-search-backward # Up
-bindkey '\e[B' history-beginning-search-forward # Down
-bindkey ';5D' backward-word # Ctrl-Left 
-bindkey ';5C' forward-word # Ctrl-Right
+# zprezto
+zstyle ':prezto:load' pmodule \
+  'environment' \
+  'history' \
+  'directory' \
+  'completion' \
+  'fasd' \
+  'git' \
+  'history-substring-search' \
+  'prompt'
 
-# completion settings
-autoload -U compinit && compinit
-setopt completealiases
-zstyle ':completion:*' menu select
+zstyle ':prezto:module:prompt' theme 'local'
 
-# history
-SAVEHIST=100
-HISTFILE=~/.histfile
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/runcoms/zshrc" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/runcoms/zshrc"
+fi
 
-# prompt settings
-autoload -U colors && colors
-setopt PROMPT_SUBST
-PROMPT='%(#.%{$fg[red]%}%n%{$reset_color%}.%{$fg[magenta]%}%n%{$reset_color%} at %{$fg[yellow]%}%m%{$reset_color%}) in %{$fg[green]%}%~%{$reset_color%} # '
-RPROMPT='[%*]'
-
-# aliases
-alias grep='grep --colour=auto'
-alias ..='cd ..'
+# alias
 alias c='clear'
+unalias gb
+
+export GOPATH=$HOME/Project/gocode
+export GO15VENDOREXPERIMENT=1
+
+typeset -U path
+path=($GOPATH/bin $path[@])
