@@ -3,6 +3,8 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 Plug 'bling/vim-airline'
 Plug 'morhetz/gruvbox'
 Plug 'Shougo/deoplete.nvim'
+Plug 'Shougo/unite.vim'
+Plug 'fatih/vim-go'
 call plug#end()
 filetype plugin indent on
 
