@@ -4,7 +4,7 @@ Plug 'bling/vim-airline'
 Plug 'morhetz/gruvbox'
 Plug 'Shougo/deoplete.nvim'
 Plug 'Shougo/unite.vim'
-Plug 'fatih/vim-go'
+Plug 'easymotion/vim-easymotion'
 call plug#end()
 filetype plugin indent on
 
@@ -58,3 +58,12 @@ imap <C-L> <C-^>
 " airline
 let g:airline_powerline_fonts=1
 let g:airline_theme='gruvbox'
+
+" easymotion
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+let g:EasyMotion_smartcase = 1 " Turn on case insensitive feature
+nmap s <Plug>(easymotion-overwin-f2)
+nmap t <Plug>(easymotion-t2)
+map <Leader>w <Plug>(easymotion-w)
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
