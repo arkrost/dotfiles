@@ -1,7 +1,8 @@
 " plugins
 call plug#begin(expand('~/.config/nvim/plugged'))
-Plug 'bling/vim-airline'
+Plug 'itchyny/lightline.vim'
 Plug 'morhetz/gruvbox'
+Plug 'whatyouhide/vim-gotham'
 Plug 'Shougo/deoplete.nvim'
 Plug 'Shougo/unite.vim'
 Plug 'easymotion/vim-easymotion'
@@ -15,6 +16,7 @@ set tabstop=2
 
 " search
 set ignorecase
+set nohlsearch
 
 " do not force write buffer
 set hidden
@@ -41,11 +43,11 @@ set imsearch=0
 " colors
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 syntax on
-colorscheme gruvbox
+colorscheme gotham
 set background=dark
 
 " mappings
-map <C-h> :noh<cr>
+"nmap h :noh<cr>
 map <C-L> :set spell!<cr>
 
 " arrows
@@ -55,9 +57,15 @@ map <Down> gj
 " русская раскладка
 imap <C-L> <C-^>
 
-" airline
-let g:airline_powerline_fonts=1
-let g:airline_theme='gruvbox'
+" lightline
+let g:lightline = {
+      \ 'colorscheme': 'gotham256',
+      \ 'component': {
+      \   'readonly': '%{&readonly?"x":""}',
+      \ },
+      \ 'separator': { 'left': '', 'right': '' },
+      \ 'subseparator': { 'left': '|', 'right': '|' }
+      \ }
 
 " easymotion
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
@@ -67,3 +75,7 @@ nmap t <Plug>(easymotion-t2)
 map <Leader>w <Plug>(easymotion-w)
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
+map  n <Plug>(easymotion-next)
+map  N <Plug>(easymotion-prev)
