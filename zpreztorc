@@ -1,0 +1,16 @@
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/runcoms/zpreztorc" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/runcoms/zpreztorc"
+fi
+
+# zprezto
+zstyle ':prezto:load' pmodule \
+  'environment' \
+  'history' \
+  'directory' \
+  'completion' \
+  'fasd' \
+  'git' \
+  'history-substring-search' \
+  'prompt'
+
+zstyle ':prezto:module:prompt' theme 'sorin'
