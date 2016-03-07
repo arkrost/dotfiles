@@ -2,7 +2,6 @@
 call plug#begin(expand('~/.config/nvim/plugged'))
 Plug 'itchyny/lightline.vim'
 Plug 'morhetz/gruvbox'
-Plug 'whatyouhide/vim-gotham'
 Plug 'Shougo/deoplete.nvim'
 Plug 'Shougo/unite.vim'
 Plug 'easymotion/vim-easymotion'
@@ -43,7 +42,7 @@ set imsearch=0
 " colors
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 syntax on
-colorscheme gotham
+colorscheme gruvbox
 set background=dark
 
 " mappings
@@ -59,13 +58,16 @@ imap <C-L> <C-^>
 
 " lightline
 let g:lightline = {
-      \ 'colorscheme': 'gotham256',
+      \ 'colorscheme': 'gruvbox',
       \ 'component': {
       \   'readonly': '%{&readonly?"x":""}',
       \ },
       \ 'separator': { 'left': '', 'right': '' },
       \ 'subseparator': { 'left': '|', 'right': '|' }
       \ }
+
+" deoplete
+let g:deoplete#enable_at_startup = 1
 
 " easymotion
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
