@@ -9,7 +9,7 @@ zstyle ':prezto:load' pmodule \
   'history-substring-search' \
   'prompt'
 
-zstyle ':prezto:module:prompt' theme 'local'
+zstyle ':prezto:module:prompt' theme 'sorin'
 
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/runcoms/zshrc" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/runcoms/zshrc"
@@ -17,10 +17,9 @@ fi
 
 # alias
 alias c='clear'
-unalias gb
+alias v='nvim'
 
-export GOPATH=$HOME/Project/gocode
-export GO15VENDOREXPERIMENT=1
-
+# path
+export LOCAL_BIN=/home/ark/.local/bin
 typeset -U path
-path=($GOPATH/bin $path[@])
+path=($path[@])
