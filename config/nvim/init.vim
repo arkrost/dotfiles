@@ -1,11 +1,14 @@
 " plugins
-call plug#begin(expand('~/.config/nvim/plugged'))
-Plug 'itchyny/lightline.vim'
-Plug 'morhetz/gruvbox'
-Plug 'Shougo/deoplete.nvim'
-Plug 'Shougo/unite.vim'
-Plug 'easymotion/vim-easymotion'
-call plug#end()
+set runtimepath^=~/.cache/dein/dein.vim
+call dein#begin(expand('~/.cache/dein'))
+call dein#add('Shougo/dein.vim')
+call dein#add('itchyny/lightline.vim')
+call dein#add('morhetz/gruvbox')
+call dein#add('Shougo/deoplete.nvim')
+call dein#add('Shougo/unite.vim')
+call dein#add('easymotion/vim-easymotion')
+call dein#end()
+
 filetype plugin indent on
 
 " indent
