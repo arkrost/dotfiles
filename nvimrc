@@ -8,7 +8,6 @@ call dein#add('Shougo/deoplete.nvim')
 call dein#add('Shougo/unite.vim')
 call dein#add('easymotion/vim-easymotion')
 call dein#add('wting/rust.vim')
-call dein#add('racer-rust/vim-racer')
 call dein#end()
 
 filetype plugin indent on
@@ -73,9 +72,6 @@ let g:lightline = {
 
 " deoplete
 let g:deoplete#enable_at_startup = 1
-
-" racer
-let g:racer_cmd = expand('~/.rust/racer/target/release/racer')
 
 " easymotion
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
