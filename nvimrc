@@ -1,5 +1,5 @@
 " plugins
-set runtimepath^=~/.cache/dein/repos/github.com/dein.vim
+set runtimepath^=~/.cache/dein/repos/github.com/Shougo/dein.vim
 call dein#begin(expand('~/.cache/dein'))
 call dein#add('Shougo/dein.vim')
 call dein#add('itchyny/lightline.vim')
