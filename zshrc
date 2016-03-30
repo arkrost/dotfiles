@@ -5,3 +5,4 @@ fi
 # alias
 alias c='clear'
 alias v='nvim'
+alias git='noglob git'
