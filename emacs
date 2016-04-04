@@ -1,5 +1,13 @@
+(when (display-graphic-p)
+  (tool-bar-mode -1)
+  (scroll-bar-mode -1))
+(menu-bar-mode -1)
+(set-default-font "Hack-11")
+
+(setq make-backup-files nil) ; disable backup
+(setq ring-bell-function 'ignore) ; disable beep
+
 (require 'package)
-(setq package-enable-at-startup nil)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
 
@@ -9,13 +17,11 @@
 
 (use-package gruvbox-theme
   :ensure t
-  :defer t
   :init (load-theme 'gruvbox t))
 
-(when (display-graphic-p)
-  (tool-bar-mode -1)
-  (scroll-bar-mode -1))
-(menu-bar-mode -1)
-(set-default-font "Hack-14")
-
-(setq make-backup-files nil) ; disable backup
+(use-package ess
+  :ensure t
+  :mode ("\\.[Rr]\\'" . R-mode)
+  :config (setq ess-ask-for-ess-directory nil
+		ess-eval-visibly nil
+		inferior-R-args "--no-save"))
