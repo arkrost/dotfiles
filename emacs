@@ -17,7 +17,22 @@
 
 (use-package gruvbox-theme
   :ensure t
-  :init (load-theme 'gruvbox t))
+  :config (load-theme 'gruvbox t))
+
+(use-package powerline
+  :ensure t
+  :config (powerline-default-theme))
+
+(use-package org
+  :ensure t
+  :mode ("\\.org\\'" . org-mode))
+
+(use-package paredit
+  :ensure t
+  :diminish paredit-mode
+  :config (progn
+	  (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
+	  (add-hook 'lisp-interaction-mode-hook 'enable-paredit-mode)))
 
 (use-package ess
   :ensure t
