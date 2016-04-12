@@ -22,21 +22,18 @@
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
+(setq use-package-always-ensure t)
 
 (use-package gruvbox-theme
-  :ensure t
   :config (load-theme 'gruvbox t))
 
 (use-package org
-  :ensure t
   :mode ("\\.org\\'" . org-mode))
 
 (use-package racket-mode
-  :ensure t
   :mode ("\\.rkt\\'" . racket-mode))
 
 (use-package ess
-  :ensure t
   :mode ("\\.[Rr]\\'" . R-mode)
   :config (setq ess-ask-for-ess-directory nil
 		ess-eval-visibly nil
