@@ -7,6 +7,14 @@
 (setq make-backup-files nil) ; disable backup
 (setq ring-bell-function 'ignore) ; disable beep
 
+(defalias 'yes-or-no-p 'y-or-n-p)
+
+(global-linum-mode 1)
+(electric-pair-mode 1)
+
+(setq inhibit-splash-screen t)
+(setq inhibit-startup-message t)
+
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
@@ -19,11 +27,6 @@
   :ensure t
   :config (load-theme 'gruvbox t))
 
-(use-package powerline
-  :ensure t
-  :init (setq powerline-default-separator 'utf-8)
-  :config (powerline-default-theme))
-
 (use-package org
   :ensure t
   :mode ("\\.org\\'" . org-mode))
@@ -31,14 +34,6 @@
 (use-package racket-mode
   :ensure t
   :mode ("\\.rkt\\'" . racket-mode))
-
-(use-package paredit
-  :ensure t
-  :diminish paredit-mode
-  :config (progn
-	    (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
-	    (add-hook 'lisp-interaction-mode-hook 'enable-paredit-mode)
-	    (add-hook 'racket-mode-hook 'enable-paredit-mode)))
 
 (use-package ess
   :ensure t
