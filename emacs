@@ -21,18 +21,24 @@
 
 (use-package powerline
   :ensure t
+  :init (setq powerline-default-separator 'utf-8)
   :config (powerline-default-theme))
 
 (use-package org
   :ensure t
   :mode ("\\.org\\'" . org-mode))
 
+(use-package racket-mode
+  :ensure t
+  :mode ("\\.rkt\\'" . racket-mode))
+
 (use-package paredit
   :ensure t
   :diminish paredit-mode
   :config (progn
-	  (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
-	  (add-hook 'lisp-interaction-mode-hook 'enable-paredit-mode)))
+	    (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
+	    (add-hook 'lisp-interaction-mode-hook 'enable-paredit-mode)
+	    (add-hook 'racket-mode-hook 'enable-paredit-mode)))
 
 (use-package ess
   :ensure t
