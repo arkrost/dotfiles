@@ -2,18 +2,21 @@
   (tool-bar-mode -1)
   (scroll-bar-mode -1))
 (menu-bar-mode -1)
-(set-default-font "Hack-11")
+(set-default-font "Hack-14")
 
 (setq make-backup-files nil) ; disable backup
 (setq ring-bell-function 'ignore) ; disable beep
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
-(global-linum-mode 1)
-(electric-pair-mode 1)
+(electric-pair-mode)
+(column-number-mode)
 
 (setq inhibit-splash-screen t)
 (setq inhibit-startup-message t)
+
+(setq scheme-program-name "chibi-scheme -R")
+(add-to-list 'exec-path "/usr/local/bin")
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
@@ -26,6 +29,9 @@
 
 (use-package gruvbox-theme
   :config (load-theme 'gruvbox t))
+
+(use-package rainbow-delimiters
+  :config (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
 
 (use-package org
   :mode ("\\.org\\'" . org-mode))
