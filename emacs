@@ -6,6 +6,8 @@
 
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 
+(global-set-key [(meta x)] 'smex)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -18,6 +20,8 @@
  '(custom-safe-themes t)
  '(electric-pair-mode t)
  '(inhibit-startup-screen t)
+ '(initial-major-mode (quote text-mode))
+ '(initial-scratch-message nil)
  '(make-backup-files nil)
  '(menu-bar-mode nil)
  '(ring-bell-function (quote ignore) t)
