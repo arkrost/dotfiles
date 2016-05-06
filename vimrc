@@ -1,15 +1,16 @@
 " plugins
 call plug#begin(expand('~/.vim/plugged'))
-Plug 'morhetz/gruvbox'
+Plug 'nanotech/jellybeans.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'easymotion/vim-easymotion'
+Plug '~/Documents/factor/misc/vim'
 call plug#end()
-filetype plugin indent on
 
 " indent
 set expandtab
 set shiftwidth=2
 set tabstop=2
+set backspace=2
 
 " search
 set ignorecase
@@ -38,11 +39,12 @@ set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯЖ;ABCDEFGHIJKLM
 
 " colors
 syntax on
-colorscheme gruvbox
+let g:jellybeans_use_term_background_color = 0
+let g:jellybeans_use_term_italics = 1
+colorscheme jellybeans
 set background=dark
 
 " mappings
-"nmap h :noh<cr>
 map <C-L> :set spell!<cr>
 
 " arrows
@@ -51,7 +53,7 @@ map <Down> gj
 
 " lightline
 let g:lightline = {
-      \ 'colorscheme': 'gruvbox',
+      \ 'colorscheme': 'jellybeans',
       \ 'component': {
       \   'readonly': '%{&readonly?"x":""}',
       \ },
