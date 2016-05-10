@@ -3,6 +3,7 @@ call plug#begin(expand('~/.vim/plugged'))
 Plug 'nanotech/jellybeans.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'easymotion/vim-easymotion'
+Plug 'mhinz/vim-startify'
 Plug '~/Documents/factor/misc/vim'
 call plug#end()
 
