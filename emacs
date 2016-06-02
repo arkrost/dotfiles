@@ -3,6 +3,9 @@
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
 (package-initialize)
+;; Local packages
+(add-to-list 'load-path "~/.emacs.d/lisp")
+(load "gforth.el")
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -27,7 +30,7 @@
  '(package-archives (quote (("melpa" . "https://melpa.org/packages/"))))
  '(package-selected-packages
    (quote
-    (writeroom-mode smart-mode-line rainbow-delimiters gruvbox-theme diminish counsel)))
+    (auto-complete magit writeroom-mode smart-mode-line rainbow-delimiters gruvbox-theme diminish counsel)))
  '(ring-bell-function (quote ignore))
  '(scroll-bar-mode nil)
  '(show-paren-delay 0)
@@ -58,3 +61,4 @@
 (global-set-key (kbd "C-h v") 'counsel-describe-variable)
 
 (sml/setup)
+(ac-config-default)
