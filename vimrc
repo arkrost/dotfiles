@@ -4,7 +4,7 @@ Plug 'nanotech/jellybeans.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'mhinz/vim-startify'
-Plug '~/Documents/factor/misc/vim'
+Plug 'vim-scripts/forth.vim'
 call plug#end()
 
 " indent
@@ -27,7 +27,7 @@ set laststatus=2
 
 " invisibles
 set listchars=tab:▸•,eol:¬,trail:•
-set list
+set nolist
 
 " spell
 set spelllang=ru,en
