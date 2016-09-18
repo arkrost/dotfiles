@@ -1,0 +1,6 @@
+** Set default font
+
+
+#+BEGIN_SRC emacs-lisp
+(set-frame-font "Hack-12")
+#+END_SRC
