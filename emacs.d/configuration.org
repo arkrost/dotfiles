@@ -8,6 +8,12 @@ Enable =cask= and =pallet= for managing packages.
 (require 'pallet)
 (pallet-mode t)
 #+END_SRC
+* Supress =Custom.el=
+
+#+BEGIN_SRC emacs-lisp
+  (setq custom-file (make-temp-file "emacs-custom"))
+#+END_SRC
+
 * =evil-mode=
 
 Use =evil=.
