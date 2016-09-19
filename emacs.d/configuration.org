@@ -44,5 +44,5 @@ Remove the menu or scroll bar to take up usefull space.
 ** Set default font
 
 #+BEGIN_SRC emacs-lisp
-(set-frame-font "Hack-12")
+(set-frame-font "Hack-14")
 #+END_SRC
