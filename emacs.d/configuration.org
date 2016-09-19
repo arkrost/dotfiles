@@ -6,6 +6,14 @@ Enable =cask= and =pallet= for managing packages.
 (require 'cask "$CASK/cask.el")
 (cask-initialize)
 (require 'pallet)
+(pallet-mode t)
+#+END_SRC
+* =evil-mode=
+
+Use =evil=.
+
+#+BEGIN_SRC emacs-lisp
+  (evil-mode 1)
 #+END_SRC
 
 * UI preferences
