@@ -1,10 +1,10 @@
 " plugins
 call plug#begin(expand('~/.vim/plugged'))
-Plug 'nanotech/jellybeans.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'mhinz/vim-startify'
 Plug 'vim-scripts/forth.vim'
+Plug 'flazz/vim-colorschemes'
 call plug#end()
 
 " indent
@@ -40,9 +40,8 @@ set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯЖ;ABCDEFGHIJKLM
 
 " colors
 syntax on
-let g:jellybeans_use_term_background_color = 0
-let g:jellybeans_use_term_italics = 1
-colorscheme jellybeans
+let g:jellybeans_use_term_background_color=1
+colorscheme Tomorrow-Night
 set background=dark
 
 " mappings
