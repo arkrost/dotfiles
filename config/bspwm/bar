@@ -1,0 +1,92 @@
+#! /bin/sh
+
+# bar
+PANEL_WM_NAME="top_bar"
+PANEL_HEIGHT=45
+PANEL_FONT="Hack:size=12"
+ICON_FONT="FontAwesome:size=14"
+
+COLOR_DEFAULT_FG="#a7a5a5"
+COLOR_DEFAULT_BG="#ef333232"
+COLOR_FOCUSED_FG="#81a2be"
+COLOR_URGENT_FG="#cc6666"
+COLOR_MONOCLE="#b294bb"
+
+if xdo id -a "$PANEL_WM_NAME" > /dev/null ; then
+	printf "%s\n" "The panel is already running." >&2
+	exit 1
+fi
+
+trap 'trap - TERM; kill 0' INT TERM QUIT EXIT
+
+update() {
+  echo "%{l}$wm%{r}$time"
+}
+
+sources() {
+  clock -sf "T%a %H:%M" &
+  bspc subscribe report &
+  wait
+}
+
+process_bspwm() {
+  wm=""
+  IFS=':'
+  set -- $1
+  while [ $# -gt 0 ]; do
+    case $1 in
+      [fFoOuU]*)
+        case $1 in
+          [FOU]*)
+            FG=$COLOR_FOCUSED_FG
+            ;;
+          u*)
+            FG=$COLOR_URGENT_FG
+            ;;
+          *)
+            FG=$COLOR_DEFAULT_FG
+            ;;
+        esac
+        wm="$wm%{T2}%{F$FG} ${1#?} %{F-}%{T-}"
+        ;;
+      LM)
+        wm="$wm%{T2}%{F$COLOR_MONOCLE}  %{F-}%{T-}"
+        ;;
+    esac
+    shift
+  done
+}
+
+process() {
+  while read -r line; do
+    case $line in
+      T*)
+        time="${line#?} "
+        ;;
+      W*)
+        process_bspwm "${line#?}"
+        ;;
+    esac
+    update
+  done
+}
+
+
+bspc config top_padding $PANEL_HEIGHT
+
+sources | process | lemonbar \
+              -n "$PANEL_WM_NAME" \
+              -g "x$PANEL_HEIGHT" \
+              -f "$PANEL_FONT" \
+              -f "$ICON_FONT" \
+              -F "$COLOR_DEFAULT_FG" \
+              -B "$COLOR_DEFAULT_BG" & 
+
+while [ -z "$wid" ] ; do
+	sleep 0.05
+	wid=$(xdo id -a "$PANEL_WM_NAME")
+done
+root=$(xdo id -N Bspwm -n root | sort | head -n 1)
+[ -n "$wid" ] && xdo above -t "$root" "$wid"
+
+wait
