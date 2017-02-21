@@ -5,27 +5,18 @@
 	autocrlf = input
 	safecrlf = true
 	editor = vim
-[push]
-	default = simple
 [alias]
-    co = checkout
-    ci = commit
-    st = status
-    br = branch
-    type = cat-file -t
-    dump = cat-file -p
-    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-	unstage = reset HEAD
+	co = checkout
+	ci = commit
+	st = status -uno
+	br = branch
+	type = cat-file -t
+	dump = cat-file -p
+	lg = log --graph --color --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	unstage = rm --cached
 [color]
 	ui = true
 [man]
 	viewer = man
-[diff]
-[merge]
-	tool = vimdiff
-[mergetool]
-	keepBackup = false
-[diff]
-	tool = vimdiff
-[difftool]
-	prompt = false
+[stash]
+	showPatch = true
