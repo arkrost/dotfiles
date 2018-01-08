@@ -4,16 +4,23 @@ setopt COMPLETE_IN_WORD    # Complete from both ends of a word.
 setopt ALWAYS_TO_END       # Move cursor to the end of a completed word.
 setopt MENU_COMPLETE       # Autoselect the first completion entry. 
 
-zstyle ':completion:*:*:*:*' menu select
-zstyle ':completion:*:descriptions' format ' %F{yellow}-- %d --%f'
-zstyle ':completion:*:corrections' format ' %F{green}-- %d (errors: %e) --%f'
-zstyle ':completion:*:warnings' format ' %F{red}-- no matches found --%f'
+zstyle ':completion:*' menu select
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' group-order aliases local-directories
+zstyle ':completion:*:descriptions' format ' %F{3}-- %d --%f'
+zstyle ':completion:*:corrections' format ' %F{2}-- %d (errors: %e) --%f'
+zstyle ':completion:*:warnings' format ' %F{1}-- no matches found --%f'
 
 zstyle ':completion:*' completer _complete _match _approximate
-zstyle ':completion:*:approximate:*' max-errors 3 numeric
-
-PROMPT="%F{103}%~ %F{167}❯%F{215}❯%F{107}❯%f "
+zstyle ':completion:*:approximate:*' max-errors 2 numeric
 
 setopt auto_cd
 
+PROMPT="%F{4}%n %f%~ %F{2}$%f "
+
+path=(~/.local/bin $path)
+
 alias c='clear'
+alias gbc='git br | grep -v "*" | xargs git br -D'
+
+for f (~/.zshrc.d/*(.N)) . $f
