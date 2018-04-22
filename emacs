@@ -6,7 +6,7 @@
 
  inhibit-startup-screen t
  truncate-lines t
- 
+
  ns-right-command-modifier 'control)
 
 (defalias 'yes-or-no-p 'y-or-n-p)
@@ -43,6 +43,19 @@
 (use-package base16-theme
   :config
   (load-theme 'base16-one-light t))
+
+(use-package all-the-icons-dired
+  :hook (dired-mode . all-the-icons-dired-mode))
+
+(use-package spaceline-all-the-icons
+  :init
+  (setq-default
+   spaceline-highlight-face-func (lambda () 'spaceline-evil-visual)
+   spaceline-all-the-icons-separator-type 'none)
+  :config
+  (spaceline-all-the-icons-theme))
+
+(use-package projectile)
 
 (use-package swiper
   :diminish ivy-mode
