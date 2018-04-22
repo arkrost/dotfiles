@@ -1,40 +1,53 @@
-;; Added by Package.el.  This must come before configurations of
-;; installed packages.  Don't delete this line.  If you don't want it,
-;; just comment it out by adding a semicolon to the start of the line.
-;; You may delete these explanatory comments.
-(package-initialize)
+(setq-default 
+ auto-save-default nil
+ make-backup-files nil
+ 
+ custom-file "~/.emacs.d/custom.el"
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(auto-save-default nil)
- '(blink-cursor-mode nil)
- '(custom-enabled-themes (quote (base16-one-light)))
- '(custom-safe-themes t)
- '(desktop-save-mode t)
- '(global-linum-mode t)
- '(ivy-height 6)
- '(ivy-mode t)
- '(make-backup-files nil)
- '(package-archives
-   (quote
-    (("gnu" . "http://elpa.gnu.org/packages/")
-     ("melpa" . "https://melpa.org/packages/"))))
- '(package-selected-packages
-   (quote
-    (exec-path-from-shell cider clojure-mode base16-theme swiper)))
- '(truncate-lines t))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-
-(exec-path-from-shell-initialize)
+ inhibit-startup-screen t
+ truncate-lines t
+ 
+ ns-right-command-modifier 'control)
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
-(global-set-key "\C-s" 'swiper)
+(global-linum-mode)
+
+(blink-cursor-mode 0)
+(tool-bar-mode 0)
+(scroll-bar-mode 0)
+
+(set-default-font "Iosevka 16")
+(set-frame-size nil 120 40)
+(set-frame-position nil 320 40)
+
+(defvar gnu '("gnu" . "https://elpa.gnu.org/packages/"))
+(defvar melpa '("melpa" . "https://melpa.org/packages/"))
+
+(setq package-archives nil)
+(add-to-list 'package-archives melpa t)
+(add-to-list 'package-archives gnu t)
+
+(package-initialize)
+(when (not (package-installed-p 'use-package))
+  (package-refresh-contents)
+  (package-install 'use-package)
+  (package-initialize))
+
+(eval-when-compile
+  (require 'use-package))
+(setq use-package-always-ensure t)
+
+(use-package diminish)
+
+(use-package base16-theme
+  :config
+  (load-theme 'base16-one-light t))
+
+(use-package swiper
+  :diminish ivy-mode
+  :bind ("C-s" . 'swiper)
+  :init
+  (setq-default ivy-height 6)
+  :config
+  (ivy-mode))
