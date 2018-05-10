@@ -5,7 +5,6 @@
  custom-file "~/.emacs.d/custom.el"
 
  inhibit-startup-screen t
- truncate-lines t
 
  ns-right-command-modifier 'control)
 
@@ -17,9 +16,12 @@
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
 
-(set-default-font "Iosevka 16")
-(set-frame-size nil 120 40)
-(set-frame-position nil 320 40)
+(global-set-key (kbd "s-w") 'kill-this-buffer)
+
+(define-fringe-bitmap 'left-curly-arrow [0 64 64 70 126 6 0 0])
+(define-fringe-bitmap 'right-curly-arrow [0 2 2 98 126 96 0 0])
+(define-fringe-bitmap 'left-arrow [0 0 96 126 96 0 0])
+(define-fringe-bitmap 'right-arrow [0 0 6 126 6 0 0])
 
 (defvar gnu '("gnu" . "https://elpa.gnu.org/packages/"))
 (defvar melpa '("melpa" . "https://melpa.org/packages/"))
@@ -38,24 +40,30 @@
   (require 'use-package))
 (setq use-package-always-ensure t)
 
+(use-package benchmark-init
+  :ensure t
+  :config
+  ;; To disable collection of benchmark data after init is done.
+  (add-hook 'after-init-hook 'benchmark-init/deactivate))
+
 (use-package diminish)
 
 (use-package base16-theme
+  :init
+  (setq-default base16-distinct-fringe-background nil)
   :config
   (load-theme 'base16-one-light t))
 
-(use-package all-the-icons-dired
-  :hook (dired-mode . all-the-icons-dired-mode))
+(use-package rainbow-delimiters
+  :hook (prog-mode . rainbow-delimiters-mode))
 
-(use-package spaceline-all-the-icons
-  :init
-  (setq-default
-   spaceline-highlight-face-func (lambda () 'spaceline-evil-visual)
-   spaceline-all-the-icons-separator-type 'none)
+(use-package smartparens
+  :diminish smartparens-mode
   :config
-  (spaceline-all-the-icons-theme))
+  (smartparens-global-mode))
 
-(use-package projectile)
+(use-package parinfer
+  :disabled t)
 
 (use-package swiper
   :diminish ivy-mode
@@ -64,3 +72,15 @@
   (setq-default ivy-height 6)
   :config
   (ivy-mode))
+
+(use-package counsel-projectile
+  :bind (("s-p" . counsel-projectile-switch-project)
+	 ("s-e" . counsel-projectile-find-file)
+	 ("s-f" . counsel-projectile-grep))
+  :config
+  (counsel-projectile-mode))
+
+(use-package groovy-mode)
+
+(use-package clojure-mode)
+(use-package cider)
