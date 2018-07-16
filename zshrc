@@ -22,5 +22,17 @@ path=(~/.local/bin $path)
 
 alias c='clear'
 alias gbc='git br | grep -v "*" | xargs git br -D'
+alias l='tree -L 1 -Ca'
+alias la='tree -Ca'
+
+bindkey '^[[3~' delete-char
+bindkey '^F' forward-word
+bindkey '^B' backward-word
+
+autoload -U up-line-or-beginning-search && zle -N up-line-or-beginning-search
+bindkey '^[[A' up-line-or-beginning-search
+
+autoload -U down-line-or-beginning-search && zle -N down-line-or-beginning-search
+bindkey '^[[B' down-line-or-beginning-search
 
 for f (~/.zshrc.d/*(.N)) . $f
