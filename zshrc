@@ -14,7 +14,16 @@ zstyle ':completion:*:warnings' format ' %F{1}-- no matches found --%f'
 zstyle ':completion:*' completer _complete _match _approximate
 zstyle ':completion:*:approximate:*' max-errors 2 numeric
 
-setopt auto_cd
+setopt AUTO_CD
+
+HISTFILE='~/.zhistory'
+HISTSIZE=1000                   # history lines within session
+SAVEHIST=1000                   # history lines saved to file
+setopt HIST_IGNORE_DUPS         # Don't record an entry that was just recorded again.
+setopt HIST_IGNORE_ALL_DUPS     # Delete old recorded entry if new entry is a duplicate.
+setopt SHARE_HISTORY            # Share history between all sessions.
+setopt HIST_VERIFY              # Don't execute immediately upon history expansion.
+setopt HIST_IGNORE_SPACE        # Don't record an entry starting with a space.
 
 PROMPT="%F{4}%n %f%~ %F{2}$%f "
 
