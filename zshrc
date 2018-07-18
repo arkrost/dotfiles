@@ -7,16 +7,32 @@ setopt MENU_COMPLETE       # Autoselect the first completion entry.
 zstyle ':completion:*' menu select
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' group-order aliases local-directories
+
 zstyle ':completion:*:descriptions' format ' %F{3}-- %d --%f'
 zstyle ':completion:*:corrections' format ' %F{2}-- %d (errors: %e) --%f'
 zstyle ':completion:*:warnings' format ' %F{1}-- no matches found --%f'
 
-zstyle ':completion:*' completer _complete _match _approximate
+# Complete . and .. special directories
+zstyle ':completion:*' special-dirs true
+
+# case insensitive (all), partial-word and substring completion
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z-_}={A-Za-z_-}' 'r:|=*' 'l:|=* r:|=*'
+
+# Ignore internal zsh functions
+zstyle ':completion:*:functions' ignored-patterns '_*'
+zstyle ':completion:*:aliases' ignored-patterns '_*'
+
+zstyle ':completion:*' completer _complete _prefix _approximate
+zstyle ':completion:*:prefix:*' add-space true
 zstyle ':completion:*:approximate:*' max-errors 2 numeric
+
+# Cache expensive completions
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.cache/zsh
 
 setopt AUTO_CD
 
-HISTFILE='~/.zhistory'
+HISTFILE=~/.zhistory
 HISTSIZE=1000                   # history lines within session
 SAVEHIST=1000                   # history lines saved to file
 setopt HIST_IGNORE_DUPS         # Don't record an entry that was just recorded again.
