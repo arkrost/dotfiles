@@ -1,4 +1,23 @@
-autoload -Uz compinit && compinit -i
+path=(~/.local/bin $path)
+
+alias c='clear'
+alias gbc='git br | grep -v "*" | xargs git br -D'
+alias l='tree -L 1 -Ca'
+alias la='ls -la'
+
+PROMPT='%F{2}λ%f '
+
+autoload -Uz vcs_info
+
+zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:git*' formats '%F{2}%b%f'
+
+precmd () {
+   vcs_info
+   print -P "%F{4}%n%f %~ $vcs_info_msg_0_"
+}
+
+autoload -Uz compinit && compinit
 
 setopt COMPLETE_IN_WORD    # Complete from both ends of a word.
 setopt ALWAYS_TO_END       # Move cursor to the end of a completed word.
@@ -40,15 +59,6 @@ setopt HIST_IGNORE_ALL_DUPS     # Delete old recorded entry if new entry is a du
 setopt SHARE_HISTORY            # Share history between all sessions.
 setopt HIST_VERIFY              # Don't execute immediately upon history expansion.
 setopt HIST_IGNORE_SPACE        # Don't record an entry starting with a space.
-
-PROMPT="%F{4}%n %f%~ %F{2}$%f "
-
-path=(~/.local/bin $path)
-
-alias c='clear'
-alias gbc='git br | grep -v "*" | xargs git br -D'
-alias l='tree -L 1 -Ca'
-alias la='tree -Ca'
 
 bindkey '^[[3~' delete-char
 bindkey '^F' forward-word
