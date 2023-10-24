@@ -1,0 +1,50 @@
+[fish-z]
+src.git = "https://github.com/jethrokuan/z"
+src.branch = "master"
+fetch.github = "jethrokuan/z"
+
+[fish-dracula]
+src.git = "https://github.com/dracula/fish"
+src.branch = "master"
+fetch.github = "dracula/fish"
+
+[fish-foreign-env]
+src.git = "https://github.com/oh-my-fish/plugin-foreign-env"
+src.branch = "master"
+fetch.github = "oh-my-fish/plugin-foreign-env"
+
+[zsh-autopair]
+src.git = "https://github.com/hlissner/zsh-autopair"
+src.branch = "master"
+fetch.github = "hlissner/zsh-autopair"
+
+[zsh-syntax-highlighting]
+src.git = "https://github.com/zsh-users/zsh-syntax-highlighting"
+src.branch = "master"
+fetch.github = "zsh-users/zsh-syntax-highlighting"
+
+[zsh-formarks]
+src.git = "https://github.com/wfxr/formarks"
+src.branch = "master"
+fetch.github = "wfxr/formarks"
+
+[zsh-z]
+src.git = "https://github.com/agkozak/zsh-z"
+src.branch = "master"
+fetch.github = "agkozak/zsh-z"
+
+[fzf-tab]
+src.git = "https://github.com/Aloxaf/fzf-tab"
+src.branch = "master"
+fetch.github = "Aloxaf/fzf-tab"
+
+[nvim-darcula]
+src.git = "https://github.com/doums/darcula"
+src.branch = "master"
+fetch.github = "doums/darcula"
+
+[nvim-git-blame]
+src.git = "https://github.com/f-person/git-blame.nvim"
+src.branch = "master"
+fetch.github = "f-person/git-blame.nvim"
+

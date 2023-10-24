@@ -1,0 +1,90 @@
+alias gbc="git br | grep -v '*' | xargs git br -D"
+alias gco="fzf-git-checkout"
+
+alias l="exa -TlL 1"
+alias la="exa -la"
+alias c="clear"
+
+set -g fish_greeting
+set -gx FZF_DEFAULT_OPTS '--color info:141,prompt:84,spinner:212,pointer:212,marker:212 --cycle'
+
+function fish_prompt
+  set_color blue
+  echo -n "$USER "
+  set_color normal
+  echo -n (prompt_pwd)
+  set_color green
+  echo -n " > "
+  set_color normal
+end
+
+function fish_right_prompt
+  set_color green
+  fish_git_prompt
+  set_color normal
+end
+
+function fzf-git-branch
+  git rev-parse HEAD > /dev/null 2>&1 || return
+
+  git branch --all --sort=-committerdate |
+      rg -v HEAD |
+      fzf |
+      sed "s/.* //"
+end
+
+function fzf-git-checkout
+  git rev-parse HEAD > /dev/null 2>&1 || return
+
+  set -l branch (fzf-git-branch)
+  if test -z "$branch"
+      echo "No branch selected."
+      return
+  end
+
+  # If branch name starts with 'remotes/' then it is a remote branch. By
+  # using --track and a remote branch name, it is the same as:
+  # git checkout -b branchName --track origin/branchName
+  if string match "remotes/*" "$branch"
+      git switch --track $branch
+  else
+      git checkout $branch;
+  end
+end
+
+# ALM
+set -gx MAVEN_OPTS "-Djdk.tls.client.protocols=TLSv1.2"
+set -gx LOCAL_DOMAIN "arost.alm.works"
+set -gx CLOUD_HOME "$HOME/ALM/cloud"
+
+set -gx SNYK_API_ENDPOINT "https://snyk.io/"
+set -gx SNYK_API_TOKEN "5a326dc8-1869-4e05-8dab-71373463e53a"
+set -gx SNYK_ORG "arost"
+
+alias arost_1_ssh=". $HOME/.kube/arost-1.dev.alm.works/ssh.sh"
+alias arost_1_env="fenv source $HOME/.kube/arost-1.dev.alm.works/env.sh"
+
+alias rebuild_cloud='$CLOUD_HOME/bootstrap/rebuild.sh'
+alias cdcld='cd $CLOUD_HOME'
+
+alias pf='sudo pfctl -ef $CLOUD_HOME/bootstrap/devserver-pf.conf'
+alias pf_clean='sudo pfctl -F all -f /etc/pf.conf'
+
+alias delete_all_jobs='kubectl delete jobs `kubectl get jobs -o custom-columns=:.metadata.name`'
+alias cqlsh='kubectl exec -ti cassandra-0 -- cqlsh -u cassandra -p cassandra --ssl'
+
+function start_standalone
+  npm start -- \
+    --domainId=82385810-67cd-11ec-9724-f1b704e53db3 \
+    --appHost=arost-1.dev.alm.works \
+    --cert=$HOME/.cloud/standalone.pem \
+    --key=$HOME/.cloud/standalone-key.pem
+end
+
+function start_qa_standalone
+  npm start -- \
+    --domainId=26f15200-a8d2-11eb-926f-d3c5ea2ec8d3 \
+    --appHost=s7e-qa.alm.works \
+    --cert=$HOME/.cloud/standalone.pem \
+    --key=$HOME/.cloud/standalone-key.pem
+end

@@ -1,0 +1,47 @@
+export JAVA_HOME=$(/usr/libexec/java_home -v 17)
+export MAVEN_OPTS="-Djdk.tls.client.protocols=TLSv1.2"
+
+export TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE="${HOME}/docker.sock"
+export DOCKER_HOST="unix://${HOME}/.colima/docker.sock"
+export TESTCONTAINERS_RYUK_DISABLED=true
+
+export CLOUD_HOME=~/ALM/cloud
+export LOCAL_DOMAIN=arost.alm.works
+
+alias rebuild_cloud='$CLOUD_HOME/bootstrap/rebuild.sh'
+alias delete_all_jobs='kubectl delete jobs `kubectl get jobs -o custom-columns=:.metadata.name`'
+
+alias pf='sudo pfctl -ef $CLOUD_HOME/bootstrap/devserver-pf.conf'
+alias pf_clean='sudo pfctl -F all -f /etc/pf.conf'
+
+alias arost_1_ssh='. "$HOME/.kube/arost-1.dev.alm.works/ssh.sh"'
+alias arost_1_env='. "$HOME/.kube/arost-1.dev.alm.works/env.sh"'
+
+alias cqlsh='kubectl exec -ti cassandra-0 -- cqlsh -u cassandra -p cassandra --ssl'
+
+function mvnDocker() {
+  eval "$(minikube docker-env)"
+  # export DOCKER_HOST=tcp://192.168.57.3:2376
+  mvn install -DskipTests -P docker,minikube -T4 "$@"
+}
+
+function start_standalone() {
+  npm start -- \
+    --env domainId=bae8f490-8b7f-11ed-931b-07f40f220c03 \
+    --env appHost=arost-1.dev.alm.works \
+    --env cert=$HOME/.cloud/standalone.pem \
+    --env key=$HOME/.cloud/standalone-key.pem
+}
+
+function start_qa_standalone() {
+  npm start -- \
+    --env domainId=26f15200-a8d2-11eb-926f-d3c5ea2ec8d3 \
+    --env appHost=s7e-qa.alm.works \
+    --env cert=$HOME/.cloud/standalone.pem \
+    --env key=$HOME/.cloud/standalone-key.pem
+}
+
+# snyk
+# export SNYK_API_ENDPOINT="https://snyk.io/"
+export SNYK_ORG="arost-s3v"
+export SNYK_POLICY_PATH="$CLOUD_HOME/security-check/src/main/resources/.snyk"

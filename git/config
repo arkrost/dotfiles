@@ -1,0 +1,26 @@
+[user]
+	name = Arkady Rost
+	email = arost@tempo.io
+[alias]
+	co = checkout
+	ci = commit
+	st = status -uno
+	br = branch
+	type = cat-file -t
+	dump = cat-file -p
+	lg = log --graph --color --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	unstage = rm --cached
+	drucken = push
+[color]
+	ui = true
+[man]
+	viewer = man
+[stash]
+	showPatch = true
+[core]
+	pager = delta
+[delta]
+	side-by-side = true
+	navigate = true
+[pull]
+	rebase = true
