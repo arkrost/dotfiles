@@ -16,6 +16,7 @@ brew "helix", args: ["HEAD"]
 brew "helm"
 brew "jq"
 brew "kubernetes-cli"
+brew "lua-language-server"
 brew "marksman"
 brew "node@18"
 brew "protobuf"
