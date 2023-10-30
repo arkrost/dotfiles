@@ -2,6 +2,7 @@ theme = "tokyonight_storm"
 
 [editor]
 line-number = "relative"
+mouse = false
 text-width = 100
 rulers = [100]
 
