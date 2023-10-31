@@ -6,6 +6,11 @@ path=(~/.cabal/bin ~/.ghcup/bin $path)
 # rust
 source "$HOME/.cargo/env"
 
+mkdir -p ~/.zfunc
+fpath+=~/.zfunc
+rustup completions zsh cargo > ~/.zfunc/_cargo
+rustup completions zsh rustup > ~/.zfunc/_rustup
+
 export LC_ALL='en_US.UTF-8'
 export EDITOR=hx
 
