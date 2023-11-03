@@ -13,6 +13,7 @@ right_format='$cmd_duration'
 format = '[ $path ]($style)'
 home_symbol = '~'
 repo_root_style = 'bold fg:yellow'
+style = 'bold blue'
 truncate_to_repo = false
 truncation_length = 8
 truncation_symbol = '…/'
