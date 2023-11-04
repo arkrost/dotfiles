@@ -1,0 +1,101 @@
+"attribute" = "aqua1"
+"keyword" = "purple1"
+"keyword.directive" = "red1"
+"namespace" = "aqua1"
+"variable.other.member" = "blue1"
+"variable.builtin" = "orange1"
+"variable.parameter" = "fg1"
+"type" = "yellow1"
+"type.enum" = "orange1"
+"constructor" = "yellow1"
+"function" = "blue1"
+"function.macro" = "aqua1"
+"function.builtin" = "yellow1"
+"tag" = "red1"
+"special" = "red1"
+"comment" = { fg = "gray1", modifiers = ["italic"]  }
+"comment.block" = { fg = "aqua1", modifiers = ["italic"] }
+"constant" = "purple1"
+"string" = "green1"
+"constant.numeric" = "purple1"
+"constant.character.escape" = { fg = "orange1", modifiers = ["italic"] }
+"label" = "aqua1"
+"module" = "aqua1"
+
+"diff.plus" = "green1"
+"diff.delta" = "orange1"
+"diff.minus" = "red1"
+
+"warning" = "orange1"
+"error" = "red1"
+"info" = "aqua1"
+"hint" = "blue1"
+
+"ui.background" = { bg = "bg0" }
+"ui.linenr" = { fg = "bg4" }
+"ui.linenr.selected" = { fg = "yellow1" }
+"ui.cursorline" = { bg = "bg1" }
+"ui.statusline" = { fg = "fg1", bg = "bg2" }
+"ui.statusline.normal" = { fg = "fg1", bg = "bg2" }
+"ui.statusline.insert" = { fg = "fg1", bg = "blue0" }
+"ui.statusline.select" = { fg = "fg1", bg = "orange0" }
+"ui.statusline.inactive" = { fg = "fg4", bg = "bg1" }
+"ui.popup" = { bg = "bg1" }
+"ui.window" = { bg = "bg1" }
+"ui.help" = { bg = "bg1", fg = "fg1" }
+"ui.text" = { fg = "fg1" }
+"ui.text.focus" = { fg = "fg1" }
+"ui.selection" = { bg = "bg2" }
+"ui.selection.primary" = { bg = "bg3" }
+"ui.cursor.primary" = { bg = "fg4", fg = "bg1" }
+"ui.cursor.match" = { bg = "bg3" }
+"ui.menu" = { fg = "fg1", bg = "bg2" }
+"ui.menu.selected" = { fg = "bg2", bg = "blue1", modifiers = ["bold"] }
+"ui.virtual.whitespace" = "bg2"
+"ui.virtual.ruler" = { bg = "bg1" }
+"ui.virtual.inlay-hint" = { fg = "gray1" }
+"ui.virtual.wrap" = { fg = "bg2" }
+
+"diagnostic.warning" = { underline = { color = "orange1", style = "curl" } }
+"diagnostic.error" = { underline = { color = "red1", style = "curl" } }
+"diagnostic.info" = { underline = { color = "aqua1", style = "curl" } }
+"diagnostic.hint" = { underline = { color = "blue1", style = "curl" } }
+
+"markup.heading" = "aqua1"
+"markup.bold" = { fg = "yellow1",modifiers = ["bold"] }
+"markup.italic" = { fg = "orange1", modifiers = ["italic"] }
+"markup.strikethrough" = { fg = "gray1", modifiers = ["crossed_out"] }
+"markup.link.url" = { fg = "green1", modifiers = ["underlined"] }
+"markup.link.text" = "blue1"
+"markup.raw" = "purple1"
+
+[palette]
+bg0 = "#1d2021" # main background
+bg1 = "#3c3836"
+bg2 = "#504945"
+bg3 = "#665c54"
+bg4 = "#7c6f64"
+
+fg0 = "#fbf1c7"
+fg1 = "#ebdbb2" # main foreground
+fg2 = "#d5c4a1"
+fg3 = "#bdae93"
+fg4 = "#a89984" # gray0
+
+gray0 = "#a89984"
+gray1 = "#928374"
+
+red0 = "#cc241d" # neutral
+red1 = "#fb4934" # bright
+green0 = "#98971a"
+green1 = "#b8bb26"
+yellow0 = "#d79921"
+yellow1 = "#fabd2f"
+blue0 = "#458588"
+blue1 = "#83a598"
+purple0 = "#b16286"
+purple1 = "#d3869b"
+aqua0 = "#689d6a"
+aqua1 = "#8ec07c"
+orange0 = "#d65d0e"
+orange1 = "#fe8019"
