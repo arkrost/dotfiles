@@ -17,8 +17,6 @@ def gbc [] {
   git br --merged | rg -v '\*.*' | lines | str trim | each  { |b| git br -D $b } | str trim
 }
 
-alias nv = nvim
-
 $env.EDITOR = "hx"
 $env.TESTCONTAINERS_RYUK_DISABLED = true
 
