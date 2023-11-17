@@ -6,6 +6,10 @@ $env.PATH = ($env.PATH | prepend [
   '/opt/homebrew/bin'
 ])
 
+$env.config = {
+  show_banner: false,
+}
+
 # alias up='brew update && brew upgrade && brew upgrade --cask && brew cleanup'
 
 alias l = exa -L 1 -Ta

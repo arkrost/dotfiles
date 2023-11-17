@@ -13,8 +13,7 @@
 "function.builtin" = "yellow1"
 "tag" = "red1"
 "special" = "red1"
-"comment" = { fg = "gray1", modifiers = ["italic"]  }
-"comment.block" = { fg = "aqua1", modifiers = ["italic"] }
+"comment" = { fg = "orange1", modifiers = ["italic"]  }
 "constant" = "purple1"
 "string" = "green1"
 "constant.numeric" = "purple1"
