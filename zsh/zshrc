@@ -19,6 +19,7 @@ export EDITOR=hx
 
 # completion
 autoload -Uz compinit && compinit -i
+zstyle ':completion:*' menu select
 
 # prompt
 autoload -Uz vcs_info
