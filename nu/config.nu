@@ -26,3 +26,4 @@ $env.TESTCONTAINERS_RYUK_DISABLED = true
 
 source ~/.cache/nu/starship.nu
 source ~/.cache/nu/zoxide.nu
+source ~/.cache/nu/atuin.nu
