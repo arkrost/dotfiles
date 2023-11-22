@@ -13,6 +13,3 @@ select = "underline"
 
 [editor.lsp]
 display-inlay-hints = true
-
-[keys.insert]
-"C-[" = "normal_mode"

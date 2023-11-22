@@ -11,6 +11,7 @@ font:
     style: Light Extended Italic
   size: 14
 window:
+  option_as_alt: Both
   dimensions:
     lines: 25
     columns: 120
