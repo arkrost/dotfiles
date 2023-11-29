@@ -11,6 +11,8 @@ font:
     style: Light Extended Italic
   size: 14
 window:
+  opacity: 0.9
+  decorations: none
   option_as_alt: Both
   dimensions:
     lines: 25
