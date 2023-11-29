@@ -19,6 +19,19 @@ alias arost_1_env='. "$HOME/.kube/arost-1.dev.alm.works/env.sh"'
 
 alias cqlsh='kubectl exec -ti cassandra-0 -- cqlsh -u cassandra -p cassandra --ssl'
 
+function scale_cloud() {
+  kubectl scale sts api-public --replicas=0
+  kubectl scale sts cloner --replicas=0
+  kubectl scale sts structure-export --replicas=0
+  kubectl scale sts roadmunk-integration --replicas=0
+  kubectl scale sts gantt-migration --replicas=0
+  kubectl scale deploy domain-data --replicas=0
+  kubectl scale deploy confluence-integration --replicas=0
+  kubectl scale deploy customcharts-integration --replicas=0
+  kubectl scale deploy item-attribute-store --replicas=1
+  kubectl scale deploy item-attribute-subscription-hub --replicas=1
+}
+
 function mvnDocker() {
   eval "$(minikube docker-env)"
   # export DOCKER_HOST=tcp://192.168.57.3:2376
