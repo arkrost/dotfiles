@@ -9,6 +9,7 @@ keybinds {
         bind "Alt h" "Alt Left" { MoveFocus "Left"; }
         bind "Alt l" "Alt Right" { MoveFocus "Right"; }
         bind "Alt f" { ToggleFocusFullscreen; }
+        bind "Alt w" { ToggleFloatingPanes; }
     }
 }
 
