@@ -1,5 +1,5 @@
-# shell:
-  # program: /opt/homebrew/bin/nu
+shell:
+  program: /opt/homebrew/bin/nu
 font:
   normal:
     family: Iosevka Fixed SS04
@@ -11,8 +11,8 @@ font:
     style: Light Extended Italic
   size: 14
 window:
-  opacity: 0.90
-  decorations: none
+  opacity: 0.95
+  # decorations: none
   option_as_alt: Both
   dimensions:
     lines: 25

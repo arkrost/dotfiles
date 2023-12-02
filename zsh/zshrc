@@ -1,6 +1,3 @@
-# vi mode
-bindkey -v
-
 path=(~/.local/bin $path)
 #node
 path=(/opt/homebrew/opt/node@18/bin ~/.npm-packages/bin $path)
