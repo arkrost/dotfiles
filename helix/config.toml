@@ -12,4 +12,4 @@ normal = "block"
 select = "underline"
 
 [editor.lsp]
-display-inlay-hints = true
+display-inlay-hints = false
