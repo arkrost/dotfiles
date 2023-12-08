@@ -2,12 +2,8 @@ add_newline = false
 
 format = """
 $directory\
-$git_branch\
-$git_status\
 $character
 """
-
-right_format='$cmd_duration'
 
 [directory]
 format = '[ $path ]($style)'
@@ -24,7 +20,7 @@ style = 'italic'
 format = '[ $symbol $branch ]($style)'
 
 [git_status]
-style='bold'
+style = 'bold'
 format = '[$all_status$ahead_behind ]($style)'
 
 [character]
