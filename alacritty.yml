@@ -2,16 +2,17 @@
   # program: /opt/homebrew/bin/nu
 font:
   normal:
-    family: Iosevka Fixed SS04
+    family: IosevkaFixedSS04 Nerd Font
     style: Light Extended
   bold:
+    family: IosevkaFixedSS04 Nerd Font
     style: Extended
   italic:
-    family: Iosevka Fixed SS04
+    family: IosevkaFixedSS04 Nerd Font
     style: Light Extended Italic
   size: 14
 window:
-  # opacity: 0.95
+  opacity: 0.95
   # decorations: none
   option_as_alt: Both
   dimensions:
