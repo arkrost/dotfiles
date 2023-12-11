@@ -1,3 +1,7 @@
+if vim.g.vscode then
+  return
+end
+
 --[[ Options ]]
 
 vim.scriptencoding = 'utf-8'
@@ -43,27 +47,26 @@ vim.opt.wildignore:append { '*/node_modules/*' }
 --[[ Keymaps ]]
 
 vim.g.mapleader = ' '
-vim.keymap.set('n', '<leader>pv', vim.cmd.Ex)
 
 -- do not yank
 vim.keymap.set({'n', 'v'}, 'x', '"_x')
 
 -- save position
-vim.keymap.set('n', 'J', 'mzJ`z')
+vim.keymap.set('n', 'J', 'mzJ`z', { desc = 'Join lines' }) 
 
 -- center screen
-vim.keymap.set('n', '<C-d>', '<C-d>zzzv')
-vim.keymap.set('n', '<C-u>', '<C-u>zzzv')
-vim.keymap.set('n', 'n', 'nzzzv')
-vim.keymap.set('n', 'N', 'Nzzzv')
+vim.keymap.set('n', '<C-d>', '<C-d>zzzv', { desc = 'Scroll screen down' })
+vim.keymap.set('n', '<C-u>', '<C-u>zzzv', { desc = 'Scroll screen up' })
+vim.keymap.set('n', 'n', 'nzzzv', { desc = 'Next match' })
+vim.keymap.set('n', 'N', 'Nzzzv', { desc = 'Prev match' })
 
 -- move lines
-vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
-vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
+vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'Move line down' })
+vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'Move line up' })
 
 -- tabs
-vim.keymap.set('n', 'te', ':tabedit<CR>', { silent = true})
-vim.keymap.set('n', 'wq', '<C-w>c')
+vim.keymap.set('n', '<C-t>', ':tabedit<CR>', { silent = true, desc = 'New Tab' })
+vim.keymap.set('n', 'wq', '<C-w>c', { desc = 'Close window' })
 
 -- diagnostics
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
@@ -100,6 +103,22 @@ require('lazy').setup(
       end
     },
     {
+      'folke/which-key.nvim',
+      event = 'VeryLazy',
+      init = function()
+        vim.opt.timeout = true
+        vim.opt.timeoutlen = 300
+      end,
+      keys = {
+        { '<leader>?', '<cmd>:WhichKey<cr>', desc = 'Help keys' }
+      },
+      opts = {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    },
+    {
       'nvim-telescope/telescope.nvim',
       lazy = false,
       dependencies = {
@@ -111,9 +130,9 @@ require('lazy').setup(
         }
       },
       keys = {
-        { '<C-p>', function() require('telescope.builtin').find_files() end, 'n', 'Find files' },
-        { '<leader>ps', function() require('telescope.builtin').live_grep() end, 'n', 'Grep files' },
-        { '<leader>pb', function() require('telescope.builtin').buffers() end, 'n', 'Find buffers' }
+        { '<leader>f', function() require('telescope.builtin').find_files() end, 'n', desc = 'Find files' },
+        { '<leader>/', function() require('telescope.builtin').live_grep() end, 'n', desc ='Grep files' },
+        { '<leader>b', function() require('telescope.builtin').buffers() end, 'n', desc = 'Find buffers' }
       }
     },
     {
@@ -194,10 +213,10 @@ require('lazy').setup(
           swap = {
             enable = true,
             swap_next = {
-              ['<leader>a'] = '@parameter.inner',
+              ['<leader>ra'] = '@parameter.inner',
             },
             swap_previous = {
-              ['<leader>A'] = '@parameter.inner',
+              ['<leader>rA'] = '@parameter.inner',
             },
           },
         },
@@ -222,7 +241,7 @@ require('lazy').setup(
       cmd = 'UndotreeToggle',
       init = function()
         vim.g.undotree_SetFocusWhenToggle = 1
-        vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle)
+        vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle, { desc = 'Undo tree' })
       end,
     },
     {
@@ -297,14 +316,15 @@ require('lazy').setup(
         }
       end,
     },
+    'folke/neodev.nvim',
     {
       'neovim/nvim-lspconfig',
       dependencies = {
         'nvim-telescope/telescope.nvim', -- see on_attach keys
         { 'hrsh7th/cmp-nvim-lsp', dependencies = { 'hrsh7th/nvim-cmp' } }
       },
-      -- event = { 'BufReadPre', 'BufNewFile' },
-      ft = { 'rust' },
+      event = { 'BufReadPre', 'BufNewFile' },
+      -- ft = { 'rust' },
       config = function()
         local lspconfig = require('lspconfig')
         lspconfig.rust_analyzer.setup {
@@ -350,22 +370,5 @@ require('lazy').setup(
   },
   {
     defaults = { lazy = true },
-    ui = {
-      -- text icons
-      icons = {
-        cmd = '[cmd]',
-        config = '[cfg]',
-        event = '[evt]',
-        ft = '[ft]',
-        init = '[ini]',
-        keys = '[key]',
-        plugin = '[dep]',
-        runtime = '[rt]',
-        source = '[src]',
-        start = '[st]',
-        task = '[tsk]',
-        lazy = '[Zz]',
-      },
-    },
   }
 )
