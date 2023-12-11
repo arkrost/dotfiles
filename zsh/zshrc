@@ -88,10 +88,6 @@ if [ $commands[kubectl] ]; then
   source <(kubectl completion zsh)
 fi
 
-eval "$(starship init zsh)"
-eval "$(zoxide init zsh)"
-# eval "$(atuin init zsh --disable-up-arrow)"
-
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
     print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
@@ -108,3 +104,8 @@ autoload -Uz _zinit
 ### end of Zinit's installer
 zinit light Aloxaf/fzf-tab
 zinit light hlissner/zsh-autopair
+
+# base commands
+eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"
+eval "$(atuin init zsh --disable-up-arrow)"
