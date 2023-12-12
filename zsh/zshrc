@@ -12,7 +12,7 @@ rustup completions zsh cargo > ~/.zfunc/_cargo
 rustup completions zsh rustup > ~/.zfunc/_rustup
 
 export LC_ALL='en_US.UTF-8'
-export EDITOR=hx
+export EDITOR=nvim
 
 # completion
 autoload -Uz compinit && compinit -i
