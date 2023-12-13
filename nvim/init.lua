@@ -49,10 +49,10 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- do not yank
-vim.keymap.set({'n', 'v'}, 'x', '"_x')
+vim.keymap.set({ 'n', 'v' }, 'x', '"_x')
 
 -- save position
-vim.keymap.set('n', 'J', 'mzJ`z', { desc = 'Join lines' }) 
+vim.keymap.set('n', 'J', 'mzJ`z', { desc = 'Join lines' })
 
 -- center screen
 vim.keymap.set('n', '<C-d>', '<C-d>zzzv', { desc = 'Scroll screen down' })
@@ -98,7 +98,7 @@ require('lazy').setup(
       opts = {
         contrast = 'hard'
       },
-      init = function ()
+      init = function()
         vim.cmd('colorscheme gruvbox')
       end
     },
@@ -109,14 +109,10 @@ require('lazy').setup(
         vim.opt.timeout = true
         vim.opt.timeoutlen = 300
       end,
+      opts = {},
       keys = {
         { '?', '<cmd>:WhichKey<cr>', desc = 'Help keys' }
       },
-      opts = {
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
-      }
     },
     {
       'nvim-telescope/telescope.nvim',
@@ -131,8 +127,8 @@ require('lazy').setup(
       },
       keys = {
         { '<leader>f', function() require('telescope.builtin').find_files() end, 'n', desc = 'Find files' },
-        { '<leader>/', function() require('telescope.builtin').live_grep() end, 'n', desc ='Grep files' },
-        { '<leader>b', function() require('telescope.builtin').buffers() end, 'n', desc = 'Find buffers' }
+        { '<leader>/', function() require('telescope.builtin').live_grep() end,  'n', desc = 'Grep files' },
+        { '<leader>b', function() require('telescope.builtin').buffers() end,    'n', desc = 'Find buffers' }
       }
     },
     {
@@ -140,7 +136,7 @@ require('lazy').setup(
       dependencies = {
         'windwp/nvim-ts-autotag',
         'nvim-treesitter/nvim-treesitter-textobjects',
-        { 'nvim-treesitter/nvim-treesitter-context', opts = { } },
+        { 'nvim-treesitter/nvim-treesitter-context', opts = {} },
       },
       build = ':TSUpdate',
       event = { 'BufReadPre', 'BufNewFile' },
@@ -246,6 +242,7 @@ require('lazy').setup(
     },
     {
       'lukas-reineke/indent-blankline.nvim',
+      enabled = false,
       main = 'ibl',
       opts = {
         indent = {
@@ -266,7 +263,7 @@ require('lazy').setup(
     },
     {
       'hrsh7th/nvim-cmp',
-       dependencies = {
+      dependencies = {
         'hrsh7th/cmp-nvim-lsp',
         'L3MON4D3/LuaSnip',
         'saadparwaiz1/cmp_luasnip',
@@ -316,22 +313,20 @@ require('lazy').setup(
         }
       end,
     },
-    'folke/neodev.nvim',
     {
       'neovim/nvim-lspconfig',
       dependencies = {
         'nvim-telescope/telescope.nvim', -- see on_attach keys
+        { 'folke/neodev.nvim',    opts = {} },
         { 'hrsh7th/cmp-nvim-lsp', dependencies = { 'hrsh7th/nvim-cmp' } }
       },
       event = { 'BufReadPre', 'BufNewFile' },
-      -- ft = { 'rust' },
       config = function()
         local lspconfig = require('lspconfig')
-        lspconfig.rust_analyzer.setup {
-          settings = {
-            ['rust-analyzer'] = {},
-          },
-        }
+        lspconfig.rust_analyzer.setup({})
+        lspconfig.lua_ls.setup({})
+        lspconfig.zls.setup({})
+        lspconfig.marksman.setup({})
         vim.api.nvim_create_autocmd('LspAttach', {
           group = vim.api.nvim_create_augroup('UserLspConfig', {}),
           callback = function(ev)
@@ -339,16 +334,16 @@ require('lazy').setup(
               vim.keymap.set('n', keys, func, { buffer = ev.buf, desc = desc })
             end
 
-            nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
-            nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+            nmap('<leader>rn', vim.lsp.buf.rename, 'Rename')
+            nmap('<leader>ca', vim.lsp.buf.code_action, 'Code Action')
 
-            nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
-            nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-            nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-            nmap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
-            nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
-            nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
-            nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+            nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, 'Document Symbols')
+            nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Workspace Symbols')
+
+            nmap('gd', require('telescope.builtin').lsp_definitions, 'Goto Definition')
+            nmap('gr', require('telescope.builtin').lsp_references, 'Goto References')
+            nmap('gt', require('telescope.builtin').lsp_type_definitions, 'Goto Type')
+            nmap('gi', require('telescope.builtin').lsp_implementations, 'Goto Implementation')
 
             -- See `:help K` for why this keymap
             nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
@@ -358,7 +353,6 @@ require('lazy').setup(
             vim.api.nvim_buf_create_user_command(ev.buf, 'Format', function(_)
               vim.lsp.buf.format()
             end, { desc = 'Format current buffer with LSP' })
-
           end
         })
 
@@ -370,5 +364,20 @@ require('lazy').setup(
   },
   {
     defaults = { lazy = true },
+    install = {
+      missing = true,
+      colorscheme = { 'gruvbox', 'habamax' },
+      performance = {
+        rtp = {
+          disabled_plugins = {
+            'gzip',
+            'tarPlugin',
+            'tohtml',
+            'tutor',
+            'zipPlugin',
+          },
+        },
+      },
+    }
   }
 )
