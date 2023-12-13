@@ -38,6 +38,9 @@ vim.opt.sidescrolloff = 10
 vim.opt.inccommand = 'split'
 vim.opt.backspace = 'start,eol,indent'
 
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+
 vim.opt.foldenable = false
 
 vim.g.loaded_netrw = 1
@@ -135,6 +138,7 @@ require('lazy').setup(
       'nvim-treesitter/nvim-treesitter',
       dependencies = {
         'windwp/nvim-ts-autotag',
+        'nvim-treesitter/playground',
         'nvim-treesitter/nvim-treesitter-textobjects',
         { 'nvim-treesitter/nvim-treesitter-context', opts = {} },
       },
