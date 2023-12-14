@@ -96,10 +96,13 @@ require('lazy').setup(
   {
     {
       'ellisonleao/gruvbox.nvim',
-      lazy = false,
-      priority = 1000,
       opts = {
-        contrast = 'hard'
+        contrast = 'hard',
+        overrides = {
+          SignColumn = { link = 'GruvboxBg0' },
+          Keyword = { link = 'GruvboxPurple' },
+          Function = { link = 'GruvboxBlue' }
+        }
       },
       init = function()
         vim.cmd('colorscheme gruvbox')
