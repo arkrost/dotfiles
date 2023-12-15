@@ -41,8 +41,6 @@ vim.opt.backspace = 'start,eol,indent'
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 
-vim.opt.foldenable = false
-
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
@@ -101,7 +99,17 @@ require('lazy').setup(
         overrides = {
           SignColumn = { link = 'GruvboxBg0' },
           Keyword = { link = 'GruvboxPurple' },
-          Function = { link = 'GruvboxBlue' }
+          Function = { link = 'GruvboxBlue' },
+          Comment = { link = 'GruvboxOrange' },
+          UfoFoldedEllipsis = { link = 'GruvboxGray' },
+
+          -- lua
+          luaStatement = { link = 'GruvboxPurple' },
+          luaCond = { link = 'GruvboxPurple' },
+          luaCondElse = { link = 'GruvboxPurple' },
+          luaFunction = { link = 'GruvboxPurple' },
+          luaSymbolOperator = { link = 'GruvboxFg1' },
+          luaTable = { link = 'GruvboxFg1' },
         }
       },
       init = function()
@@ -138,6 +146,27 @@ require('lazy').setup(
       }
     },
     {
+      'kevinhwang91/nvim-ufo',
+      dependencies = {
+        'kevinhwang91/promise-async' -- required
+      },
+      event = { 'BufReadPost', 'BufNewFile' },
+      keys = {
+        { 'zK', function() require('ufo').peekFoldedLinesUnderCursor() end, 'n', desc = 'Peek fold' },
+        { 'zj', function() require('ufo').goNextClosedFold() end,           'n', desc = 'Next fold' },
+        { 'zk', function() require('ufo').goPreviousClosedFold() end,       'n', desc = 'Prev fold' },
+      },
+      opts = {
+        provider_selector = function()
+          return { 'lsp', 'indent' }
+        end
+      },
+      init = function()
+        vim.opt.foldlevel = 99
+        vim.opt.foldlevelstart = 99
+      end
+    },
+    {
       'nvim-treesitter/nvim-treesitter',
       dependencies = {
         'windwp/nvim-ts-autotag',
@@ -147,6 +176,7 @@ require('lazy').setup(
       },
       build = ':TSUpdate',
       event = { 'BufReadPre', 'BufNewFile' },
+      main = 'nvim-treesitter.configs',
       opts = {
         auto_install = false,
         ensure_installed = {
@@ -223,12 +253,7 @@ require('lazy').setup(
             },
           },
         },
-      },
-      config = function(_, opts)
-        vim.wo.foldmethod = 'expr'
-        vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
-        require('nvim-treesitter.configs').setup(opts)
-      end
+      }
     },
     {
       'windwp/nvim-autopairs',
@@ -329,11 +354,27 @@ require('lazy').setup(
       },
       event = { 'BufReadPre', 'BufNewFile' },
       config = function()
+        local capabilities = vim.lsp.protocol.make_client_capabilities()
+        capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+        capabilities.textDocument.foldingRange = {
+          dynamicRegistration = false,
+          lineFoldingOnly = true
+        }
+
         local lspconfig = require('lspconfig')
-        lspconfig.rust_analyzer.setup({})
-        lspconfig.lua_ls.setup({})
-        lspconfig.zls.setup({})
-        lspconfig.marksman.setup({})
+        lspconfig.rust_analyzer.setup({
+          capabilities = capabilities
+        })
+        lspconfig.lua_ls.setup({
+          capabilities = capabilities
+        })
+        lspconfig.zls.setup({
+          capabilities = capabilities
+        })
+        lspconfig.marksman.setup({
+          capabilities = capabilities
+        })
+
         vim.api.nvim_create_autocmd('LspAttach', {
           group = vim.api.nvim_create_augroup('UserLspConfig', {}),
           callback = function(ev)
@@ -362,10 +403,6 @@ require('lazy').setup(
             end, { desc = 'Format current buffer with LSP' })
           end
         })
-
-
-        local capabilities = vim.lsp.protocol.make_client_capabilities()
-        capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
       end
     },
   },
