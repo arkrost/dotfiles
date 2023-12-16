@@ -45,6 +45,7 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 vim.opt.foldlevelstart = 99
+vim.opt.foldmethod = 'indent'
 
 --[[ Keymaps ]]
 
@@ -79,6 +80,47 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnos
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
+-- folds
+vim.keymap.set('n', '[z', function()
+  local count = vim.v.count1
+  local curLnum = vim.api.nvim_win_get_cursor(0)[1]
+  local cnt = 0
+  local lnum
+  for i = curLnum - 1, 1, -1 do
+    if vim.fn.foldclosed(i) == i then
+      cnt = cnt + 1
+      lnum = i
+      if cnt == count then
+        break
+      end
+    end
+  end
+  if lnum then
+    vim.cmd('norm! m`')
+    vim.api.nvim_win_set_cursor(0, { lnum, 0 })
+  end
+end, { desc = 'Prev closed fold' })
+vim.keymap.set('n', ']z', function()
+  local count = vim.v.count1
+  local curLnum = vim.api.nvim_win_get_cursor(0)[1]
+  local lineCount = vim.api.nvim_buf_line_count(0)
+  local cnt = 0
+  local lnum
+  for i = curLnum + 1, lineCount do
+    if vim.fn.foldclosed(i) == i then
+      cnt = cnt + 1
+      lnum = i
+      if cnt == count then
+        break
+      end
+    end
+  end
+  if lnum then
+    vim.cmd('norm! m`')
+    vim.api.nvim_win_set_cursor(0, { lnum, 0 })
+  end
+end, { desc = 'Next closed fold' })
+
 --[[ Plugins ]]
 
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
@@ -105,11 +147,11 @@ require('lazy').setup(
           overrides = {
             SignColumn = { link = 'GruvboxBg0' },
             Keyword = { link = 'GruvboxPurple' },
+            Repeat = { link = 'GruvboxPurple' },
+            Conditional = { link = 'GruvboxPurple' },
             Function = { link = 'GruvboxBlue' },
             Comment = { italic = true, fg = palette.bright_orange },
-            UfoFoldedEllipsis = { link = 'GruvboxGray' },
             Operator = { link = 'GruvboxFg1' },
-            Conditional = { link = 'GruvboxPurple' },
             Delimiter = { link = 'GruvboxFg1' },
             ['@keyword.operator'] = { link = 'GruvboxPurple' },
             ['@text.todo.unchecked.markdown'] = { link = 'GruvboxYellow' },
@@ -160,24 +202,6 @@ require('lazy').setup(
       }
     },
     {
-      'kevinhwang91/nvim-ufo',
-      enabled = false,
-      dependencies = {
-        'kevinhwang91/promise-async' -- required
-      },
-      event = { 'BufReadPost', 'BufNewFile' },
-      keys = {
-        { 'zK', function() require('ufo').peekFoldedLinesUnderCursor() end, 'n', desc = 'Peek fold' },
-        { ']z', function() require('ufo').goNextClosedFold() end,           'n', desc = 'Next fold' },
-        { '[z', function() require('ufo').goPreviousClosedFold() end,       'n', desc = 'Prev fold' },
-      },
-      opts = {
-        provider_selector = function()
-          return { 'lsp', 'indent' }
-        end
-      }
-    },
-    {
       'nvim-treesitter/nvim-treesitter',
       dependencies = {
         'windwp/nvim-ts-autotag',
@@ -189,7 +213,7 @@ require('lazy').setup(
       event = { 'BufReadPre', 'BufNewFile' },
       main = 'nvim-treesitter.configs',
       init = function()
-        vim.opt.foldmethod = 'expr'
+--        vim.opt.foldmethod = 'expr'
         vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
       end,
       opts = {
@@ -373,10 +397,6 @@ require('lazy').setup(
       config = function()
         local capabilities = vim.lsp.protocol.make_client_capabilities()
         capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
-        capabilities.textDocument.foldingRange = {
-          dynamicRegistration = false,
-          lineFoldingOnly = true
-        }
 
         local lspconfig = require('lspconfig')
         lspconfig.rust_analyzer.setup({
