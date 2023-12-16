@@ -94,24 +94,34 @@ require('lazy').setup(
   {
     {
       'ellisonleao/gruvbox.nvim',
-      opts = {
-        contrast = 'hard',
-        overrides = {
-          SignColumn = { link = 'GruvboxBg0' },
-          Keyword = { link = 'GruvboxPurple' },
-          Function = { link = 'GruvboxBlue' },
-          Comment = { link = 'GruvboxOrange' },
-          UfoFoldedEllipsis = { link = 'GruvboxGray' },
+      opts = function()
+        local palette = require('gruvbox').palette
+        return {
+          contrast = 'hard',
+          overrides = {
+            SignColumn = { link = 'GruvboxBg0' },
+            Keyword = { link = 'GruvboxPurple' },
+            Function = { link = 'GruvboxBlue' },
+            Comment = { italic = true, fg = palette.bright_orange },
+            UfoFoldedEllipsis = { link = 'GruvboxGray' },
+            Operator = { link = 'GruvboxFg1' },
+            Conditional = { link = 'GruvboxPurple' },
+            Delimiter = { link = 'GruvboxFg1' },
+            ['@keyword.operator'] = { link = 'GruvboxPurple' },
+            ['@text.todo.unchecked.markdown'] = { link = 'GruvboxYellow' },
+            ['@text.todo.checked.markdown'] = { link = 'GruvboxFg1' },
 
-          -- lua
-          luaStatement = { link = 'GruvboxPurple' },
-          luaCond = { link = 'GruvboxPurple' },
-          luaCondElse = { link = 'GruvboxPurple' },
-          luaFunction = { link = 'GruvboxPurple' },
-          luaSymbolOperator = { link = 'GruvboxFg1' },
-          luaTable = { link = 'GruvboxFg1' },
+            -- lua
+            luaStatement = { link = 'GruvboxPurple' },
+            luaCond = { link = 'GruvboxPurple' },
+            luaCondElse = { link = 'GruvboxPurple' },
+            luaFunction = { link = 'GruvboxPurple' },
+            luaSymbolOperator = { link = 'GruvboxFg1' },
+            luaTable = { link = 'GruvboxFg1' },
+            ['@constructor.lua'] = { link = 'GruvboxFg1' }
+          }
         }
-      },
+      end,
       init = function()
         vim.cmd('colorscheme gruvbox')
       end
@@ -147,7 +157,6 @@ require('lazy').setup(
     },
     {
       'kevinhwang91/nvim-ufo',
-      enabled = false,
       dependencies = {
         'kevinhwang91/promise-async' -- required
       },
@@ -278,9 +287,11 @@ require('lazy').setup(
     },
     {
       'lukas-reineke/indent-blankline.nvim',
-      enabled = false,
       main = 'ibl',
       opts = {
+        scope = {
+          enabled = false
+        },
         indent = {
           char = '┊',
         }
