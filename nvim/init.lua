@@ -147,14 +147,15 @@ require('lazy').setup(
     },
     {
       'kevinhwang91/nvim-ufo',
+      enabled = false,
       dependencies = {
         'kevinhwang91/promise-async' -- required
       },
       event = { 'BufReadPost', 'BufNewFile' },
       keys = {
         { 'zK', function() require('ufo').peekFoldedLinesUnderCursor() end, 'n', desc = 'Peek fold' },
-        { 'zj', function() require('ufo').goNextClosedFold() end,           'n', desc = 'Next fold' },
-        { 'zk', function() require('ufo').goPreviousClosedFold() end,       'n', desc = 'Prev fold' },
+        { ']z', function() require('ufo').goNextClosedFold() end,           'n', desc = 'Next fold' },
+        { '[z', function() require('ufo').goPreviousClosedFold() end,       'n', desc = 'Prev fold' },
       },
       opts = {
         provider_selector = function()
@@ -162,7 +163,6 @@ require('lazy').setup(
         end
       },
       init = function()
-        vim.opt.foldlevel = 99
         vim.opt.foldlevelstart = 99
       end
     },
@@ -177,6 +177,10 @@ require('lazy').setup(
       build = ':TSUpdate',
       event = { 'BufReadPre', 'BufNewFile' },
       main = 'nvim-treesitter.configs',
+      init = function()
+        vim.opt.foldmethod = 'expr'
+        vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+      end,
       opts = {
         auto_install = false,
         ensure_installed = {
@@ -215,41 +219,41 @@ require('lazy').setup(
             lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
             keymaps = {
               -- You can use the capture groups defined in textobjects.scm
-              ['aa'] = '@parameter.outer',
-              ['ia'] = '@parameter.inner',
-              ['af'] = '@function.outer',
-              ['if'] = '@function.inner',
-              ['ac'] = '@class.outer',
-              ['ic'] = '@class.inner',
+              ['aa'] = { query = '@parameter.outer', desc = 'Select argument (outer)' },
+              ['ia'] = { query = '@parameter.inner', desc = 'Select argument (inner)' },
+              ['af'] = { query = '@function.outer', desc = 'Select function (outer)' },
+              ['if'] = { query = '@function.inner', desc = 'Select function (inner)' },
+              ['ac'] = { query = '@class.outer', desc = 'Select class (outer)' },
+              ['ic'] = { query = '@class.inner', desc = 'Select class (inner)' },
             },
           },
           move = {
             enable = true,
             set_jumps = true, -- whether to set jumps in the jumplist
             goto_next_start = {
-              [']m'] = '@function.outer',
-              [']]'] = '@class.outer',
+              [']m'] = { query = '@function.outer', desc = 'Next method start' },
+              [']]'] = { query = '@class.outer', desc = 'Next class start' },
             },
             goto_next_end = {
-              [']M'] = '@function.outer',
-              [']['] = '@class.outer',
+              [']M'] = { query = '@function.outer', desc = 'Next method end' },
+              [']['] = { query = '@class.outer', desc = 'Next class end' },
             },
             goto_previous_start = {
-              ['[m'] = '@function.outer',
-              ['[['] = '@class.outer',
+              ['[m'] = { query = '@function.outer', desc = 'Prev method start' },
+              ['[['] = { query = '@class.outer', desc = 'Prev class start' },
             },
             goto_previous_end = {
-              ['[M'] = '@function.outer',
-              ['[]'] = '@class.outer',
+              ['[M'] = { query = '@function.outer', desc = 'Prev method end' },
+              ['[]'] = { query = '@class.outer', desc = 'Prev class end' }
             },
           },
           swap = {
             enable = true,
             swap_next = {
-              ['<leader>ra'] = '@parameter.inner',
+              ['<leader>ra'] = { query = '@parameter.inner', desc = 'Swap args' },
             },
             swap_previous = {
-              ['<leader>rA'] = '@parameter.inner',
+              ['<leader>rA'] = { query = '@parameter.inner', desc = 'Swap args backward' },
             },
           },
         },
