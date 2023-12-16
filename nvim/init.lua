@@ -44,6 +44,8 @@ vim.opt.splitright = true
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+vim.opt.foldlevelstart = 99
+
 --[[ Keymaps ]]
 
 vim.g.mapleader = ' '
@@ -66,8 +68,10 @@ vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'Move line down' })
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'Move line up' })
 
 -- tabs
-vim.keymap.set('n', '<C-t>', ':tabedit<CR>', { silent = true, desc = 'New Tab' })
+vim.keymap.set('n', '<C-t>', '<cmd>tabedit<cr>', { silent = true, desc = 'New Tab' })
 vim.keymap.set('n', 'wq', '<C-w>c', { desc = 'Close window' })
+vim.keymap.set('n', ']t', '<cmd>tabnext<cr>', { desc = 'Next tab' })
+vim.keymap.set('n', '[t', '<cmd>tabprevious<cr>', { desc = 'Prev tab' })
 
 -- diagnostics
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
@@ -157,6 +161,7 @@ require('lazy').setup(
     },
     {
       'kevinhwang91/nvim-ufo',
+      enabled = false,
       dependencies = {
         'kevinhwang91/promise-async' -- required
       },
@@ -170,10 +175,7 @@ require('lazy').setup(
         provider_selector = function()
           return { 'lsp', 'indent' }
         end
-      },
-      init = function()
-        vim.opt.foldlevelstart = 99
-      end
+      }
     },
     {
       'nvim-treesitter/nvim-treesitter',
@@ -240,20 +242,20 @@ require('lazy').setup(
             enable = true,
             set_jumps = true, -- whether to set jumps in the jumplist
             goto_next_start = {
-              [']m'] = { query = '@function.outer', desc = 'Next method start' },
-              [']]'] = { query = '@class.outer', desc = 'Next class start' },
+              [']]'] = { query = '@function.outer', desc = 'Next method start' },
+              [']c'] = { query = '@class.outer', desc = 'Next class start' },
             },
             goto_next_end = {
-              [']M'] = { query = '@function.outer', desc = 'Next method end' },
-              [']['] = { query = '@class.outer', desc = 'Next class end' },
+              [']['] = { query = '@function.outer', desc = 'Next method end' },
+              [']C'] = { query = '@class.outer', desc = 'Next class end' },
             },
             goto_previous_start = {
-              ['[m'] = { query = '@function.outer', desc = 'Prev method start' },
-              ['[['] = { query = '@class.outer', desc = 'Prev class start' },
+              ['[['] = { query = '@function.outer', desc = 'Prev method start' },
+              ['[c'] = { query = '@class.outer', desc = 'Prev class start' },
             },
             goto_previous_end = {
-              ['[M'] = { query = '@function.outer', desc = 'Prev method end' },
-              ['[]'] = { query = '@class.outer', desc = 'Prev class end' }
+              ['[]'] = { query = '@function.outer', desc = 'Prev method end' },
+              ['[C'] = { query = '@class.outer', desc = 'Prev class end' }
             },
           },
           swap = {
