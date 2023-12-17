@@ -45,7 +45,7 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 vim.opt.foldlevelstart = 99
-vim.opt.foldmethod = 'indent'
+vim.opt.foldmethod = 'indent' -- or 'expr' to use treesitter
 
 --[[ Keymaps ]]
 
@@ -213,7 +213,6 @@ require('lazy').setup(
       event = { 'BufReadPre', 'BufNewFile' },
       main = 'nvim-treesitter.configs',
       init = function()
---        vim.opt.foldmethod = 'expr'
         vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
       end,
       opts = {
@@ -395,23 +394,6 @@ require('lazy').setup(
       },
       event = { 'BufReadPre', 'BufNewFile' },
       config = function()
-        local capabilities = vim.lsp.protocol.make_client_capabilities()
-        capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
-
-        local lspconfig = require('lspconfig')
-        lspconfig.rust_analyzer.setup({
-          capabilities = capabilities
-        })
-        lspconfig.lua_ls.setup({
-          capabilities = capabilities
-        })
-        lspconfig.zls.setup({
-          capabilities = capabilities
-        })
-        lspconfig.marksman.setup({
-          capabilities = capabilities
-        })
-
         vim.api.nvim_create_autocmd('LspAttach', {
           group = vim.api.nvim_create_augroup('UserLspConfig', {}),
           callback = function(ev)
@@ -440,6 +422,19 @@ require('lazy').setup(
             end, { desc = 'Format current buffer with LSP' })
           end
         })
+
+        local capabilities = vim.lsp.protocol.make_client_capabilities()
+        capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+
+        local lspconfig = require('lspconfig')
+        lspconfig.util.default_config = vim.tbl_deep_extend('force', lspconfig.util.default_config, {
+          capabilities = capabilities,
+        })
+
+        lspconfig.rust_analyzer.setup({})
+        lspconfig.lua_ls.setup({})
+        lspconfig.zls.setup({})
+        lspconfig.marksman.setup({})
       end
     },
   },
