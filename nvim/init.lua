@@ -196,10 +196,26 @@ require('lazy').setup(
         }
       },
       keys = {
-        { '<leader>f', function() require('telescope.builtin').find_files() end, 'n', desc = 'Find files' },
-        { '<leader>/', function() require('telescope.builtin').live_grep() end,  'n', desc = 'Grep files' },
-        { '<leader>b', function() require('telescope.builtin').buffers() end,    'n', desc = 'Find buffers' }
+        { '<leader>f', function() require('telescope.builtin').find_files() end, desc = 'Find files' },
+        { '<leader>/', function() require('telescope.builtin').live_grep() end,  desc = 'Grep files' },
+        { '<leader>b', function() require('telescope.builtin').buffers() end,    desc = 'Find buffers' }
       }
+    },
+    {
+      'numToStr/Comment.nvim',
+      dependencies = {
+        { 'JoosepAlviste/nvim-ts-context-commentstring', opts = { enable_autocmd = false } }
+      },
+      event = { 'BufRead', 'BufNewFile' },
+      keys = {
+        { '<C-c>', '<Plug>(comment_toggle_linewise_current)', desc = 'Comment toggle linewise' },
+        { '<C-c>', '<Plug>(comment_toggle_linewise_visual)',  mode = 'x',                      desc = 'Comment toggle linewise' }
+      },
+      opts = function()
+        return {
+          pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
+        }
+      end,
     },
     {
       'nvim-treesitter/nvim-treesitter',
@@ -305,9 +321,11 @@ require('lazy').setup(
     {
       'mbbill/undotree',
       cmd = 'UndotreeToggle',
+      keys = {
+        { '<leader>u', vim.cmd.UndotreeToggle, desc = 'Undo tree' }
+      },
       init = function()
         vim.g.undotree_SetFocusWhenToggle = 1
-        vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle, { desc = 'Undo tree' })
       end,
     },
     {
