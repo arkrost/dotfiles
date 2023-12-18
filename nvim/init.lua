@@ -69,10 +69,10 @@ vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'Move line down' })
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'Move line up' })
 
 -- tabs
-vim.keymap.set('n', '<C-t>', '<cmd>tabedit<cr>', { silent = true, desc = 'New Tab' })
+vim.keymap.set('n', '<C-t>', vim.cmd.tabnew, { silent = true, desc = 'New Tab' })
 vim.keymap.set('n', 'wq', '<C-w>c', { desc = 'Close window' })
-vim.keymap.set('n', ']t', '<cmd>tabnext<cr>', { desc = 'Next tab' })
-vim.keymap.set('n', '[t', '<cmd>tabprevious<cr>', { desc = 'Prev tab' })
+vim.keymap.set('n', ']t', vim.cmd.tabnext, { desc = 'Next tab' })
+vim.keymap.set('n', '[t', vim.cmd.tabprevious, { desc = 'Prev tab' })
 
 -- diagnostics
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
