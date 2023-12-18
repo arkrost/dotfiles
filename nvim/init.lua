@@ -357,15 +357,20 @@ require('lazy').setup(
         'hrsh7th/cmp-nvim-lsp',
         'L3MON4D3/LuaSnip',
         'saadparwaiz1/cmp_luasnip',
+        'onsails/lspkind.nvim'
       },
       opts = function()
         local cmp = require('cmp')
         local luasnip = require('luasnip')
+        local lspkind = require('lspkind')
         return {
           snippet = {
             expand = function(args)
               luasnip.lsp_expand(args.body)
             end,
+          },
+          formatting = {
+            format = lspkind.cmp_format({}),
           },
           mapping = cmp.mapping.preset.insert {
             ['<C-n>'] = cmp.mapping.select_next_item(),
