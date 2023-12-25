@@ -370,7 +370,9 @@ require('lazy').setup(
             end,
           },
           formatting = {
-            format = lspkind.cmp_format({}),
+            format = lspkind.cmp_format({
+              mode = 'symbol',
+            }),
           },
           mapping = cmp.mapping.preset.insert {
             ['<C-n>'] = cmp.mapping.select_next_item(),
