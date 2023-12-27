@@ -2,7 +2,6 @@ export JAVA_HOME=$(/usr/libexec/java_home -v 17)
 export MAVEN_OPTS="-Djdk.tls.client.protocols=TLSv1.2"
 
 export TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE="${HOME}/docker.sock"
-export DOCKER_HOST="unix://${HOME}/.colima/docker.sock"
 export TESTCONTAINERS_RYUK_DISABLED=true
 
 export CLOUD_HOME=~/ALM/cloud

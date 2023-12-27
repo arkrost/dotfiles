@@ -372,6 +372,10 @@ require('lazy').setup(
           formatting = {
             format = lspkind.cmp_format({
               mode = 'symbol',
+              before = function (_, vim_item)
+                vim_item.menu = ''
+                return vim_item
+              end
             }),
           },
           mapping = cmp.mapping.preset.insert {

@@ -32,4 +32,4 @@ themes {
 theme "gruvbox-dark";
 simplified_ui true
 pane_frames false
-default_layout "compact"
+// default_layout "compact"
