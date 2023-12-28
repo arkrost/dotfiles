@@ -208,8 +208,8 @@ require('lazy').setup(
       },
       event = { 'BufRead', 'BufNewFile' },
       keys = {
-        { '<C-c>', '<Plug>(comment_toggle_linewise_current)', desc = 'Comment toggle linewise' },
-        { '<C-c>', '<Plug>(comment_toggle_linewise_visual)',  mode = 'x',                      desc = 'Comment toggle linewise' }
+        { '<D-/>', '<Plug>(comment_toggle_linewise_current)', desc = 'Comment toggle linewise' },
+        { '<D-/>', '<Plug>(comment_toggle_linewise_visual)',  mode = 'x',                      desc = 'Comment toggle linewise' }
       },
       opts = function()
         return {
