@@ -372,7 +372,7 @@ require('lazy').setup(
           formatting = {
             format = lspkind.cmp_format({
               mode = 'symbol',
-              before = function (_, vim_item)
+              before = function(_, vim_item)
                 vim_item.menu = ''
                 return vim_item
               end
@@ -431,7 +431,7 @@ require('lazy').setup(
             end
 
             nmap('<leader>rn', vim.lsp.buf.rename, 'Rename')
-            nmap('<leader>ca', vim.lsp.buf.code_action, 'Code Action')
+            nmap('<D-.>', vim.lsp.buf.code_action, 'Code Action')
 
             nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, 'Document Symbols')
             nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Workspace Symbols')
@@ -460,7 +460,15 @@ require('lazy').setup(
           capabilities = capabilities,
         })
 
-        lspconfig.rust_analyzer.setup({})
+        lspconfig.rust_analyzer.setup({
+          settings = {
+            ['rust-analyzer'] = {
+              check = {
+                command = 'clippy'
+              }
+            }
+          },
+        })
         lspconfig.lua_ls.setup({})
         lspconfig.zls.setup({})
         lspconfig.marksman.setup({})
