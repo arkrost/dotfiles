@@ -38,6 +38,9 @@ vim.opt.sidescrolloff = 10
 vim.opt.inccommand = 'split'
 vim.opt.backspace = 'start,eol,indent'
 
+vim.opt.list = true
+vim.opt.listchars = { tab = '» ', leadmultispace = '┊ ', trail = '␣', nbsp = '⍽', eol = '↲' }
+
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 
@@ -203,19 +206,12 @@ require('lazy').setup(
     },
     {
       'numToStr/Comment.nvim',
-      dependencies = {
-        { 'JoosepAlviste/nvim-ts-context-commentstring', opts = { enable_autocmd = false } }
-      },
       event = { 'BufRead', 'BufNewFile' },
       keys = {
-        { '<D-/>', '<Plug>(comment_toggle_linewise_current)', desc = 'Comment toggle linewise' },
+        { '<D-/>', '<Plug>(comment_toggle_linewise_current)j', desc = 'Comment toggle linewise' },
         { '<D-/>', '<Plug>(comment_toggle_linewise_visual)',  mode = 'x',                      desc = 'Comment toggle linewise' }
       },
-      opts = function()
-        return {
-          pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
-        }
-      end,
+      opts = {},
     },
     {
       'nvim-treesitter/nvim-treesitter',
@@ -327,19 +323,6 @@ require('lazy').setup(
       init = function()
         vim.g.undotree_SetFocusWhenToggle = 1
       end,
-    },
-    {
-      'lukas-reineke/indent-blankline.nvim',
-      main = 'ibl',
-      opts = {
-        scope = {
-          enabled = false
-        },
-        indent = {
-          char = '┊',
-        }
-      },
-      event = 'VeryLazy'
     },
     {
       'L3MON4D3/LuaSnip',
