@@ -50,6 +50,7 @@ vim.g.loaded_netrwPlugin = 1
 vim.opt.foldlevelstart = 99
 vim.opt.foldmethod = 'indent' -- or 'expr' to use treesitter
 
+vim.opt.shortmess:append('aI')
 --[[ Keymaps ]]
 
 vim.g.mapleader = ' '
@@ -230,6 +231,7 @@ require('lazy').setup(
       opts = {
         auto_install = false,
         ensure_installed = {
+          'vimdoc',
           'kotlin',
           'java',
           'javascript',
