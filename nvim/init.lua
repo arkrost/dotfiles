@@ -206,13 +206,17 @@ require('lazy').setup(
       }
     },
     {
-      'numToStr/Comment.nvim',
-      event = { 'BufRead', 'BufNewFile' },
-      keys = {
-        { '<D-/>', '<Plug>(comment_toggle_linewise_current)j', desc = 'Comment toggle linewise' },
-        { '<D-/>', '<Plug>(comment_toggle_linewise_visual)',  mode = 'x',                      desc = 'Comment toggle linewise' }
+      'echasnovski/mini.comment',
+      event = { 'BufReadPost', 'BufNewFile' },
+      opts = {
+        options = {
+          start_of_line = true
+        }
       },
-      opts = {},
+      keys = {
+        { '<D-/>', 'gccj', desc = 'Comment line', remap = true },
+        { '<D-/>', 'gc',   desc = 'Comment',      mode = 'v',  remap = true }
+      }
     },
     {
       'nvim-treesitter/nvim-treesitter',
