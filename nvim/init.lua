@@ -210,10 +210,6 @@ require('lazy').setup(
         options = {
           start_of_line = true
         }
-      },
-      keys = {
-        { '<D-/>', 'gccj', desc = 'Comment line', remap = true },
-        { '<D-/>', 'gc',   desc = 'Comment',      mode = 'v',  remap = true }
       }
     },
     {
@@ -417,11 +413,10 @@ require('lazy').setup(
               vim.keymap.set('n', keys, func, { buffer = ev.buf, desc = desc })
             end
 
-            nmap('<leader>rn', vim.lsp.buf.rename, 'Rename')
-            nmap('<D-.>', vim.lsp.buf.code_action, 'Code Action')
+            nmap('<leaser>a', vim.lsp.buf.code_action, 'Code Action')
 
-            nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, 'Document Symbols')
-            nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Workspace Symbols')
+            nmap('<leader>sd', require('telescope.builtin').lsp_document_symbols, 'Document Symbols')
+            nmap('<leader>sw', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Workspace Symbols')
 
             nmap('gd', require('telescope.builtin').lsp_definitions, 'Goto Definition')
             nmap('gr', require('telescope.builtin').lsp_references, 'Goto References')
@@ -432,10 +427,15 @@ require('lazy').setup(
             nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
             nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
-            -- Create a command `:Format` local to the LSP buffer
+            -- `:Format` command
             vim.api.nvim_buf_create_user_command(ev.buf, 'Format', function(_)
               vim.lsp.buf.format()
             end, { desc = 'Format current buffer with LSP' })
+
+            -- `:Rename` command
+            vim.api.nvim_buf_create_user_command(ev.buf, 'Rename', function(_)
+              vim.lsp.buf.rename()
+            end, { desc = 'Rename symbol with LSP' })
           end
         })
 
