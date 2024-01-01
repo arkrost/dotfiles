@@ -158,8 +158,6 @@ require('lazy').setup(
             Operator = { link = 'GruvboxFg1' },
             Delimiter = { link = 'GruvboxFg1' },
             ['@keyword.operator'] = { link = 'GruvboxPurple' },
-            ['@text.todo.unchecked.markdown'] = { link = 'GruvboxYellow' },
-            ['@text.todo.checked.markdown'] = { link = 'GruvboxFg1' },
 
             -- lua
             luaStatement = { link = 'GruvboxPurple' },
