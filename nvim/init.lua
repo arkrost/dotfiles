@@ -204,6 +204,14 @@ require('lazy').setup(
       }
     },
     {
+      'nvim-telescope/telescope-ui-select.nvim',
+      dependencies = 'nvim-telescope/telescope.nvim',
+      event = 'VeryLazy',
+      config = function()
+        require('telescope').load_extension('ui-select')
+      end
+    },
+    {
       'echasnovski/mini.comment',
       event = { 'BufReadPost', 'BufNewFile' },
       opts = {
@@ -413,7 +421,7 @@ require('lazy').setup(
               vim.keymap.set('n', keys, func, { buffer = ev.buf, desc = desc })
             end
 
-            nmap('<leaser>a', vim.lsp.buf.code_action, 'Code Action')
+            nmap('<leader>a', vim.lsp.buf.code_action, 'Code Action')
 
             nmap('<leader>sd', require('telescope.builtin').lsp_document_symbols, 'Document Symbols')
             nmap('<leader>sw', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Workspace Symbols')
