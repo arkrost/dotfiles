@@ -44,9 +44,6 @@ vim.opt.listchars = { tab = '» ', leadmultispace = '┊ ', trail = '␣', nbsp 
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
 vim.opt.foldlevelstart = 99
 vim.opt.foldmethod = 'indent' -- or 'expr' to use treesitter
 
