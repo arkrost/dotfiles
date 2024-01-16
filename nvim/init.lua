@@ -53,6 +53,9 @@ vim.opt.shortmess:append('aI')
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+-- browse files
+vim.keymap.set('n', '<leader>p', '<cmd>Explore %:h<cr>', { desc = 'File Explore' })
+
 -- do not yank
 vim.keymap.set({ 'n', 'v' }, 'x', '"_x')
 
@@ -71,7 +74,7 @@ vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'Move line up' })
 
 -- tabs
 vim.keymap.set('n', '<C-t>', vim.cmd.tabnew, { silent = true, desc = 'New Tab' })
-vim.keymap.set('n', 'wq', '<C-w>c', { desc = 'Close window' })
+vim.keymap.set('n', 'wq', '<cmd>bdelete<cr>', { desc = 'Close window' })
 vim.keymap.set('n', ']t', vim.cmd.tabnext, { desc = 'Next tab' })
 vim.keymap.set('n', '[t', vim.cmd.tabprevious, { desc = 'Prev tab' })
 
@@ -155,7 +158,6 @@ require('lazy').setup(
             Operator = { link = 'GruvboxFg1' },
             Delimiter = { link = 'GruvboxFg1' },
             ['@keyword.operator'] = { link = 'GruvboxPurple' },
-
             -- lua
             luaStatement = { link = 'GruvboxPurple' },
             luaCond = { link = 'GruvboxPurple' },
