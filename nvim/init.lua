@@ -53,9 +53,6 @@ vim.opt.shortmess:append('aI')
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
--- browse files
-vim.keymap.set('n', '<leader>p', '<cmd>Explore %:h<cr>', { desc = 'File Explore' })
-
 -- do not yank
 vim.keymap.set({ 'n', 'v' }, 'x', '"_x')
 
