@@ -187,24 +187,28 @@ require('lazy').setup(
       lazy = false,
       dependencies = {
         'nvim-lua/plenary.nvim', --required
+        'nvim-telescope/telescope-ui-select.nvim',
+        'nvim-telescope/telescope-file-browser.nvim',
       },
       opts = {
         defaults = {
           path_display = { 'smart' }
+        },
+        extensions = {
+          file_browser = {
+            hijack_netrw = true
+          }
         }
       },
       keys = {
         { '<leader>f', function() require('telescope.builtin').find_files() end, desc = 'Find files' },
         { '<leader>/', function() require('telescope.builtin').live_grep() end,  desc = 'Grep files' },
         { '<leader>b', function() require('telescope.builtin').buffers() end,    desc = 'Find buffers' }
-      }
-    },
-    {
-      'nvim-telescope/telescope-ui-select.nvim',
-      dependencies = 'nvim-telescope/telescope.nvim',
-      event = 'VeryLazy',
-      config = function()
+      },
+      config = function(_, opts)
+        require('telescope').setup(opts)
         require('telescope').load_extension('ui-select')
+        require('telescope').load_extension('file_browser')
       end
     },
     {
