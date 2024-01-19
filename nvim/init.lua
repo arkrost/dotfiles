@@ -48,6 +48,7 @@ vim.opt.foldlevelstart = 99
 vim.opt.foldmethod = 'indent' -- or 'expr' to use treesitter
 
 vim.opt.shortmess:append('aI')
+
 --[[ Keymaps ]]
 
 vim.g.mapleader = ' '
@@ -212,12 +213,11 @@ require('lazy').setup(
       end
     },
     {
-      'echasnovski/mini.comment',
-      event = { 'BufReadPost', 'BufNewFile' },
-      opts = {
-        options = {
-          start_of_line = true
-        }
+      'numToStr/Comment.nvim',
+      opts = {},
+      keys = {
+        { 'gc', mode = { 'n', 'v' } },
+        { 'gb', mode = { 'n', 'v' } }
       }
     },
     {
@@ -229,7 +229,16 @@ require('lazy').setup(
         { 'nvim-treesitter/nvim-treesitter-context', opts = {} },
       },
       build = ':TSUpdate',
-      event = { 'BufReadPre', 'BufNewFile' },
+      event = 'VeryLazy',
+      cmd = {
+        "TSInstall",
+        "TSUninstall",
+        "TSUpdate",
+        "TSUpdateSync",
+        "TSInstallInfo",
+        "TSInstallSync",
+        "TSInstallFromGrammar",
+      },
       main = 'nvim-treesitter.configs',
       init = function()
         vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
@@ -335,7 +344,7 @@ require('lazy').setup(
 
             nmap('<leader>p', function() vim.cmd.Git('push') end, 'Git push')
             nmap('<leader>u', function() vim.cmd.Git('pull --rebase') end, 'Git pull')
-            nmap('<leader>P', function () vim.cmd.Git('push -u origin') end, 'Git push -u origin')
+            nmap('<leader>P', function() vim.cmd.Git('push -u origin') end, 'Git push -u origin')
           end,
         })
       end,
