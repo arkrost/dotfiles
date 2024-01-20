@@ -47,7 +47,9 @@ vim.opt.splitright = true
 vim.opt.foldlevelstart = 99
 vim.opt.foldmethod = 'indent' -- or 'expr' to use treesitter
 
-vim.opt.shortmess:append('aI')
+vim.opt.shortmess:append('aI') -- ignore intro message
+
+vim.opt.clipboard = 'unnamedplus' -- use system clipboard
 
 --[[ Keymaps ]]
 
