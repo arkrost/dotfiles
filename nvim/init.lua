@@ -102,6 +102,7 @@ vim.keymap.set('n', '[z', function()
     vim.api.nvim_win_set_cursor(0, { lnum, 0 })
   end
 end, { desc = 'Prev closed fold' })
+
 vim.keymap.set('n', ']z', function()
   local count = vim.v.count1
   local curLnum = vim.api.nvim_win_get_cursor(0)[1]
@@ -202,9 +203,10 @@ require('lazy').setup(
         }
       },
       keys = {
-        { '<leader>f', function() require('telescope.builtin').find_files() end, desc = 'Find files' },
-        { '<leader>/', function() require('telescope.builtin').live_grep() end,  desc = 'Grep files' },
-        { '<leader>b', function() require('telescope.builtin').buffers() end,    desc = 'Find buffers' }
+        { '<leader>f', function() require('telescope.builtin').find_files() end,  desc = 'Find files' },
+        { '<leader>/', function() require('telescope.builtin').live_grep() end,   desc = 'Grep files' },
+        { '<leader>b', function() require('telescope.builtin').buffers() end,     desc = 'Find buffers' },
+        { '<leader>q', function() require('telescope.builtin').diagnostics() end, desc = 'Open diagnostics list' }
       },
       config = function(_, opts)
         require('telescope').setup(opts)
@@ -225,7 +227,6 @@ require('lazy').setup(
       dependencies = {
         'windwp/nvim-ts-autotag',
         'nvim-treesitter/playground',
-        'nvim-treesitter/nvim-treesitter-textobjects',
         { 'nvim-treesitter/nvim-treesitter-context', opts = {} },
       },
       build = ':TSUpdate',
@@ -267,59 +268,6 @@ require('lazy').setup(
         highlight = { enable = true },
         indent = { enable = true },
         autotag = { enable = true },
-        incremental_selection = {
-          enable = true,
-          keymaps = {
-            init_selection = '<C-Space>',
-            node_incremental = '<C-Space>',
-            scope_incremental = '<C-S>',
-            node_decremental = '<M-Space>',
-          },
-        },
-        textobjects = {
-          select = {
-            enable = true,
-            lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
-            keymaps = {
-              -- You can use the capture groups defined in textobjects.scm
-              ['aa'] = { query = '@parameter.outer', desc = 'Select argument (outer)' },
-              ['ia'] = { query = '@parameter.inner', desc = 'Select argument (inner)' },
-              ['af'] = { query = '@function.outer', desc = 'Select function (outer)' },
-              ['if'] = { query = '@function.inner', desc = 'Select function (inner)' },
-              ['ac'] = { query = '@class.outer', desc = 'Select class (outer)' },
-              ['ic'] = { query = '@class.inner', desc = 'Select class (inner)' },
-            },
-          },
-          move = {
-            enable = true,
-            set_jumps = true, -- whether to set jumps in the jumplist
-            goto_next_start = {
-              [']]'] = { query = '@function.outer', desc = 'Next method start' },
-              [']c'] = { query = '@class.outer', desc = 'Next class start' },
-            },
-            goto_next_end = {
-              [']['] = { query = '@function.outer', desc = 'Next method end' },
-              [']C'] = { query = '@class.outer', desc = 'Next class end' },
-            },
-            goto_previous_start = {
-              ['[['] = { query = '@function.outer', desc = 'Prev method start' },
-              ['[c'] = { query = '@class.outer', desc = 'Prev class start' },
-            },
-            goto_previous_end = {
-              ['[]'] = { query = '@function.outer', desc = 'Prev method end' },
-              ['[C'] = { query = '@class.outer', desc = 'Prev class end' }
-            },
-          },
-          swap = {
-            enable = true,
-            swap_next = {
-              ['<leader>ra'] = { query = '@parameter.inner', desc = 'Swap args' },
-            },
-            swap_previous = {
-              ['<leader>rA'] = { query = '@parameter.inner', desc = 'Swap args backward' },
-            },
-          },
-        },
       }
     },
     {
@@ -351,11 +299,7 @@ require('lazy').setup(
     },
     {
       'windwp/nvim-autopairs',
-      opts = {
-        enable_check_bracket_line = false,
-        ignored_next_char = '[%w%.]',
-        fast_wrap = {},
-      },
+      opts = {},
       event = 'InsertEnter',
     },
     {
