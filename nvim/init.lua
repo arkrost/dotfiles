@@ -290,28 +290,8 @@ require('lazy').setup(
       'tpope/vim-fugitive',
       cmd = 'Git',
       keys = {
-        { '<leader>gs', vim.cmd.Git, desc = 'Git status' }
-      },
-      config = function()
-        vim.api.nvim_create_autocmd('BufWinEnter', {
-          group = vim.api.nvim_create_augroup('My_Fugitive', {}),
-          pattern = '*',
-          callback = function()
-            if vim.bo.ft ~= 'fugitive' then
-              return
-            end
-
-            local bufnr = vim.api.nvim_get_current_buf()
-            local nmap = function(keys, func, desc)
-              vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
-            end
-
-            nmap('<leader>p', function() vim.cmd.Git('push') end, 'Git push')
-            nmap('<leader>u', function() vim.cmd.Git('pull --rebase') end, 'Git pull')
-            nmap('<leader>P', function() vim.cmd.Git('push -u origin') end, 'Git push -u origin')
-          end,
-        })
-      end,
+        { '<leader>g', vim.cmd.Git, desc = 'Git status' }
+      }
     },
     {
       'windwp/nvim-autopairs',
