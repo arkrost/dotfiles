@@ -273,6 +273,20 @@ require('lazy').setup(
       }
     },
     {
+      'ThePrimeagen/harpoon',
+      dependencies = {
+        'nvim-lua/plenary.nvim',
+      },
+      event = 'VeryLazy',
+      keys = {
+        { '<leader>m', function() require('harpoon.mark').add_file() end, desc = 'Mark file' },
+        { '<leader>M', function() require('harpoon.ui').toggle_quick_menu() end, desc = 'View marks' },
+        { ']]', function() require('harpoon.ui').nav_next() end, desc = 'Next mark' },
+        { '[[', function() require('harpoon.ui').nav_prev() end, desc = 'Prev mark' },
+      },
+      opts = {},
+    },
+    {
       'tpope/vim-fugitive',
       cmd = 'Git',
       keys = {
