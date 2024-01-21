@@ -45,5 +45,5 @@ nnoremap gd :action GotoDeclarationOnly<CR>
 
 nnoremap <leader>m :action ToggleBookmark<CR>
 nnoremap <leader>M :action ShowBookmarks<CR>
-nnoremap [[ :action GotoPreviousBookmark<CR>
-nnoremap ]] :action GotoPreviousBookmark<CR>
+nnoremap [m :action GotoPreviousBookmark<CR>
+nnoremap ]m :action GotoPreviousBookmark<CR>

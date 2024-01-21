@@ -281,8 +281,8 @@ require('lazy').setup(
       keys = {
         { '<leader>m', function() require('harpoon.mark').add_file() end, desc = 'Mark file' },
         { '<leader>M', function() require('harpoon.ui').toggle_quick_menu() end, desc = 'View marks' },
-        { ']]', function() require('harpoon.ui').nav_next() end, desc = 'Next mark' },
-        { '[[', function() require('harpoon.ui').nav_prev() end, desc = 'Prev mark' },
+        { ']m', function() require('harpoon.ui').nav_next() end, desc = 'Next mark' },
+        { '[m', function() require('harpoon.ui').nav_prev() end, desc = 'Prev mark' },
       },
       opts = {},
     },
