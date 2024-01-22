@@ -287,6 +287,11 @@ require('lazy').setup(
       opts = {},
     },
     {
+      'kylechui/nvim-surround',
+      keys = { 'cs', 'ds', 'ys', 'cS', 'yS' },
+      opts = {}
+    },
+    {
       'tpope/vim-fugitive',
       cmd = 'Git',
       keys = {
