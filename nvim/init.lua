@@ -44,9 +44,9 @@ vim.opt.listchars = { tab = '» ', leadmultispace = '┊ ', trail = '␣', nbsp 
 vim.opt.foldlevelstart = 99
 vim.opt.foldmethod = 'indent' -- or 'expr' to use treesitter
 
-vim.opt.shortmess:append('aI') -- ignore intro message
+vim.opt.shortmess:append('aI')
 
-vim.opt.clipboard = 'unnamedplus' -- use system clipboard
+vim.opt.clipboard = 'unnamedplus'
 
 --[[ Keymaps ]]
 
@@ -78,8 +78,8 @@ vim.keymap.set('n', '[t', vim.cmd.tabprevious, { desc = 'Prev tab' })
 -- diagnostics
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+vim.keymap.set('n', '<leader>D', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
+vim.keymap.set('n', '<leader>d', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
 -- folds
 vim.keymap.set('n', '[z', function()
@@ -210,7 +210,7 @@ require('lazy').setup(
         { '<leader>f', function() require('telescope.builtin').find_files() end,  desc = 'Find files' },
         { '<leader>/', function() require('telescope.builtin').live_grep() end,   desc = 'Grep files' },
         { '<leader>b', function() require('telescope.builtin').buffers() end,     desc = 'Find buffers' },
-        { '<leader>q', function() require('telescope.builtin').diagnostics() end, desc = 'Open diagnostics list' }
+        { '<leader>d', function() require('telescope.builtin').diagnostics() end, desc = 'Open diagnostics list' }
       },
       config = function(_, opts)
         require('telescope').setup(opts)
