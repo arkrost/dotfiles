@@ -41,9 +41,6 @@ vim.opt.backspace = 'start,eol,indent'
 vim.opt.list = true
 vim.opt.listchars = { tab = '» ', leadmultispace = '┊ ', trail = '␣', nbsp = '⍽', eol = '↲' }
 
-vim.opt.splitbelow = true
-vim.opt.splitright = true
-
 vim.opt.foldlevelstart = 99
 vim.opt.foldmethod = 'indent' -- or 'expr' to use treesitter
 
@@ -181,7 +178,12 @@ require('lazy').setup(
         vim.opt.timeout = true
         vim.opt.timeoutlen = 300
       end,
-      opts = {},
+      opts = {
+        icons = {
+          separator = '->',
+          breadcrumb = '>>',
+        }
+      },
       keys = {
         { '?', '<cmd>:WhichKey<cr>', desc = 'Help keys' }
       },
@@ -279,7 +281,7 @@ require('lazy').setup(
       },
       event = 'BufRead',
       keys = {
-        { '<leader>m', function() require('harpoon.mark').toggle_file() end, desc = 'Mark file' },
+        { '<leader>m', function() require('harpoon.mark').add_file() end, desc = 'Mark file' },
         { '<leader>M', function() require('harpoon.ui').toggle_quick_menu() end, desc = 'View marks' },
         { ']m', function() require('harpoon.ui').nav_next() end, desc = 'Next mark' },
         { '[m', function() require('harpoon.ui').nav_prev() end, desc = 'Prev mark' },
@@ -305,16 +307,6 @@ require('lazy').setup(
       keys = {
         { '<leader>g', vim.cmd.Git, desc = 'Git status' }
       }
-    },
-    {
-      'lewis6991/gitsigns.nvim',
-      event = 'VeryLazy',
-      opts = {
-        current_line_blame = true,
-        current_line_blame_opts = {
-          delay = 300,
-        }
-      },
     },
     {
       'windwp/nvim-autopairs',
