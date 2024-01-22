@@ -277,9 +277,9 @@ require('lazy').setup(
       dependencies = {
         'nvim-lua/plenary.nvim',
       },
-      event = 'VeryLazy',
+      event = 'BufRead',
       keys = {
-        { '<leader>m', function() require('harpoon.mark').add_file() end, desc = 'Mark file' },
+        { '<leader>m', function() require('harpoon.mark').toggle_file() end, desc = 'Mark file' },
         { '<leader>M', function() require('harpoon.ui').toggle_quick_menu() end, desc = 'View marks' },
         { ']m', function() require('harpoon.ui').nav_next() end, desc = 'Next mark' },
         { '[m', function() require('harpoon.ui').nav_prev() end, desc = 'Prev mark' },
@@ -367,7 +367,7 @@ require('lazy').setup(
     },
     {
       'github/copilot.vim',
-      event = 'InsertEnter',
+      event = 'VeryLazy',
       cmd = 'Copilot',
       config = function()
         vim.g.copilot_assume_mapped = true
