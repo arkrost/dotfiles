@@ -305,7 +305,7 @@ require('lazy').setup(
         'GBrowse',
       },
       keys = {
-        { '<leader>g', vim.cmd.Git, desc = 'Git status' }
+        { '<leader>g', '<cmd>Gedit :<cr>', desc = 'Git status' }
       }
     },
     {
