@@ -293,7 +293,20 @@ require('lazy').setup(
     },
     {
       'tpope/vim-fugitive',
-      cmd = 'Git',
+      cmd = {
+        'G',
+        'Git',
+        'Gdiffsplit',
+        'Gvdiffsplit',
+        'Gread',
+        'Gr',
+        'Gwrite',
+        'Gw',
+        'Ggrep',
+        'GMove',
+        'GDelete',
+        'GBrowse',
+      },
       keys = {
         { '<leader>g', vim.cmd.Git, desc = 'Git status' }
       }
