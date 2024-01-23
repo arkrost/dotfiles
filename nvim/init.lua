@@ -46,8 +46,6 @@ vim.opt.foldmethod = 'indent' -- or 'expr' to use treesitter
 
 vim.opt.shortmess:append('aI')
 
-vim.opt.clipboard = 'unnamedplus'
-
 --[[ Keymaps ]]
 
 vim.g.mapleader = ' '
@@ -55,6 +53,9 @@ vim.g.maplocalleader = ' '
 
 -- do not yank
 vim.keymap.set({ 'n', 'v' }, 'x', '"_x')
+
+-- clipboard register
+vim.keymap.set({ 'n', 'x' }, '<C-\'>', '"+', { desc = 'Select clipboard register' })
 
 -- save position
 vim.keymap.set('n', 'J', 'mzJ`z', { desc = 'Join lines' })
@@ -281,10 +282,10 @@ require('lazy').setup(
       },
       event = 'BufRead',
       keys = {
-        { '<leader>m', function() require('harpoon.mark').add_file() end, desc = 'Mark file' },
+        { '<leader>m', function() require('harpoon.mark').add_file() end,        desc = 'Mark file' },
         { '<leader>M', function() require('harpoon.ui').toggle_quick_menu() end, desc = 'View marks' },
-        { ']m', function() require('harpoon.ui').nav_next() end, desc = 'Next mark' },
-        { '[m', function() require('harpoon.ui').nav_prev() end, desc = 'Prev mark' },
+        { ']m',        function() require('harpoon.ui').nav_next() end,          desc = 'Next mark' },
+        { '[m',        function() require('harpoon.ui').nav_prev() end,          desc = 'Prev mark' },
       },
       opts = {},
     },
@@ -296,13 +297,12 @@ require('lazy').setup(
         'Gdiffsplit',
         'Gvdiffsplit',
         'Gread',
-        'Gr',
         'Gwrite',
-        'Gw',
         'Ggrep',
-        'GMove',
-        'GDelete',
-        'GBrowse',
+        'Gmove',
+        'Gdelete',
+        'Gbrowse',
+        'Gclog'
       },
       keys = {
         { '<leader>g', '<cmd>Gedit :<cr>', desc = 'Git status' }

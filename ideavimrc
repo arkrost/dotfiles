@@ -14,8 +14,6 @@ set incsearch
 
 set relativenumber
 
-set clipboard+=unnamed
-
 " --- Enable IdeaVim plugins https://jb.gg/ideavim-plugins
 
 " Highlight copied text
@@ -48,3 +46,7 @@ nnoremap [m :action GotoPreviousBookmark<CR>
 nnoremap ]m :action GotoPreviousBookmark<CR>
 
 nnoremap wq :action CloseContent<CR>
+
+vnoremap <C-'> "+
+nnoremap <C-'> "+
+
