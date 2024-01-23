@@ -55,7 +55,8 @@ vim.g.maplocalleader = ' '
 vim.keymap.set({ 'n', 'v' }, 'x', '"_x')
 
 -- clipboard register
-vim.keymap.set({ 'n', 'x' }, '<C-\'>', '"+', { desc = 'Select clipboard register' })
+vim.keymap.set({ 'n', 'x' }, '<leader>\'', '<cmd>let @+=@"<CR>', { desc = '" to +' })
+vim.keymap.set({ 'n', 'x' }, '<leader>"', '<cmd>let @"=@+<CR>', { desc = '+ to "' })
 
 -- save position
 vim.keymap.set('n', 'J', 'mzJ`z', { desc = 'Join lines' })

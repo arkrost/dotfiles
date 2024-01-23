@@ -47,6 +47,6 @@ nnoremap ]m :action GotoPreviousBookmark<CR>
 
 nnoremap wq :action CloseContent<CR>
 
-vnoremap <C-'> "+
-nnoremap <C-'> "+
+nnoremap <leader>' :let @+=@"<CR>
+nnoremap <leader>" :let @"=@+<CR>
 
