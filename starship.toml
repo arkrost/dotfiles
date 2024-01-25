@@ -13,19 +13,19 @@ $git_status
 [directory]
 format = '[ $path ]($style)'
 home_symbol = '~'
-repo_root_style = 'bold fg:yellow'
-style = 'bold blue'
+repo_root_style = 'fg:yellow'
+style = 'blue'
 truncate_to_repo = false
 truncation_length = 8
 truncation_symbol = '…/'
 
 [git_branch]
 symbol = ''
-style = 'italic'
-format = '[ $symbol $branch ]($style)'
+style = 'italic fg:cyan'
+format = '[$symbol $branch]($style)'
 
 [git_status]
-style = 'bold'
+style = 'fg:cyan'
 format = '[$all_status$ahead_behind ]($style)'
 
 [character]

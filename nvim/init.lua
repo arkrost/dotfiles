@@ -39,7 +39,7 @@ vim.opt.inccommand = 'split'
 vim.opt.backspace = 'start,eol,indent'
 
 vim.opt.list = true
-vim.opt.listchars = { tab = '» ', leadmultispace = '┊ ', trail = '␣', nbsp = '⍽', eol = '↲' }
+vim.opt.listchars = { tab = '» ', leadmultispace = '┊ ', trail = '␣', nbsp = '⍽' }
 
 vim.opt.foldlevelstart = 99
 vim.opt.foldmethod = 'indent' -- or 'expr' to use treesitter
@@ -52,7 +52,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- do not yank
-vim.keymap.set({ 'n', 'v' }, 'x', '"_x')
+vim.keymap.set('n', 'x', '"_x')
 
 -- clipboard register
 vim.keymap.set({ 'n', 'x' }, '<leader>\'', '<cmd>let @+=@"<CR>', { desc = '" to +' })
@@ -170,7 +170,15 @@ require('lazy').setup(
         }
       end,
       init = function()
-        vim.cmd('colorscheme gruvbox')
+        -- vim.cmd('colorscheme gruvbox')
+      end
+    },
+    {
+      'rebelot/kanagawa.nvim',
+      opts = {
+      },
+      init = function()
+        vim.cmd('colorscheme kanagawa')
       end
     },
     {
