@@ -18,6 +18,7 @@ style = 'blue'
 truncate_to_repo = false
 truncation_length = 8
 truncation_symbol = '…/'
+use_logical_path = false
 
 [git_branch]
 symbol = ''
