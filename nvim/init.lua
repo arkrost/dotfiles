@@ -178,7 +178,14 @@ require('lazy').setup(
       opts = {
       },
       init = function()
-        vim.cmd('colorscheme kanagawa')
+        -- vim.cmd('colorscheme kanagawa')
+      end
+    },
+    {
+      'RRethy/nvim-base16',
+      config = function() end,
+      init = function()
+        vim.cmd('colorscheme base16-tomorrow-night')
       end
     },
     {
