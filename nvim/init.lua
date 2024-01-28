@@ -189,6 +189,22 @@ require('lazy').setup(
       end
     },
     {
+      'lukas-reineke/indent-blankline.nvim',
+      main = 'ibl',
+      opts = {
+        scope = {
+          enabled = false
+        },
+        indent = {
+          char = '┊',
+        }
+      },
+      event = 'VeryLazy',
+      init = function()
+        vim.opt.listchars:remove('leadmultispace')
+      end,
+    },
+    {
       'folke/which-key.nvim',
       event = 'VeryLazy',
       init = function()
