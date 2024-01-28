@@ -144,48 +144,27 @@ require('lazy').setup(
   {
     {
       'ellisonleao/gruvbox.nvim',
-      opts = function()
-        local palette = require('gruvbox').palette
-        return {
+      lazy = false,
+      config = function()
+        require('gruvbox').setup({
           contrast = 'hard',
           overrides = {
-            SignColumn = { link = 'GruvboxBg0' },
-            Keyword = { link = 'GruvboxPurple' },
-            Repeat = { link = 'GruvboxPurple' },
-            Conditional = { link = 'GruvboxPurple' },
+            Keyword = { link = 'Special' },
+            Operator = { link = 'Normal' },
+            Delimiter = { link = 'Normal' },
+            Identifier = { link = 'Normal' },
             Function = { link = 'GruvboxBlue' },
-            Comment = { italic = true, fg = palette.bright_orange },
-            Operator = { link = 'GruvboxFg1' },
-            Delimiter = { link = 'GruvboxFg1' },
-            ['@keyword.operator'] = { link = 'GruvboxPurple' },
-            -- lua
-            luaStatement = { link = 'GruvboxPurple' },
-            luaCond = { link = 'GruvboxPurple' },
-            luaCondElse = { link = 'GruvboxPurple' },
-            luaFunction = { link = 'GruvboxPurple' },
-            luaSymbolOperator = { link = 'GruvboxFg1' },
-            luaTable = { link = 'GruvboxFg1' },
-            ['@constructor.lua'] = { link = 'GruvboxFg1' }
+            ['@type.qualifier'] = { link = 'Special' },
+            ['@keyword.conditional'] = { link = 'Conditional' },
+            ['@keyword.return'] = { link = 'Conditional' },
+            ['@keyword.exception'] = { link = 'Conditional' },
+            ['@keyword.repeat'] = { link = 'Conditional' },
+            ['@function.builtin'] = { link = 'Function' },
+            ['@constant.builtin'] = { link = 'Constant' },
+            ['@lsp.type.interface'] = { link = '@type' },
           }
-        }
-      end,
-      init = function()
-        -- vim.cmd('colorscheme gruvbox')
-      end
-    },
-    {
-      'rebelot/kanagawa.nvim',
-      opts = {
-      },
-      init = function()
-        -- vim.cmd('colorscheme kanagawa')
-      end
-    },
-    {
-      'RRethy/nvim-base16',
-      config = function() end,
-      init = function()
-        vim.cmd('colorscheme base16-tomorrow-night')
+        })
+        vim.cmd('colorscheme gruvbox')
       end
     },
     {
