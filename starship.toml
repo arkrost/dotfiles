@@ -13,8 +13,8 @@ $git_status
 [directory]
 format = '[ $path ]($style)'
 home_symbol = '~'
-repo_root_style = 'fg:yellow'
-style = 'blue'
+repo_root_style = 'bold fg:yellow'
+style = 'bold blue'
 truncate_to_repo = false
 truncation_length = 8
 truncation_symbol = '…/'
