@@ -159,6 +159,7 @@ require('lazy').setup(
             ['@keyword.return'] = { link = 'Conditional' },
             ['@keyword.exception'] = { link = 'Conditional' },
             ['@keyword.repeat'] = { link = 'Conditional' },
+            ['@keyword.function'] = { link = 'GruvboxAqua' },
             ['@function.builtin'] = { link = 'Function' },
             ['@constant.builtin'] = { link = 'Constant' },
             ['@lsp.type.interface'] = { link = '@type' },
@@ -397,6 +398,11 @@ require('lazy').setup(
       cmd = 'Copilot',
       config = function()
         vim.g.copilot_assume_mapped = true
+        vim.g.copilot_filetypes = {
+          ['*'] = false,
+          ['lua'] = true,
+          ['rust'] = true,
+        }
       end
     },
     {
