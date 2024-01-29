@@ -148,11 +148,21 @@ require('lazy').setup(
       config = function()
         require('gruvbox').setup({
           contrast = 'hard',
+          palette_overrides = {
+            -- gruvbox-material
+            bright_orange = '#E78A4E',
+            bright_green = '#A9B665',
+            bright_red = '#EA6962',
+            bright_yellow = '#D8A657',
+            bright_aqua = '#89B482',
+            bright_blue = '#7DAEA3',
+            bright_purple = '#D3869B',
+          },
           overrides = {
             Keyword = { link = 'Special' },
-            Operator = { link = 'Normal' },
-            Delimiter = { link = 'Normal' },
-            Identifier = { link = 'Normal' },
+            Operator = { link = 'GruvboxFg0' },
+            Delimiter = { link = 'GruvboxFg0' },
+            Identifier = { link = 'GruvboxFg0' },
             Function = { link = 'GruvboxBlue' },
             ['@type.qualifier'] = { link = 'Special' },
             ['@keyword.conditional'] = { link = 'Conditional' },
