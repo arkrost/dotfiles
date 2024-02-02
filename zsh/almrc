@@ -28,6 +28,7 @@ function scale_cloud() {
   kubectl scale deploy domain-data --replicas=0
   kubectl scale deploy confluence-integration --replicas=0
   kubectl scale deploy customcharts-integration --replicas=0
+  kubectl scale deployment effectors --replicas=0
   kubectl scale deploy item-attribute-store --replicas=1
   kubectl scale deploy item-attribute-subscription-hub --replicas=1
 }
