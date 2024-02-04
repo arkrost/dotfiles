@@ -218,6 +218,7 @@ require('lazy').setup(
         'nvim-lua/plenary.nvim', --required
         'nvim-telescope/telescope-ui-select.nvim',
         'nvim-telescope/telescope-file-browser.nvim',
+        'jonarrien/telescope-cmdline.nvim',
       },
       opts = {
         defaults = {
@@ -230,16 +231,19 @@ require('lazy').setup(
         }
       },
       keys = {
-        { '<leader>f', function() require('telescope.builtin').find_files() end,  desc = 'Find files' },
-        { '<leader>/', function() require('telescope.builtin').live_grep() end,   desc = 'Grep files' },
-        { '<leader>b', function() require('telescope.builtin').buffers() end,     desc = 'Find buffers' },
-        { '<leader>d', function() require('telescope.builtin').diagnostics() end, desc = 'Open diagnostics list' }
+        { '<leader>f', function() require('telescope.builtin').find_files() end,         desc = 'Find files' },
+        { '<leader>/', function() require('telescope.builtin').live_grep() end,          desc = 'Grep files' },
+        { '<leader>b', function() require('telescope.builtin').buffers() end,            desc = 'Find buffers' },
+        { '<leader>d', function() require('telescope.builtin').diagnostics() end,        desc = 'Open diagnostics list' },
+        { ';',         function() require('telescope').extensions.cmdline.cmdline() end, desc = 'Command line' },
+        { ';',         function() require('telescope').extensions.cmdline.cmdline() end,  desc = 'Command line',         mode = { 'v' } }, -- it should be visual, but it's not working rith now
       },
       config = function(_, opts)
         require('telescope').setup(opts)
         require('telescope').load_extension('ui-select')
         require('telescope').load_extension('file_browser')
-      end
+        require('telescope').load_extension('cmdline')
+      end,
     },
     {
       'numToStr/Comment.nvim',
