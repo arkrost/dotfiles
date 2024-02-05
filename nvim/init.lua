@@ -83,6 +83,11 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnos
 vim.keymap.set('n', '<leader>D', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 vim.keymap.set('n', '<leader>d', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
+-- quickfixlist
+vim.keymap.set('n', '<leader>q', vim.cmd.copen, { desc = 'Open quickfix list' })
+vim.keymap.set('n', ']q', vim.cmd.cnext, { desc = 'Next quickfix item' })
+vim.keymap.set('n', '[q', vim.cmd.cprevious, { desc = 'Prev quickfix item' })
+
 -- folds
 vim.keymap.set('n', '[z', function()
   local count = vim.v.count1
@@ -218,7 +223,7 @@ require('lazy').setup(
         'nvim-lua/plenary.nvim', --required
         'nvim-telescope/telescope-ui-select.nvim',
         'nvim-telescope/telescope-file-browser.nvim',
-        'jonarrien/telescope-cmdline.nvim',
+        'jonarrien/telescope-cmdline.nvim'
       },
       opts = {
         defaults = {
@@ -227,16 +232,22 @@ require('lazy').setup(
         extensions = {
           file_browser = {
             hijack_netrw = true
+          },
+          cmdline = {
+            mappings = {
+              run_input = '<C-CR>',
+              run_selection = '<CR>',
+            }
           }
         }
       },
       keys = {
         { '<leader>f', function() require('telescope.builtin').find_files() end,         desc = 'Find files' },
-        { '<leader>/', function() require('telescope.builtin').live_grep() end,          desc = 'Grep files' },
+        { '<leader>/', function() require('telescope.builtin').live_grep() end,          desc = 'Grep files' }, -- todo default_text in visual mode
         { '<leader>b', function() require('telescope.builtin').buffers() end,            desc = 'Find buffers' },
         { '<leader>d', function() require('telescope.builtin').diagnostics() end,        desc = 'Open diagnostics list' },
-        { ';',         function() require('telescope').extensions.cmdline.cmdline() end, desc = 'Command line' },
-        { ';',         function() require('telescope').extensions.cmdline.cmdline() end,  desc = 'Command line',         mode = { 'v' } }, -- it should be visual, but it's not working rith now
+        { '<leader>q', function() require('telescope.builtin').quickfix() end,           desc = 'Open quickfix list' },
+        { ';',         function() require('telescope').extensions.cmdline.cmdline() end, desc = 'Cmdline',              mode = { 'n', 'v' } }, -- todo proper prompt in visual mode
       },
       config = function(_, opts)
         require('telescope').setup(opts)
