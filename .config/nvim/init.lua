@@ -51,9 +51,6 @@ vim.opt.shortmess:append('aI')
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
--- do not yank
-vim.keymap.set('n', 'x', '"_x')
-
 -- clipboard register
 vim.keymap.set({ 'n', 'x' }, '<leader>\'', '<cmd>let @+=@"<CR>', { desc = '" to +' })
 vim.keymap.set({ 'n', 'x' }, '<leader>"', '<cmd>let @"=@+<CR>', { desc = '+ to "' })
@@ -227,7 +224,7 @@ require('lazy').setup(
       },
       opts = {
         defaults = {
-          path_display = { 'smart' }
+          path_display = { 'smart' },
         },
         extensions = {
           file_browser = {
@@ -242,12 +239,25 @@ require('lazy').setup(
         }
       },
       keys = {
-        { '<leader>f', function() require('telescope.builtin').find_files() end,         desc = 'Find files' },
         { '<leader>/', function() require('telescope.builtin').live_grep() end,          desc = 'Grep files' }, -- todo default_text in visual mode
         { '<leader>b', function() require('telescope.builtin').buffers() end,            desc = 'Find buffers' },
         { '<leader>d', function() require('telescope.builtin').diagnostics() end,        desc = 'Open diagnostics list' },
         { '<leader>q', function() require('telescope.builtin').quickfix() end,           desc = 'Open quickfix list' },
-        { ';',         function() require('telescope').extensions.cmdline.cmdline() end, desc = 'Cmdline',              mode = { 'n', 'v' } }, -- todo proper prompt in visual mode
+        { ';',         function() require('telescope').extensions.cmdline.cmdline() end, desc = 'Cmdline' },
+        { ';',         function() require('telescope').extensions.cmdline.visual() end,  desc = 'Cmdline',              mode = 'v' },
+        {
+          '<leader>f',
+          function()
+            vim.fn.system('git rev-parse --is-inside-work-tree')
+
+            if vim.v.shell_error == 0 then
+              require('telescope.builtin').git_files()
+            else
+              require('telescope.builtin').find_files()
+            end
+          end,
+          desc = 'Find (git?) files'
+        }
       },
       config = function(_, opts)
         require('telescope').setup(opts)
