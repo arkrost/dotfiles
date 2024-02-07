@@ -33,8 +33,8 @@ Plug 'tpope/vim-commentary'
 
 let mapleader = ' '
 
-nnoremap ]d :action GotoNextError<CR>
-nnoremap [d :action GotoPreviousError<CR>
+nnoremap ,d :action GotoNextError<CR>
+nnoremap ,D :action GotoPreviousError<CR>
 nnoremap <leader>f :action GotoFile<CR>
 nnoremap <leader>/ :action FindInPath<CR>
 nnoremap gr :action ShowUsages<CR>
@@ -42,8 +42,8 @@ nnoremap gd :action GotoDeclarationOnly<CR>
 
 nnoremap <leader>m :action ToggleBookmark<CR>
 nnoremap <leader>M :action ShowBookmarks<CR>
-nnoremap [m :action GotoPreviousBookmark<CR>
-nnoremap ]m :action GotoPreviousBookmark<CR>
+nnoremap ,m :action GotoPreviousBookmark<CR>
+nnoremap ,M :action GotoPreviousBookmark<CR>
 
 nnoremap wq :action CloseContent<CR>
 

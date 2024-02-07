@@ -71,19 +71,19 @@ vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'Move line up' })
 -- tabs
 vim.keymap.set('n', '<C-t>', vim.cmd.tabnew, { silent = true, desc = 'New Tab' })
 vim.keymap.set('n', 'wq', '<cmd>bdelete<cr>', { desc = 'Close window' })
-vim.keymap.set('n', ']t', vim.cmd.tabnext, { desc = 'Next tab' })
-vim.keymap.set('n', '[t', vim.cmd.tabprevious, { desc = 'Prev tab' })
+vim.keymap.set('n', ',t', vim.cmd.tabnext, { desc = 'Next tab' })
+vim.keymap.set('n', ',T', vim.cmd.tabprevious, { desc = 'Prev tab' })
 
 -- diagnostics
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
+vim.keymap.set('n', ',d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
+vim.keymap.set('n', ',D', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
 vim.keymap.set('n', '<leader>D', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 vim.keymap.set('n', '<leader>d', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
 -- quickfixlist
 vim.keymap.set('n', '<leader>q', vim.cmd.copen, { desc = 'Open quickfix list' })
-vim.keymap.set('n', ']q', vim.cmd.cnext, { desc = 'Next quickfix item' })
-vim.keymap.set('n', '[q', vim.cmd.cprevious, { desc = 'Prev quickfix item' })
+vim.keymap.set('n', ',q', vim.cmd.cnext, { desc = 'Next quickfix item' })
+vim.keymap.set('n', ',Q', vim.cmd.cprevious, { desc = 'Prev quickfix item' })
 
 -- folds
 vim.keymap.set('n', '[z', function()
@@ -331,8 +331,8 @@ require('lazy').setup(
       keys = {
         { '<leader>m', function() require('harpoon.mark').add_file() end,        desc = 'Mark file' },
         { '<leader>M', function() require('harpoon.ui').toggle_quick_menu() end, desc = 'View marks' },
-        { ']m',        function() require('harpoon.ui').nav_next() end,          desc = 'Next mark' },
-        { '[m',        function() require('harpoon.ui').nav_prev() end,          desc = 'Prev mark' },
+        { ',m',        function() require('harpoon.ui').nav_next() end,          desc = 'Next mark' },
+        { ',M',        function() require('harpoon.ui').nav_prev() end,          desc = 'Prev mark' },
       },
       opts = {},
     },
