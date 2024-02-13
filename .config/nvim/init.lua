@@ -85,6 +85,9 @@ vim.keymap.set('n', '<leader>q', vim.cmd.copen, { desc = 'Open quickfix list' })
 vim.keymap.set('n', ',q', vim.cmd.cnext, { desc = 'Next quickfix item' })
 vim.keymap.set('n', ',Q', vim.cmd.cprevious, { desc = 'Prev quickfix item' })
 
+-- save
+vim.keymap.set('n', ',,', vim.cmd.update, { desc = 'Save' })
+
 -- folds
 vim.keymap.set('n', '[z', function()
   local count = vim.v.count1
@@ -224,7 +227,12 @@ require('lazy').setup(
       },
       opts = {
         defaults = {
-          path_display = { 'smart' },
+          path_display = {
+		  shorten = {
+			  len = 1,
+			  exclude = { 1, 2, 3, -1 }
+		  },
+	  },
         },
         extensions = {
           file_browser = {
@@ -239,25 +247,13 @@ require('lazy').setup(
         }
       },
       keys = {
-        { '<leader>/', function() require('telescope.builtin').live_grep() end,          desc = 'Grep files' }, -- todo default_text in visual mode
-        { '<leader>b', function() require('telescope.builtin').buffers() end,            desc = 'Find buffers' },
-        { '<leader>d', function() require('telescope.builtin').diagnostics() end,        desc = 'Open diagnostics list' },
-        { '<leader>q', function() require('telescope.builtin').quickfix() end,           desc = 'Open quickfix list' },
-        { ';',         function() require('telescope').extensions.cmdline.cmdline() end, desc = 'Cmdline' },
-        { ';',         function() require('telescope').extensions.cmdline.visual() end,  desc = 'Cmdline',              mode = 'v' },
-        {
-          '<leader>f',
-          function()
-            vim.fn.system('git rev-parse --is-inside-work-tree')
-
-            if vim.v.shell_error == 0 then
-              require('telescope.builtin').git_files()
-            else
-              require('telescope.builtin').find_files()
-            end
-          end,
-          desc = 'Find (git?) files'
-        }
+        { '<leader>f', function() require('telescope.builtin').find_files({ hidden = true }) end, desc = 'Find files' },
+        { '<leader>/', function() require('telescope.builtin').live_grep() end,                   desc = 'Grep files' }, -- todo default_text in visual mode
+        { '<leader>b', function() require('telescope.builtin').buffers() end,                     desc = 'Find buffers' },
+        { '<leader>d', function() require('telescope.builtin').diagnostics() end,                 desc = 'Open diagnostics list' },
+        { '<leader>q', function() require('telescope.builtin').quickfix() end,                    desc = 'Open quickfix list' },
+        { ';',         function() require('telescope').extensions.cmdline.cmdline() end,          desc = 'Cmdline' },
+        { ';',         function() require('telescope').extensions.cmdline.visual() end,           desc = 'Cmdline',              mode = 'v' },
       },
       config = function(_, opts)
         require('telescope').setup(opts)
