@@ -228,15 +228,16 @@ require('lazy').setup(
       opts = {
         defaults = {
           path_display = {
-		  shorten = {
-			  len = 1,
-			  exclude = { 1, 2, 3, -1 }
-		  },
-	  },
+            shorten = {
+              len = 1,
+              exclude = { 1, 2, 3, -1 }
+            },
+          },
         },
         extensions = {
           file_browser = {
-            hijack_netrw = true
+            hijack_netrw = true,
+            follow_symlinks = true,
           },
           cmdline = {
             mappings = {
@@ -247,13 +248,13 @@ require('lazy').setup(
         }
       },
       keys = {
-        { '<leader>f', function() require('telescope.builtin').find_files({ hidden = true }) end, desc = 'Find files' },
-        { '<leader>/', function() require('telescope.builtin').live_grep() end,                   desc = 'Grep files' }, -- todo default_text in visual mode
-        { '<leader>b', function() require('telescope.builtin').buffers() end,                     desc = 'Find buffers' },
-        { '<leader>d', function() require('telescope.builtin').diagnostics() end,                 desc = 'Open diagnostics list' },
-        { '<leader>q', function() require('telescope.builtin').quickfix() end,                    desc = 'Open quickfix list' },
-        { ';',         function() require('telescope').extensions.cmdline.cmdline() end,          desc = 'Cmdline' },
-        { ';',         function() require('telescope').extensions.cmdline.visual() end,           desc = 'Cmdline',              mode = 'v' },
+        { '<leader>f', function() require('telescope.builtin').find_files({ hidden = true, follow = true }) end, desc = 'Find files' },
+        { '<leader>/', function() require('telescope.builtin').live_grep() end,                                  desc = 'Grep files' }, -- todo default_text in visual mode
+        { '<leader>b', function() require('telescope.builtin').buffers() end,                                    desc = 'Find buffers' },
+        { '<leader>d', function() require('telescope.builtin').diagnostics() end,                                desc = 'Open diagnostics list' },
+        { '<leader>q', function() require('telescope.builtin').quickfix() end,                                   desc = 'Open quickfix list' },
+        { ';',         function() require('telescope').extensions.cmdline.cmdline() end,                         desc = 'Cmdline' },
+        { ';',         function() require('telescope').extensions.cmdline.visual() end,                          desc = 'Cmdline',              mode = 'v' },
       },
       config = function(_, opts)
         require('telescope').setup(opts)
