@@ -50,3 +50,5 @@ nnoremap wq :action CloseContent<CR>
 nnoremap <leader>' :let @+=@"<CR>
 nnoremap <leader>" :let @"=@+<CR>
 
+nnoremap ,, :update<CR>
+

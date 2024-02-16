@@ -13,7 +13,7 @@ vim.opt.relativenumber = true
 vim.opt.signcolumn = 'yes'
 vim.opt.colorcolumn = '100'
 
-vim.opt.termguicolors = true
+-- vim.opt.termguicolors = true
 
 vim.opt.expandtab = true
 vim.opt.smarttab = true
@@ -169,6 +169,11 @@ require('lazy').setup(
             Delimiter = { link = 'GruvboxFg0' },
             Identifier = { link = 'GruvboxFg0' },
             Function = { link = 'GruvboxBlue' },
+            Constant = { link = 'GruvboxRed' },
+            Property = { link = 'GruvboxPurple' },
+            Conditional = { link = 'Keyword' },
+            ['@boolean'] = { link = 'Constant' },
+            ['@number'] = { link = 'Constant' },
             ['@type.qualifier'] = { link = 'Special' },
             ['@keyword.conditional'] = { link = 'Conditional' },
             ['@keyword.return'] = { link = 'Conditional' },
@@ -178,10 +183,17 @@ require('lazy').setup(
             ['@function.builtin'] = { link = 'Function' },
             ['@constant.builtin'] = { link = 'Constant' },
             ['@lsp.type.interface'] = { link = '@type' },
+            ['@variable.member'] = { link = 'Property' },
+            ['@lsp.type.property'] = { link = 'Property' },
           }
         })
         vim.cmd('colorscheme gruvbox')
       end
+    },
+    {
+      'rose-pine/neovim',
+      as = 'rose-pine',
+      lazy = false,
     },
     {
       'lukas-reineke/indent-blankline.nvim',
