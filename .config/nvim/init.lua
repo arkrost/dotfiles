@@ -155,12 +155,12 @@ require('lazy').setup(
           contrast = 'hard',
           palette_overrides = {
             -- gruvbox-material
-            bright_orange = '#E78A4E',
-            bright_green = '#A9B665',
             bright_red = '#EA6962',
-            bright_yellow = '#D8A657',
+            bright_orange = '#E78A4E',
+            bright_yellow = '#E9B143',
+            bright_green = '#A9B665',
             bright_aqua = '#89B482',
-            bright_blue = '#7DAEA3',
+            bright_blue = '#80AA9E',
             bright_purple = '#D3869B',
           },
           overrides = {
@@ -179,7 +179,6 @@ require('lazy').setup(
             ['@keyword.return'] = { link = 'Conditional' },
             ['@keyword.exception'] = { link = 'Conditional' },
             ['@keyword.repeat'] = { link = 'Conditional' },
-            ['@keyword.function'] = { link = 'GruvboxAqua' },
             ['@function.builtin'] = { link = 'Function' },
             ['@constant.builtin'] = { link = 'Constant' },
             ['@lsp.type.interface'] = { link = '@type' },
@@ -189,11 +188,6 @@ require('lazy').setup(
         })
         vim.cmd('colorscheme gruvbox')
       end
-    },
-    {
-      'rose-pine/neovim',
-      as = 'rose-pine',
-      lazy = false,
     },
     {
       'lukas-reineke/indent-blankline.nvim',

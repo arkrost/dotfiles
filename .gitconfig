@@ -1,34 +1,33 @@
 [user]
-	name = Arkady Rost
-	email = 1239844+arkrost@users.noreply.github.com
-	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAvP0r0e6WDYJznVngZX5IyrBBgI0UCKn8ZFIviFpt0e
+  name = Arkady Rost
+  email = 1239844+arkrost@users.noreply.github.com
+  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAvP0r0e6WDYJznVngZX5IyrBBgI0UCKn8ZFIviFpt0e
 [alias]
-	co = checkout
-	ci = commit
-	st = status -uno
-	br = branch
-	type = cat-file -t
-	dump = cat-file -p
-	lg = log --graph --color --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-	unstage = rm --cached
-	drucken = push
-	prompt = !"prompt_git() { local s=''; local branchName=''; if [ \"$(git rev-parse --is-inside-work-tree &>/dev/null; echo \"${?}\")\" == '0' ]; then if [ \"$(git rev-parse --is-inside-git-dir 2> /dev/null)\" == 'false' ]; then if [[ -O \"$(git rev-parse --show-toplevel)/.git/index\" ]]; then git update-index --really-refresh -q &> /dev/null; fi; if ! git diff --quiet --ignore-submodules --cached; then s+='+'; fi; if ! git diff-files --quiet --ignore-submodules --; then s+='!'; fi; if [ -n \"$(git ls-files --others --exclude-standard)\" ]; then s+='?'; fi; if git rev-parse --verify refs/stash &> /dev/null; then s+='$'; fi; fi; branchName=\"$(git symbolic-ref --quiet --short HEAD 2> /dev/null || git rev-parse --short HEAD 2> /dev/null || echo '(unknown)')\"; echo \"(${1}${branchName} ${s})\"; else return; fi; }; prompt_git"
+  co = checkout
+  ci = commit
+  st = status -uno
+  br = branch
+  type = cat-file -t
+  dump = cat-file -p
+  lg = log --graph --color --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  unstage = rm --cached
+  staash = stash --all
 [color]
-	ui = true
+  ui = true
 [man]
-	viewer = man
+  viewer = man
 [stash]
-	showPatch = true
+  showPatch = true
 [core]
-	pager = delta
+  pager = delta
 [delta]
-	side-by-side = true
-	navigate = true
+  side-by-side = true
+  navigate = true
 [pull]
-	rebase = true
+  rebase = true
 [gpg]
-	format = ssh
+  format = ssh
 [gpg "ssh"]
-	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+  program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
 [commit]
-	gpgsign = true
+  gpgsign = true
