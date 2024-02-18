@@ -152,7 +152,7 @@ require('lazy').setup(
       lazy = false,
       config = function()
         require('gruvbox').setup({
-          contrast = 'hard',
+          contrast = 'medium',
           palette_overrides = {
             -- gruvbox-material
             bright_red = '#EA6962',
@@ -187,6 +187,11 @@ require('lazy').setup(
         })
         vim.cmd('colorscheme gruvbox')
       end
+    },
+    {
+      'tjdevries/gruvbuddy.nvim',
+      dependencies = { 'tjdevries/colorbuddy.vim' },
+      lazy = false,
     },
     {
       'lukas-reineke/indent-blankline.nvim',
