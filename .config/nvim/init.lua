@@ -452,7 +452,8 @@ require('lazy').setup(
       dependencies = {
         'nvim-telescope/telescope.nvim', -- see on_attach keys
         { 'folke/neodev.nvim',    opts = {} },
-        { 'hrsh7th/cmp-nvim-lsp', dependencies = { 'hrsh7th/nvim-cmp' } }
+        { 'j-hui/fidget.nvim', opts = {} },
+        {'hrsh7th/cmp-nvim-lsp', dependencies = { 'hrsh7th/nvim-cmp' } },
       },
       event = { 'BufReadPre', 'BufNewFile' },
       config = function()
