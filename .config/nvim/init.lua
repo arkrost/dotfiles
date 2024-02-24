@@ -452,17 +452,16 @@ require('lazy').setup(
       'neovim/nvim-lspconfig',
       dependencies = {
         'nvim-telescope/telescope.nvim', -- see on_attach keys
-        { 'folke/neodev.nvim',    opts = {} },
+        -- { 'folke/neodev.nvim',    opts = {} },
+        'folke/neodev.nvim',
         { 'j-hui/fidget.nvim', opts = {} },
         {'hrsh7th/cmp-nvim-lsp', dependencies = { 'hrsh7th/nvim-cmp' } },
       },
       event = { 'BufReadPre', 'BufNewFile' },
       config = function()
-        vim.api.nvim_create_autocmd('LspAttach', {
-          group = vim.api.nvim_create_augroup('UserLspConfig', {}),
-          callback = function(ev)
+        local on_attach = function(_, buf)
             local nmap = function(keys, func, desc)
-              vim.keymap.set('n', keys, func, { buffer = ev.buf, desc = desc })
+              vim.keymap.set('n', keys, func, { buffer = buf, desc = desc })
             end
 
             nmap('<leader>a', vim.lsp.buf.code_action, 'Code Action')
@@ -480,37 +479,50 @@ require('lazy').setup(
             nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
             -- `:Format` command
-            vim.api.nvim_buf_create_user_command(ev.buf, 'Format', function(_)
+            vim.api.nvim_buf_create_user_command(buf, 'Format', function(_)
               vim.lsp.buf.format()
             end, { desc = 'Format current buffer with LSP' })
 
             -- `:Rename` command
-            vim.api.nvim_buf_create_user_command(ev.buf, 'Rename', function(_)
+            vim.api.nvim_buf_create_user_command(buf, 'Rename', function(_)
               vim.lsp.buf.rename()
             end, { desc = 'Rename symbol with LSP' })
-          end
-        })
+        end
 
         local capabilities = vim.lsp.protocol.make_client_capabilities()
         capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
-        local lspconfig = require('lspconfig')
-        lspconfig.util.default_config = vim.tbl_deep_extend('force', lspconfig.util.default_config, {
-          capabilities = capabilities,
-        })
-
-        lspconfig.rust_analyzer.setup({
-          settings = {
-            ['rust-analyzer'] = {
-              check = {
-                command = 'clippy'
+        local servers = {
+          rust_analyzer = {
+            settings = {
+              ['rust-analyzer'] = {
+                checkOnSave = {
+                  command = 'clippy'
+                }
               }
             }
           },
-        })
-        lspconfig.lua_ls.setup({})
-        lspconfig.zls.setup({})
-        lspconfig.marksman.setup({})
+          lua_ls = {
+            settings = {
+              Lua = {
+                workspace = { checkThirdParty = false },
+                telemetry = { enable = false },
+              }
+            }
+          },
+          zls = {},
+          marksman = {},
+        }
+
+        require('neodev').setup({})
+        for server, config in pairs(servers) do
+          require('lspconfig')[server].setup({
+            capabilities = capabilities,
+            on_attach = on_attach,
+            settings = config.settings,
+            filetypes = config.filetypes,
+          })
+        end
       end
     },
   },
