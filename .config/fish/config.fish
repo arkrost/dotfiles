@@ -20,6 +20,7 @@ set -x FZF_DEFAULT_OPTS '--cycle --layout=reverse'
 alias gbc='git br | grep -v "*" | xargs git br -D'
 alias up='brew update && brew upgrade && brew cleanup'
 
+alias rm='trash'
 alias l='exa -TlL 1'
 alias la='exa -la'
 alias c='clear'
