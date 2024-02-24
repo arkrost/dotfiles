@@ -322,7 +322,8 @@ require('lazy').setup(
           'nix',
           'proto',
           'zig',
-          'diff'
+          'diff',
+          'fish',
         },
         highlight = { enable = true },
         indent = { enable = true },
