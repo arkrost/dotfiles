@@ -254,7 +254,7 @@ require('lazy').setup(
         }
       },
       keys = {
-        { '<leader>/', function() require('telescope.builtin').live_grep() end,          desc = 'Grep files' },                         -- todo default_text in visual mode
+        { '<leader>/', function() require('telescope.builtin').live_grep() end,          desc = 'Grep files' }, -- todo default_text in visual mode
         { '<leader>b', function() require('telescope.builtin').buffers() end,            desc = 'Find buffers' },
         { '<leader>d', function() require('telescope.builtin').diagnostics() end,        desc = 'Open diagnostics list' },
         { '<leader>q', function() require('telescope.builtin').quickfix() end,           desc = 'Open quickfix list' },
@@ -507,8 +507,15 @@ require('lazy').setup(
       dependencies = {
         'nvim-telescope/telescope.nvim', -- see on_attach keys
         { 'folke/neodev.nvim',    opts = {} },
-        { 'j-hui/fidget.nvim',    opts = {} },
         { 'hrsh7th/cmp-nvim-lsp', dependencies = { 'hrsh7th/nvim-cmp' } },
+        {
+          'j-hui/fidget.nvim',
+          opts = {
+            notification = {
+              window = { winblend = 0 },
+            }
+          }
+        },
       },
       event = { 'BufReadPre', 'BufNewFile' },
       config = function()
