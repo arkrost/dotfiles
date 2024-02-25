@@ -165,7 +165,7 @@ require('lazy').setup(
       lazy = false,
       config = function()
         require('gruvbox').setup({
-          contrast = 'medium',
+          transparent_mode = true,
           palette_overrides = {
             -- gruvbox-material
             bright_red = '#EA6962',
