@@ -51,4 +51,4 @@ nnoremap <leader>' :let @+=@"<CR>
 nnoremap <leader>" :let @"=@+<CR>
 
 nnoremap ,, :update<CR>
-
+nnoremap ,. :action ShowIntentionActions<CR>

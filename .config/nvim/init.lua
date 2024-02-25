@@ -565,15 +565,10 @@ require('lazy').setup(
             vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
           end
 
-          nmap('<leader>a', vim.lsp.buf.code_action, 'Code Action')
-
-          nmap('<leader>sd', require('telescope.builtin').lsp_document_symbols, 'Document Symbols')
-          nmap('<leader>sw', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Workspace Symbols')
+          nmap(',.', vim.lsp.buf.code_action, 'Code Action')
 
           nmap('gd', require('telescope.builtin').lsp_definitions, 'Goto Definition')
           nmap('gr', require('telescope.builtin').lsp_references, 'Goto References')
-          nmap('gt', require('telescope.builtin').lsp_type_definitions, 'Goto Type')
-          nmap('gi', require('telescope.builtin').lsp_implementations, 'Goto Implementation')
 
           -- See `:help K` for why this keymap
           nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
