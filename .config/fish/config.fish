@@ -34,6 +34,13 @@ zoxide init fish | source
 atuin init fish --disable-up-arrow | source
 
 # ALM
+set -gx JAVA_HOME (/usr/libexec/java_home -v 17)
+set -gx MAVEN_OPTS '-Djdk.tls.client.protocols=TLSv1.2'
+
+set -gx DOCKER_HOST "unix://$HOME/.colima/default/docker.sock"
+set -gx TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE "$HOME/docker.sock"
+set -gx TESTCONTAINERS_RYUK_DISABLED true
+
 set -gx CLOUD_HOME '$HOME/ALM/cloud'
 alias rebuild_cloud='$CLOUD_HOME/bootstrap/rebuild.sh'
 
