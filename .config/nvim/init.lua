@@ -86,7 +86,7 @@ vim.keymap.set('n', ',q', function()
   return pcall(vim.cmd.cnext) or pcall(vim.cmd.cfirst) or vim.notify('No errors')
 end
 , { desc = 'Next quickfix item' })
-vim.keymap.set('n', ',Q', function ()
+vim.keymap.set('n', ',Q', function()
   return pcall(vim.cmd.cprevious) or pcall(vim.cmd.clast) or vim.notify('No errors')
 end, { desc = 'Prev quickfix item' })
 
@@ -170,8 +170,9 @@ require('lazy').setup(
       lazy = false,
       config = function()
         require('gruvbox').setup({
-          transparent_mode = true,
           palette_overrides = {
+            dark0 = '#1F1F28',
+            dark1 = '#2A2A37',
             -- gruvbox-material
             bright_red = '#EA6962',
             bright_orange = '#E78A4E',
@@ -206,6 +207,18 @@ require('lazy').setup(
         })
         vim.cmd('colorscheme gruvbox')
       end
+    },
+    {
+      'nvim-lualine/lualine.nvim',
+      event = 'VeryLazy',
+      opts = {
+        options = {
+          icons_enabled = false,
+          theme = 'jellybeans',
+          component_separators = '|',
+          section_separators = '',
+        },
+      },
     },
     {
       'lukas-reineke/indent-blankline.nvim',
