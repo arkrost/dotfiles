@@ -61,7 +61,8 @@ alias rm=trash
 alias c='clear'
 alias gbc='git br --merged | rg -v "\* .*" | xargs git br -D'
 
-alias l='exa -L 1 -Ta'
+alias l='exa -l'
+alias ll='exa -TlL 2'
 alias la='exa -la'
 alias nv='nvim'
 
