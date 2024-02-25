@@ -13,7 +13,7 @@ vim.opt.relativenumber = true
 vim.opt.signcolumn = 'yes'
 vim.opt.colorcolumn = '100'
 
--- vim.opt.termguicolors = true
+vim.opt.termguicolors = true
 
 vim.opt.expandtab = true
 vim.opt.smarttab = true
@@ -89,7 +89,7 @@ vim.keymap.set('n', ',Q', vim.cmd.cprevious, { desc = 'Prev quickfix item' })
 vim.keymap.set('n', ',,', vim.cmd.update, { desc = 'Save' })
 
 -- folds
-vim.keymap.set('n', '[z', function()
+vim.keymap.set('n', ',Z', function()
   local count = vim.v.count1
   local curLnum = vim.api.nvim_win_get_cursor(0)[1]
   local cnt = 0
@@ -109,7 +109,7 @@ vim.keymap.set('n', '[z', function()
   end
 end, { desc = 'Prev closed fold' })
 
-vim.keymap.set('n', ']z', function()
+vim.keymap.set('n', ',z', function()
   local count = vim.v.count1
   local curLnum = vim.api.nvim_win_get_cursor(0)[1]
   local lineCount = vim.api.nvim_buf_line_count(0)
@@ -164,6 +164,7 @@ require('lazy').setup(
             bright_purple = '#D3869B',
           },
           overrides = {
+            SignColumn = { link = 'Normal' },
             Keyword = { link = 'GruvboxRed' },
             Operator = { link = 'GruvboxFg0' },
             Delimiter = { link = 'GruvboxFg0' },
@@ -187,11 +188,6 @@ require('lazy').setup(
         })
         vim.cmd('colorscheme gruvbox')
       end
-    },
-    {
-      'tjdevries/gruvbuddy.nvim',
-      dependencies = { 'tjdevries/colorbuddy.vim' },
-      lazy = false,
     },
     {
       'lukas-reineke/indent-blankline.nvim',
@@ -258,13 +254,24 @@ require('lazy').setup(
         }
       },
       keys = {
-        { '<leader>f', function() require('telescope.builtin').find_files({ hidden = true, follow = true }) end, desc = 'Find files' },
-        { '<leader>/', function() require('telescope.builtin').live_grep() end,                                  desc = 'Grep files' }, -- todo default_text in visual mode
-        { '<leader>b', function() require('telescope.builtin').buffers() end,                                    desc = 'Find buffers' },
-        { '<leader>d', function() require('telescope.builtin').diagnostics() end,                                desc = 'Open diagnostics list' },
-        { '<leader>q', function() require('telescope.builtin').quickfix() end,                                   desc = 'Open quickfix list' },
-        { ';',         function() require('telescope').extensions.cmdline.cmdline() end,                         desc = 'Cmdline' },
-        { ';',         function() require('telescope').extensions.cmdline.visual() end,                          desc = 'Cmdline',              mode = 'v' },
+        { '<leader>/', function() require('telescope.builtin').live_grep() end,          desc = 'Grep files' },                         -- todo default_text in visual mode
+        { '<leader>b', function() require('telescope.builtin').buffers() end,            desc = 'Find buffers' },
+        { '<leader>d', function() require('telescope.builtin').diagnostics() end,        desc = 'Open diagnostics list' },
+        { '<leader>q', function() require('telescope.builtin').quickfix() end,           desc = 'Open quickfix list' },
+        { ';',         function() require('telescope').extensions.cmdline.cmdline() end, desc = 'Cmdline' },
+        { ';',         function() require('telescope').extensions.cmdline.visual() end,  desc = 'Cmdline',              mode = 'v' },
+        {
+          '<leader>f',
+          function()
+            local is_git = vim.fn.isdirectory('.git') ~= 0
+            if is_git then
+              require('telescope.builtin').git_files({ show_untracked = true })
+            else
+              require('telescope.builtin').find_files({ hidden = true, follow = true })
+            end
+          end,
+          desc = 'Find project files'
+        },
       },
       config = function(_, opts)
         require('telescope').setup(opts)
@@ -364,6 +371,53 @@ require('lazy').setup(
       }
     },
     {
+      'lewis6991/gitsigns.nvim',
+      event = { 'BufRead', 'BufNewFile' },
+      opts = {
+        on_attach = function(bufnr)
+          local gs = package.loaded.gitsigns
+
+          local function map(mode, l, r, opts)
+            opts = opts or {}
+            opts.buffer = bufnr
+            vim.keymap.set(mode, l, r, opts)
+          end
+
+          -- Navigation
+          map({ 'n', 'v' }, ',h', function()
+            vim.schedule(function()
+              gs.next_hunk()
+            end)
+            return '<Ignore>'
+          end, { expr = true, desc = 'Jump to next hunk' })
+
+          map({ 'n', 'v' }, ',H', function()
+            vim.schedule(function()
+              gs.prev_hunk()
+            end)
+            return '<Ignore>'
+          end, { expr = true, desc = 'Jump to previous hunk' })
+
+          -- Actions
+          -- visual mode
+          map('v', '<leader>hs', function()
+            gs.stage_hunk({ vim.fn.line '.', vim.fn.line 'v' })
+          end, { desc = 'stage git hunk' })
+          map('v', '<leader>hX', function()
+            gs.reset_hunk({ vim.fn.line '.', vim.fn.line 'v' })
+          end, { desc = 'reset git hunk' })
+          -- normal mode
+          map('n', '<leader>hs', gs.stage_hunk, { desc = 'git stage hunk' })
+          map('n', '<leader>hX', gs.reset_hunk, { desc = 'git reset hunk' })
+          map('n', '<leader>hu', gs.undo_stage_hunk, { desc = 'undo stage hunk' })
+          map('n', '<leader>hp', gs.preview_hunk, { desc = 'preview git hunk' })
+          map('n', '<leader>hb', function() gs.blame_line({ full = false }) end, { desc = 'git blame line' })
+          -- Text object
+          map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', { desc = 'select git hunk' })
+        end,
+      },
+    },
+    {
       'windwp/nvim-autopairs',
       opts = {},
       event = 'InsertEnter',
@@ -452,41 +506,40 @@ require('lazy').setup(
       'neovim/nvim-lspconfig',
       dependencies = {
         'nvim-telescope/telescope.nvim', -- see on_attach keys
-        -- { 'folke/neodev.nvim',    opts = {} },
-        'folke/neodev.nvim',
-        { 'j-hui/fidget.nvim', opts = {} },
-        {'hrsh7th/cmp-nvim-lsp', dependencies = { 'hrsh7th/nvim-cmp' } },
+        { 'folke/neodev.nvim',    opts = {} },
+        { 'j-hui/fidget.nvim',    opts = {} },
+        { 'hrsh7th/cmp-nvim-lsp', dependencies = { 'hrsh7th/nvim-cmp' } },
       },
       event = { 'BufReadPre', 'BufNewFile' },
       config = function()
-        local on_attach = function(_, buf)
-            local nmap = function(keys, func, desc)
-              vim.keymap.set('n', keys, func, { buffer = buf, desc = desc })
-            end
+        local on_attach = function(_, bufnr)
+          local nmap = function(keys, func, desc)
+            vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
+          end
 
-            nmap('<leader>a', vim.lsp.buf.code_action, 'Code Action')
+          nmap('<leader>a', vim.lsp.buf.code_action, 'Code Action')
 
-            nmap('<leader>sd', require('telescope.builtin').lsp_document_symbols, 'Document Symbols')
-            nmap('<leader>sw', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Workspace Symbols')
+          nmap('<leader>sd', require('telescope.builtin').lsp_document_symbols, 'Document Symbols')
+          nmap('<leader>sw', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Workspace Symbols')
 
-            nmap('gd', require('telescope.builtin').lsp_definitions, 'Goto Definition')
-            nmap('gr', require('telescope.builtin').lsp_references, 'Goto References')
-            nmap('gt', require('telescope.builtin').lsp_type_definitions, 'Goto Type')
-            nmap('gi', require('telescope.builtin').lsp_implementations, 'Goto Implementation')
+          nmap('gd', require('telescope.builtin').lsp_definitions, 'Goto Definition')
+          nmap('gr', require('telescope.builtin').lsp_references, 'Goto References')
+          nmap('gt', require('telescope.builtin').lsp_type_definitions, 'Goto Type')
+          nmap('gi', require('telescope.builtin').lsp_implementations, 'Goto Implementation')
 
-            -- See `:help K` for why this keymap
-            nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
-            nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+          -- See `:help K` for why this keymap
+          nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
+          nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
-            -- `:Format` command
-            vim.api.nvim_buf_create_user_command(buf, 'Format', function(_)
-              vim.lsp.buf.format()
-            end, { desc = 'Format current buffer with LSP' })
+          -- `:Format` command
+          vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
+            vim.lsp.buf.format()
+          end, { desc = 'Format current buffer with LSP' })
 
-            -- `:Rename` command
-            vim.api.nvim_buf_create_user_command(buf, 'Rename', function(_)
-              vim.lsp.buf.rename()
-            end, { desc = 'Rename symbol with LSP' })
+          -- `:Rename` command
+          vim.api.nvim_buf_create_user_command(bufnr, 'Rename', function(_)
+            vim.lsp.buf.rename()
+          end, { desc = 'Rename symbol with LSP' })
         end
 
         local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -505,8 +558,10 @@ require('lazy').setup(
           lua_ls = {
             settings = {
               Lua = {
-                workspace = { checkThirdParty = false },
                 telemetry = { enable = false },
+                diagnostics = {
+                  globals = { 'vim' },
+                },
               }
             }
           },
@@ -514,7 +569,6 @@ require('lazy').setup(
           marksman = {},
         }
 
-        require('neodev').setup({})
         for server, config in pairs(servers) do
           require('lspconfig')[server].setup({
             capabilities = capabilities,
