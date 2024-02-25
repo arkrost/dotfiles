@@ -1,10 +1,10 @@
-<scheme name="Gruvbox Dark Hard (material)" version="142" parent_scheme="Darcula">
+<scheme name="Gruvbox Dark (material)" version="142" parent_scheme="Darcula">
   <metaInfo>
-    <property name="created">2024-02-18T13:30:42</property>
+    <property name="created">2024-02-25T14:08:00</property>
     <property name="ide">idea</property>
     <property name="ideVersion">2023.3.3.0.0</property>
-    <property name="modified">2024-02-18T13:31:01</property>
-    <property name="originalScheme">Gruvbox Dark Hard (material)</property>
+    <property name="modified">2024-02-25T14:08:22</property>
+    <property name="originalScheme">Gruvbox Dark (material)</property>
   </metaInfo>
   <colors>
     <option name="ADDED_LINES_COLOR" value="79740e" />
@@ -975,7 +975,7 @@
     <option name="TEXT">
       <value>
         <option name="FOREGROUND" value="fbf1c7" />
-        <option name="BACKGROUND" value="1d2021" />
+        <option name="BACKGROUND" value="1f1f28" />
       </value>
     </option>
     <option name="TEXT_SEARCH_RESULT_ATTRIBUTES">
