@@ -130,6 +130,19 @@ vim.keymap.set('n', ',z', function()
   end
 end, { desc = 'Next closed fold' })
 
+function vim.getVisualSelection()
+  vim.cmd('noau normal! "vy"')
+  local text = vim.fn.getreg('v')
+  vim.fn.setreg('v', {})
+
+  text = string.gsub(text, "\n", "")
+  if #text > 0 then
+    return text
+  else
+    return ''
+  end
+end
+
 --[[ Plugins ]]
 
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
@@ -254,12 +267,20 @@ require('lazy').setup(
         }
       },
       keys = {
-        { '<leader>/', function() require('telescope.builtin').live_grep() end,          desc = 'Grep files' }, -- todo default_text in visual mode
         { '<leader>b', function() require('telescope.builtin').buffers() end,            desc = 'Find buffers' },
         { '<leader>d', function() require('telescope.builtin').diagnostics() end,        desc = 'Open diagnostics list' },
         { '<leader>q', function() require('telescope.builtin').quickfix() end,           desc = 'Open quickfix list' },
         { ';',         function() require('telescope').extensions.cmdline.cmdline() end, desc = 'Cmdline' },
         { ';',         function() require('telescope').extensions.cmdline.visual() end,  desc = 'Cmdline',              mode = 'v' },
+        { '<leader>/', function() require('telescope.builtin').live_grep() end,          desc = 'Grep files' },
+        {
+          '<leader>/',
+          function()
+            require('telescope.builtin').live_grep({ default_text = vim.getVisualSelection() })
+          end,
+          desc = 'Grep files',
+          mode = 'v'
+        },
         {
           '<leader>f',
           function()
