@@ -82,8 +82,13 @@ vim.keymap.set('n', '<leader>d', vim.diagnostic.setloclist, { desc = 'Open diagn
 
 -- quickfixlist
 vim.keymap.set('n', '<leader>q', vim.cmd.copen, { desc = 'Open quickfix list' })
-vim.keymap.set('n', ',q', vim.cmd.cnext, { desc = 'Next quickfix item' })
-vim.keymap.set('n', ',Q', vim.cmd.cprevious, { desc = 'Prev quickfix item' })
+vim.keymap.set('n', ',q', function()
+  return pcall(vim.cmd.cnext) or pcall(vim.cmd.cfirst) or vim.notify('No errors')
+end
+, { desc = 'Next quickfix item' })
+vim.keymap.set('n', ',Q', function ()
+  return pcall(vim.cmd.cprevious) or pcall(vim.cmd.clast) or vim.notify('No errors')
+end, { desc = 'Prev quickfix item' })
 
 -- save
 vim.keymap.set('n', ',,', vim.cmd.update, { desc = 'Save' })
