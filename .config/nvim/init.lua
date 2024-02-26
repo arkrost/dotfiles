@@ -331,7 +331,7 @@ require('lazy').setup(
       'nvim-treesitter/nvim-treesitter',
       dependencies = {
         'windwp/nvim-ts-autotag',
-        'nvim-treesitter/playground',
+        'nvim-treesitter/nvim-treesitter-textobjects',
         { 'nvim-treesitter/nvim-treesitter-context', opts = {} },
       },
       build = ':TSUpdate',
@@ -374,7 +374,30 @@ require('lazy').setup(
         highlight = { enable = true },
         indent = { enable = true },
         autotag = { enable = true },
-      }
+        incremental_selection = {
+          enable = true,
+          keymaps = {
+            init_selection = '<leader><cr>',
+            node_incremental = '<cr>',
+            node_decremental = '<bs>',
+            scope_incremental = '<tab>',
+          },
+        },
+        textobjects = {
+          select = {
+            enable = true,
+            lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
+            keymaps = {
+              ['aa'] = '@parameter.outer',
+              ['ia'] = '@parameter.inner',
+              ['af'] = '@function.outer',
+              ['if'] = '@function.inner',
+              ['ac'] = '@class.outer',
+              ['ic'] = '@class.inner',
+            },
+          },
+        },
+      },
     },
     {
       'ThePrimeagen/harpoon',
