@@ -14,6 +14,7 @@ set -x fish_color_valid_path 'green' '-i'
 set -x fish_pager_color_prefix 'yellow'  '--bold'
 set -x fish_pager_color_progress 'magenta'
 set -x fish_color_param
+set -x fish_color_command
 
 set -x EDITOR nvim
 set -x FZF_DEFAULT_OPTS '--cycle --layout=reverse'
