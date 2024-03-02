@@ -237,6 +237,10 @@ require('lazy').setup(
       end,
     },
     {
+      'tpope/vim-sleuth',
+      lazy = false,
+    },
+    {
       'folke/which-key.nvim',
       event = 'VeryLazy',
       init = function()
@@ -627,6 +631,17 @@ require('lazy').setup(
                 telemetry = { enable = false },
                 diagnostics = {
                   globals = { 'vim' },
+                },
+              }
+            }
+          },
+          gopls = {
+            settings = {
+              gopls = {
+                completeUnimported = true,
+                usePlaceholders = true,
+                analyses = {
+                  unusedparams = true,
                 },
               }
             }
