@@ -34,6 +34,7 @@ vim.opt.undofile = true
 vim.opt.title = true
 vim.opt.scrolloff = 10
 vim.opt.sidescrolloff = 10
+vim.opt.cmdheight = 0
 
 vim.opt.inccommand = 'split'
 vim.opt.backspace = 'start,eol,indent'
