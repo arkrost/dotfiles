@@ -16,6 +16,9 @@ set -x fish_pager_color_progress 'magenta'
 set -x fish_color_param
 set -x fish_color_command
 
+set -g fifc_editor 'nvim'
+set -U fifc_keybinding \cx
+
 set -x EDITOR nvim
 set -x SHELL (which fish)
 set -x FZF_DEFAULT_OPTS '--cycle --layout=reverse'
