@@ -12,6 +12,7 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.signcolumn = 'yes'
 vim.opt.colorcolumn = '100'
+vim.opt.laststatus = 3
 
 vim.opt.termguicolors = true
 
@@ -71,7 +72,7 @@ vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'Move line up' })
 
 -- tabs
 vim.keymap.set('n', '<C-t>', vim.cmd.tabnew, { silent = true, desc = 'New Tab' })
-vim.keymap.set('n', 'wq', '<cmd>bdelete<cr>', { desc = 'Close window' })
+vim.keymap.set('n', 'wq', '<cmd>bdelete<cr>', { desc = 'Close buffer' })
 vim.keymap.set('n', ',t', vim.cmd.tabnext, { desc = 'Next tab' })
 vim.keymap.set('n', ',T', vim.cmd.tabprevious, { desc = 'Prev tab' })
 
