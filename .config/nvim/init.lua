@@ -211,6 +211,13 @@ require('lazy').setup(
       end
     },
     {
+      'Lokaltog/vim-monotone',
+      lazy = false,
+      config = function()
+        vim.g.monotone_color = { 40, 20, 80 }
+      end
+    },
+    {
       'nvim-lualine/lualine.nvim',
       event = 'VeryLazy',
       opts = {
