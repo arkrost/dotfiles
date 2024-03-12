@@ -1,0 +1,39 @@
+{
+  :layers {
+              :space-mode {:key :spacebar}
+             }
+
+  :main [
+    { :des "CAPSLOCK is LEFT CTRL if pressed in combination, otherwise ESC"
+      :rules [
+        [:##caps_lock :left_control nil {:alone :escape}]
+      ]
+    }
+
+    { :des "RIGHT OPTION is ESC if pressed alone"
+      :rules [
+        [:##right_option :left_option nil {:alone :escape}]
+      ]
+    }
+
+    { :des "space-mode"
+      :rules [ :space-mode
+        [:##j :return_or_enter]
+        [:##k :delete_or_backspace]
+        [:##l :escape]
+        [:semicolon :backslash]
+        [:##u :open_bracket]
+        [:##i :close_bracket]
+        [:##o :slash]
+        [:##f :right_arrow]
+        [:##s :left_arrow]
+        [:##e :up_arrow]
+        [:##d :down_arrow]
+        [:##m :n]
+        [:##v :b]
+        [:##p :o]
+        [:##h :quote]
+      ]
+    }
+  ]
+}
