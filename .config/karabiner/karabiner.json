@@ -174,7 +174,7 @@
             }
           },
           "to" : [ {
-            "key_code" : "slash"
+            "key_code" : "p"
           } ],
           "conditions" : [ {
             "name" : "space-mode",
@@ -271,22 +271,6 @@
           },
           "to" : [ {
             "key_code" : "b"
-          } ],
-          "conditions" : [ {
-            "name" : "space-mode",
-            "value" : 1,
-            "type" : "variable_if"
-          } ],
-          "type" : "basic"
-        }, {
-          "from" : {
-            "key_code" : "p",
-            "modifiers" : {
-              "optional" : [ "any" ]
-            }
-          },
-          "to" : [ {
-            "key_code" : "o"
           } ],
           "conditions" : [ {
             "name" : "space-mode",
