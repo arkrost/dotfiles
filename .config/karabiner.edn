@@ -20,7 +20,8 @@
       :rules [ :space-mode
         [:##j :return_or_enter]
         [:##k :delete_or_backspace]
-        [:##l :escape]
+        [:##l :o]
+        [:##q :escape]
         [:semicolon :backslash]
         [:##u :open_bracket]
         [:##i :close_bracket]
