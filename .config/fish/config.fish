@@ -56,3 +56,4 @@ function logs -d 'Pretty-print logs from personal cluster'
   stern -o raw "$argv[1]" | jq -rR '. as $raw | try (fromjson | (."@timestamp" | split("T") | last) +" \u001b[32m"+ .level +"\u001b[0m "+ (.thread_name) + " \u001b[33m" + (.attributeSpec) +"\u001b[0m [\u001b[34m"+ (.logger_name | split(".") | last) +"\u001b[0m] - "+.message + .stack_trace) catch ("\u001b[31m" + $raw + "\u001b[0m")'
 end
 
+set -gx CORE_MODULES 'backoffice,metadata,front,content,jira-integration,structure-integration,jira-egress,gantt-integration,item-attribute-store,item-attribute-subscription-hub,connect-lifecycle,tempo-integration,api-auth'
