@@ -113,22 +113,6 @@
             }
           },
           "to" : [ {
-            "key_code" : "o"
-          } ],
-          "conditions" : [ {
-            "name" : "space-mode",
-            "value" : 1,
-            "type" : "variable_if"
-          } ],
-          "type" : "basic"
-        }, {
-          "from" : {
-            "key_code" : "q",
-            "modifiers" : {
-              "optional" : [ "any" ]
-            }
-          },
-          "to" : [ {
             "key_code" : "escape"
           } ],
           "conditions" : [ {
