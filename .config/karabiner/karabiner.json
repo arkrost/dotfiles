@@ -53,24 +53,6 @@
         "manipulators" : [ {
           "from" : {
             "simultaneous" : [ {
-              "key_code" : "j"
-            }, {
-              "key_code" : "k"
-            } ],
-            "simultaneous_options" : {
-              "detect_key_down_uninterruptedly" : false,
-              "key_down_order" : "insensitive",
-              "key_up_order" : "insensitive",
-              "key_up_when" : "any"
-            }
-          },
-          "to" : [ {
-            "key_code" : "escape"
-          } ],
-          "type" : "basic"
-        }, {
-          "from" : {
-            "simultaneous" : [ {
               "key_code" : "k"
             }, {
               "key_code" : "l"
@@ -120,24 +102,6 @@
           },
           "to" : [ {
             "key_code" : "close_bracket"
-          } ],
-          "type" : "basic"
-        }, {
-          "from" : {
-            "simultaneous" : [ {
-              "key_code" : "o"
-            }, {
-              "key_code" : "p"
-            } ],
-            "simultaneous_options" : {
-              "detect_key_down_uninterruptedly" : false,
-              "key_down_order" : "insensitive",
-              "key_up_order" : "insensitive",
-              "key_up_when" : "any"
-            }
-          },
-          "to" : [ {
-            "key_code" : "delete_or_backspace"
           } ],
           "type" : "basic"
         } ]
@@ -317,7 +281,7 @@
     "parameters" : {
       "delay_milliseconds_before_open_device" : 1000
     },
-    "selected" : true,
+    "selected" : false,
     "simple_modifications" : [ ],
     "virtual_hid_keyboard" : {
       "country_code" : 0,
@@ -509,7 +473,7 @@
     "parameters" : {
       "delay_milliseconds_before_open_device" : 1000
     },
-    "selected" : false,
+    "selected" : true,
     "simple_modifications" : [ {
       "from" : {
         "key_code" : "caps_lock"

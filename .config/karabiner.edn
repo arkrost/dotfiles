@@ -14,11 +14,9 @@
 
     { :des "combos"
       :rules [
-        [[:j :k] :escape]
         [[:k :l] :return_or_enter]
         [[:u :i] :open_bracket]
         [[:i :o] :close_bracket]
-        [[:o :p] :delete_or_backspace]
       ]
     }
   ]
