@@ -1,4 +1,7 @@
 {
+  :layers {
+    :raise-mode {:key :right_command}
+  }
   :main [
     { :des "CAPSLOCK is LEFT CTRL if pressed in combination, otherwise ESC"
       :rules [
@@ -12,9 +15,25 @@
       ]
     }
 
+    { :des "LEFT COMMAND is ESCAPE if pressed alone"
+      :rules [
+        [:##left_command :left_command nil {:alone :escape}]
+      ]
+    }
+
+    { :des "raise layer"
+      :rules [:raise-mode
+        [:##h :left_arrow]
+        [:##j :down_arrow]
+        [:##k :up_arrow]
+        [:##l :right_arrow]
+        [:##f :return_or_enter]
+        [:##d :escape]
+      ]
+    }
+
     { :des "combos"
       :rules [
-        [[:k :l] :return_or_enter]
         [[:u :i] :open_bracket]
         [[:i :o] :close_bracket]
       ]
