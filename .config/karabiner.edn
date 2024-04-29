@@ -9,33 +9,12 @@
       ]
     }
 
-    { :des "RIGHT OPTION is BACKSPACE if pressed alone"
-      :rules [
-        [:##right_option :left_option nil {:alone :delete_or_backspace}]
-      ]
-    }
-
-    { :des "LEFT COMMAND is ESCAPE if pressed alone"
-      :rules [
-        [:##left_command :left_command nil {:alone :escape}]
-      ]
-    }
-
     { :des "raise layer"
       :rules [:raise-mode
         [:##h :left_arrow]
         [:##j :down_arrow]
         [:##k :up_arrow]
         [:##l :right_arrow]
-        [:##f :return_or_enter]
-        [:##d :escape]
-      ]
-    }
-
-    { :des "combos"
-      :rules [
-        [[:u :i] :open_bracket]
-        [[:i :o] :close_bracket]
       ]
     }
   ]
