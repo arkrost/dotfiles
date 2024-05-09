@@ -211,6 +211,11 @@ require('lazy').setup(
       end
     },
     {
+      'rose-pine/neovim',
+      as = 'rose-pine',
+      lazy = false,
+    },
+    {
       'Lokaltog/vim-monotone',
       lazy = false,
       config = function()

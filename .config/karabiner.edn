@@ -8,14 +8,5 @@
         [:##caps_lock :left_control nil {:alone :escape}]
       ]
     }
-
-    { :des "raise layer"
-      :rules [:raise-mode
-        [:##h :left_arrow]
-        [:##j :down_arrow]
-        [:##k :up_arrow]
-        [:##l :right_arrow]
-      ]
-    }
   ]
 }

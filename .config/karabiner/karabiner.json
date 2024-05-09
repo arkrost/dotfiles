@@ -15,29 +15,6 @@
         "basic.to_if_held_down_threshold_milliseconds" : 500
       },
       "rules" : [ {
-        "description" : "Auto generated layer conditions",
-        "manipulators" : [ {
-          "type" : "basic",
-          "to" : [ {
-            "set_variable" : {
-              "name" : "raise-mode",
-              "value" : 1
-            }
-          } ],
-          "from" : {
-            "key_code" : "right_command"
-          },
-          "to_after_key_up" : [ {
-            "set_variable" : {
-              "name" : "raise-mode",
-              "value" : 0
-            }
-          } ],
-          "to_if_alone" : [ {
-            "key_code" : "right_command"
-          } ]
-        } ]
-      }, {
         "description" : "CAPSLOCK is LEFT CTRL if pressed in combination, otherwise ESC",
         "manipulators" : [ {
           "to_if_alone" : [ {
@@ -51,73 +28,6 @@
           },
           "to" : [ {
             "key_code" : "left_control"
-          } ],
-          "type" : "basic"
-        } ]
-      }, {
-        "description" : "raise layer",
-        "manipulators" : [ {
-          "from" : {
-            "key_code" : "h",
-            "modifiers" : {
-              "optional" : [ "any" ]
-            }
-          },
-          "to" : [ {
-            "key_code" : "left_arrow"
-          } ],
-          "conditions" : [ {
-            "name" : "raise-mode",
-            "value" : 1,
-            "type" : "variable_if"
-          } ],
-          "type" : "basic"
-        }, {
-          "from" : {
-            "key_code" : "j",
-            "modifiers" : {
-              "optional" : [ "any" ]
-            }
-          },
-          "to" : [ {
-            "key_code" : "down_arrow"
-          } ],
-          "conditions" : [ {
-            "name" : "raise-mode",
-            "value" : 1,
-            "type" : "variable_if"
-          } ],
-          "type" : "basic"
-        }, {
-          "from" : {
-            "key_code" : "k",
-            "modifiers" : {
-              "optional" : [ "any" ]
-            }
-          },
-          "to" : [ {
-            "key_code" : "up_arrow"
-          } ],
-          "conditions" : [ {
-            "name" : "raise-mode",
-            "value" : 1,
-            "type" : "variable_if"
-          } ],
-          "type" : "basic"
-        }, {
-          "from" : {
-            "key_code" : "l",
-            "modifiers" : {
-              "optional" : [ "any" ]
-            }
-          },
-          "to" : [ {
-            "key_code" : "right_arrow"
-          } ],
-          "conditions" : [ {
-            "name" : "raise-mode",
-            "value" : 1,
-            "type" : "variable_if"
           } ],
           "type" : "basic"
         } ]
