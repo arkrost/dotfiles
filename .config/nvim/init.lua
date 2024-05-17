@@ -338,6 +338,17 @@ require('lazy').setup(
       end,
     },
     {
+      'stevearc/oil.nvim',
+      opts = {
+        view_options = {
+          show_hidden = true,
+        }
+      },
+      keys = {
+        { '-', '<cmd>Oil<cr>', desc = 'Open oil' }
+      }
+    },
+    {
       'numToStr/Comment.nvim',
       opts = {},
       keys = {
