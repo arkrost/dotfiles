@@ -349,14 +349,6 @@ require('lazy').setup(
       }
     },
     {
-      'numToStr/Comment.nvim',
-      opts = {},
-      keys = {
-        { 'gc', mode = { 'n', 'v' } },
-        { 'gb', mode = { 'n', 'v' } }
-      }
-    },
-    {
       'nvim-treesitter/nvim-treesitter',
       dependencies = {
         'windwp/nvim-ts-autotag',
