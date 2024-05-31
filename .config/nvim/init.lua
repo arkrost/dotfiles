@@ -576,7 +576,6 @@ require('lazy').setup(
     },
     {
       'github/copilot.vim',
-      event = 'VeryLazy',
       cmd = 'Copilot',
       config = function()
         vim.g.copilot_assume_mapped = true
