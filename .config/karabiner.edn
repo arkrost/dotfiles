@@ -1,11 +1,19 @@
 {
-  :layers {
-    :raise-mode {:key :right_command}
+  :simlayers {
+    :space-mode {:key :spacebar}
   }
   :main [
     { :des "CAPSLOCK is LEFT CTRL if pressed in combination, otherwise ESC"
       :rules [
         [:##caps_lock :left_control nil {:alone :escape}]
+      ]
+    }
+    { :des "space layer"
+      :rules [:space-mode
+        [:##h :left_arrow]
+        [:##j :down_arrow]
+        [:##k :up_arrow]
+        [:##l :right_arrow]
       ]
     }
   ]
