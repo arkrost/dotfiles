@@ -32,13 +32,38 @@
           "type" : "basic"
         } ]
       }, {
+        "description" : "RIGHT_OPTION is backspace if pressed alone",
+        "manipulators" : [ {
+          "to_if_alone" : [ {
+            "key_code" : "delete_or_backspace"
+          } ],
+          "from" : {
+            "key_code" : "right_option"
+          },
+          "to" : [ {
+            "key_code" : "right_option"
+          } ],
+          "type" : "basic"
+        } ]
+      }, {
+        "description" : "RIGHT_COMMAND is enter if pressed alone",
+        "manipulators" : [ {
+          "to_if_alone" : [ {
+            "key_code" : "return_or_enter"
+          } ],
+          "from" : {
+            "key_code" : "right_command"
+          },
+          "to" : [ {
+            "key_code" : "right_command"
+          } ],
+          "type" : "basic"
+        } ]
+      }, {
         "description" : "space layer",
         "manipulators" : [ {
           "from" : {
-            "key_code" : "h",
-            "modifiers" : {
-              "optional" : [ "any" ]
-            }
+            "key_code" : "h"
           },
           "to" : [ {
             "key_code" : "left_arrow"
@@ -83,10 +108,7 @@
           }
         }, {
           "from" : {
-            "key_code" : "j",
-            "modifiers" : {
-              "optional" : [ "any" ]
-            }
+            "key_code" : "j"
           },
           "to" : [ {
             "key_code" : "down_arrow"
@@ -131,10 +153,7 @@
           }
         }, {
           "from" : {
-            "key_code" : "k",
-            "modifiers" : {
-              "optional" : [ "any" ]
-            }
+            "key_code" : "k"
           },
           "to" : [ {
             "key_code" : "up_arrow"
@@ -179,10 +198,7 @@
           }
         }, {
           "from" : {
-            "key_code" : "l",
-            "modifiers" : {
-              "optional" : [ "any" ]
-            }
+            "key_code" : "l"
           },
           "to" : [ {
             "key_code" : "right_arrow"

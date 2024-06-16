@@ -8,12 +8,22 @@
         [:##caps_lock :left_control nil {:alone :escape}]
       ]
     }
+    { :des "RIGHT_OPTION is backspace if pressed alone"
+      :rules [
+        [:right_option :right_option nil {:alone :delete_or_backspace}]
+      ]
+    }
+    { :des "RIGHT_COMMAND is enter if pressed alone"
+      :rules [
+        [:right_command :right_command nil {:alone :return_or_enter}]
+      ]
+    }
     { :des "space layer"
       :rules [:space-mode
-        [:##h :left_arrow]
-        [:##j :down_arrow]
-        [:##k :up_arrow]
-        [:##l :right_arrow]
+        [:h :left_arrow]
+        [:j :down_arrow]
+        [:k :up_arrow]
+        [:l :right_arrow]
       ]
     }
   ]
