@@ -12,7 +12,7 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.signcolumn = 'yes'
 vim.opt.colorcolumn = '100'
-vim.opt.laststatus = 3
+vim.opt.laststatus = 2
 
 vim.opt.termguicolors = true
 
