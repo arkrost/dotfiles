@@ -12,6 +12,7 @@
   lg = log --graph --color --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
   unstage = rm --cached
   staash = stash --all
+  undo = reset --soft HEAD^
 [color]
   ui = true
 [man]
