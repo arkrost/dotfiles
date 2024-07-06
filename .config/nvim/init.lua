@@ -535,6 +535,8 @@ require('lazy').setup(
       'hrsh7th/nvim-cmp',
       dependencies = {
         'hrsh7th/cmp-nvim-lsp',
+        'hrsh7th/cmp-path',
+        'hrsh7th/cmp-buffer',
         'L3MON4D3/LuaSnip',
         'saadparwaiz1/cmp_luasnip',
         'onsails/lspkind.nvim'
@@ -551,7 +553,7 @@ require('lazy').setup(
           },
           formatting = {
             format = lspkind.cmp_format({
-              mode = 'symbol',
+              mode = 'symbol_text',
               before = function(_, vim_item)
                 vim_item.menu = ''
                 return vim_item
@@ -559,22 +561,18 @@ require('lazy').setup(
             }),
           },
           mapping = cmp.mapping.preset.insert {
-            ['<C-j>'] = cmp.mapping(function(fallback)
+            ['<C-j>'] = cmp.mapping(function()
               if cmp.visible() then
                 cmp.select_next_item()
               elseif luasnip.locally_jumpable(1) then
                 luasnip.jump(1)
-              else
-                fallback()
               end
             end, { 'i', 's' }),
-            ['<C-k>'] = cmp.mapping(function(fallback)
+            ['<C-k>'] = cmp.mapping(function()
               if cmp.visible() then
                 cmp.select_prev_item()
               elseif luasnip.locally_jumpable(-1) then
                 luasnip.jump(-1)
-              else
-                fallback()
               end
             end, { 'i', 's' }),
             ['<C-u>'] = cmp.mapping.scroll_docs(-4),
@@ -590,6 +588,8 @@ require('lazy').setup(
           sources = {
             { name = 'nvim_lsp' },
             { name = 'luasnip' },
+            { name = 'path' },
+            { name = 'buffer' },
           }
         }
       end,
