@@ -646,6 +646,11 @@ require('lazy').setup(
           vim.api.nvim_buf_create_user_command(bufnr, 'Rename', function(_)
             vim.lsp.buf.rename()
           end, { desc = 'Rename symbol with LSP' })
+
+          -- `:ToggleInlayHints` command
+          vim.api.nvim_buf_create_user_command(bufnr, 'ToggleInlayHints', function (_)
+            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr }), { bufnr = bufnr })
+          end, { desc = 'Toggle inlay hints' })
         end
 
         local capabilities = vim.lsp.protocol.make_client_capabilities()
