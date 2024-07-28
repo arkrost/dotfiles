@@ -27,9 +27,9 @@ alias gbc='git br | grep -v "*" | xargs git br -D'
 alias up='brew update && brew upgrade && brew cleanup'
 
 alias rm='trash'
-alias l='exa -l'
-alias la='exa -la'
-alias ll='exa -TlL 2'
+alias l='eza -l'
+alias la='eza -la'
+alias ll='eza -TlL 2'
 alias c='clear'
 alias nv='nvim'
 
