@@ -1,0 +1,52 @@
+command = /opt/homebrew/bin/fish
+
+window-height = 32
+window-width = 120
+
+confirm-close-surface = true
+mouse-hide-while-typing = true
+
+font-size = 14
+font-family = IBM Plex Mono
+font-style = Light
+font-style-bold = Regular
+font-style-italic = Light Italic
+font-style-bold-italic = Italic
+
+shell-integration-features=sudo
+
+foreground = ebdbb2
+background = 1F1F28
+
+# black
+palette = 0=#665c54
+palette = 8=#7c6f64
+
+# red
+palette = 1=#ea6962
+palette = 9=#e78a4e
+
+# green
+palette = 2=#a9b665
+palette = 10=#a9b665
+
+# yellow
+palette = 3=#e9b143
+palette = 11=#e9b143
+
+# blue
+palette = 4=#83a598
+palette = 12=#80aa9e
+
+# purple
+palette = 5=#d3869b
+palette = 13=#d3869b
+
+# aqua
+palette = 6=#89b482
+palette = 14=#89b482
+
+# white
+palette = 7=#a89984
+palette = 15=#bdae93
+
