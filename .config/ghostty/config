@@ -12,6 +12,7 @@ font-style = Light
 font-style-bold = Regular
 font-style-italic = Light Italic
 font-style-bold-italic = Italic
+font-thicken = true
 
 shell-integration-features=sudo
 
