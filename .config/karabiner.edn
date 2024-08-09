@@ -1,29 +1,26 @@
 {
-  :simlayers {
-    :space-mode {:key :spacebar}
+  :devices {
+    :macbook-internal [{:product_id 834 :vendor_id 1452}]
   }
   :main [
-    { :des "CAPSLOCK is LEFT CTRL if pressed in combination, otherwise ESC"
+    { :des "internal keyboard"
       :rules [
-        [:##caps_lock :left_control nil {:alone :escape}]
-      ]
-    }
-    { :des "RIGHT_OPTION is backspace if pressed alone"
-      :rules [
+        [:condi :macbook-internal]
+        ;CAPSLOCK is LEFT CTRL if pressed in combination, otherwise ESC
+        [:##caps_lock :right_control nil {:alone :escape}]
+        ; RIGHT_OPTION is backspace if pressed alone
         [:right_option :right_option nil {:alone :delete_or_backspace}]
-      ]
-    }
-    { :des "RIGHT_COMMAND is enter if pressed alone"
-      :rules [
+        ; RIGHT_COMMAND is enter if pressed alone
         [:right_command :right_command nil {:alone :return_or_enter}]
-      ]
-    }
-    { :des "space layer"
-      :rules [:space-mode
-        [:h :left_arrow]
-        [:j :down_arrow]
-        [:k :up_arrow]
-        [:l :right_arrow]
+        ; Arrows with LEFT_COMMAND + hjkl
+        [:!C##h :left_arrow]
+        [:!C##j :down_arrow]
+        [:!C##k :up_arrow]
+        [:!C##l :right_arrow]
+        ; %^& with RIGHT_COMMAND + pio
+        [:!Qp :!S5]
+        [:!Qi :!S6]
+        [:!Qo :!S4]
       ]
     }
   ]
