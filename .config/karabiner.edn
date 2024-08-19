@@ -1,22 +1,25 @@
 {
   :devices {
-    :macbook-internal [{:product_id 834 :vendor_id 1452}]
+    :apple-kbd [
+      {:product_id 834 :vendor_id 1452}
+      {:product_id 668 :vendor_id 76}
+    ]
   }
   :main [
     { :des "internal keyboard"
       :rules [
-        [:condi :macbook-internal]
+        [:condi :apple-kbd]
         ;CAPSLOCK is LEFT CTRL if pressed in combination, otherwise ESC
         [:##caps_lock :right_control nil {:alone :escape}]
-        ; RIGHT_OPTION is backspace if pressed alone
-        [:right_option :right_option nil {:alone :delete_or_backspace}]
+        ; RIGHT_OPTION is backspace if pressed alone or LEFT_COMMAND
+        [:right_option :left_command nil {:alone :delete_or_backspace}]
         ; RIGHT_COMMAND is enter if pressed alone
         [:right_command :right_command nil {:alone :return_or_enter}]
-        ; Arrows with LEFT_COMMAND + hjkl
-        [:!C##h :left_arrow]
-        [:!C##j :down_arrow]
-        [:!C##k :up_arrow]
-        [:!C##l :right_arrow]
+        ; Arrows with RIGHT_COMMAND + hjkl
+        [:!Q##h :left_arrow]
+        [:!Q##j :down_arrow]
+        [:!Q##k :up_arrow]
+        [:!Q##l :right_arrow]
         ; %^& with RIGHT_COMMAND + pio
         [:!Qp :!S5]
         [:!Qi :!S6]
