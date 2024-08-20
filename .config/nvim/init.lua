@@ -562,28 +562,22 @@ require('lazy').setup(
           },
           mapping = cmp.mapping.preset.insert {
             ['<C-j>'] = cmp.mapping(function()
-              if cmp.visible() then
-                cmp.select_next_item()
-              elseif luasnip.locally_jumpable(1) then
+              if luasnip.locally_jumpable(1) then
                 luasnip.jump(1)
               end
             end, { 'i', 's' }),
             ['<C-k>'] = cmp.mapping(function()
-              if cmp.visible() then
-                cmp.select_prev_item()
-              elseif luasnip.locally_jumpable(-1) then
+              if luasnip.locally_jumpable(-1) then
                 luasnip.jump(-1)
               end
             end, { 'i', 's' }),
             ['<C-u>'] = cmp.mapping.scroll_docs(-4),
             ['<C-d>'] = cmp.mapping.scroll_docs(4),
             ['<C-c>'] = cmp.mapping.close(),
-            ['<C-CR>'] = cmp.mapping.complete({}),
-            ['<CR>'] = cmp.mapping.confirm {
+            ['<Tab>'] =  cmp.mapping.confirm({
               behavior = cmp.ConfirmBehavior.Replace,
               select = true,
-            },
-
+            })
           },
           sources = {
             { name = 'nvim_lsp' },
