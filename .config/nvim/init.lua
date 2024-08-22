@@ -574,7 +574,8 @@ require('lazy').setup(
             ['<C-u>'] = cmp.mapping.scroll_docs(-4),
             ['<C-d>'] = cmp.mapping.scroll_docs(4),
             ['<C-c>'] = cmp.mapping.close(),
-            ['<Tab>'] =  cmp.mapping.confirm({
+            ['<C-CR>'] = cmp.mapping.complete({}),
+            ['<CR>'] =  cmp.mapping.confirm({
               behavior = cmp.ConfirmBehavior.Replace,
               select = true,
             })
