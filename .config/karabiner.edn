@@ -13,6 +13,8 @@
         [:##caps_lock :right_control nil {:alone :escape}]
         ; RIGHT_COMMAND is enter if pressed alone
         [:right_command :right_command nil {:alone :return_or_enter}]
+        ; RIGHT_OPTION is backspace if pressed alone
+        [:right_option :right_option nil {:alone :delete_or_backspace}]
         ; Arrows with RIGHT_COMMAND + hjkl
         [:!Q##h :left_arrow]
         [:!Q##j :down_arrow]
