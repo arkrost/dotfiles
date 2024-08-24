@@ -9,12 +9,14 @@
     { :des "internal keyboard"
       :rules [
         [:condi :apple-kbd]
-        ;CAPSLOCK is RIGHT CTRL if pressed in combination, otherwise ESC
+        ;CAPSLOCK is RIGHT_CONTROL if pressed in combination, otherwise ESC
         [:##caps_lock :right_control nil {:alone :escape}]
         ; RIGHT_COMMAND is enter if pressed alone
         [:right_command :right_command nil {:alone :return_or_enter}]
-        ; RIGHT_OPTION is backspace if pressed alone
-        [:right_option :right_option nil {:alone :delete_or_backspace}]
+        ; RIGHT_OPTION is LEFT_SHIFT or backspaces if pressed alone
+        [:right_option :left_shift nil {:alone :delete_or_backspace}]
+        ; RIGHT_SHIFTH to LEFT_OPTION
+        [:right_shift :left_option]
         ; Arrows with RIGHT_COMMAND + hjkl
         [:!Q##h :left_arrow]
         [:!Q##j :down_arrow]
