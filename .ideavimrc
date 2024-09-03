@@ -52,3 +52,4 @@ nnoremap <leader>" :let @"=@+<CR>
 
 nnoremap ,, :update<CR>
 nnoremap ,. :action ShowIntentionActions<CR>
+nnoremap ?  :action copilot.chat.show<CR>
