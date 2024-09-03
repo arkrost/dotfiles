@@ -18,9 +18,9 @@
         ; RIGHT_SHIFTH to LEFT_OPTION
         [:right_shift :left_option]
         ; Arrows with RIGHT_COMMAND + hjkl
-        [:!Q##h :left_arrow]
-        [:!Q##j :down_arrow]
-        [:!Q##k :up_arrow]
+        [:!Q##j :left_arrow]
+        [:!Q##k :down_arrow]
+        [:!Q##i :up_arrow]
         [:!Q##l :right_arrow]
       ]
     }
