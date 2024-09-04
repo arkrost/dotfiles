@@ -50,6 +50,9 @@ nnoremap wq :action CloseContent<CR>
 nnoremap <leader>' :let @+=@"<CR>
 nnoremap <leader>" :let @"=@+<CR>
 
+nnoremap <C-Up> <C-u>zzzv
+nnoremap <C-Down> <C-d>zzzv
+
 nnoremap ,, :update<CR>
 nnoremap ,. :action ShowIntentionActions<CR>
 nnoremap ?  :action copilot.chat.show<CR>

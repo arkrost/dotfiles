@@ -61,8 +61,8 @@ vim.keymap.set({ 'n', 'x' }, '<leader>"', '<cmd>let @"=@+<CR>', { desc = '+ to "
 vim.keymap.set('n', 'J', 'mzJ`z', { desc = 'Join lines' })
 
 -- center screen
-vim.keymap.set('n', '<C-d>', '<C-d>zzzv', { desc = 'Scroll screen down' })
-vim.keymap.set('n', '<C-u>', '<C-u>zzzv', { desc = 'Scroll screen up' })
+vim.keymap.set('n', '<C-Down>', '<C-d>zzzv', { desc = 'Scroll screen down' })
+vim.keymap.set('n', '<C-Up>', '<C-u>zzzv', { desc = 'Scroll screen up' })
 vim.keymap.set('n', 'n', 'nzzzv', { desc = 'Next match' })
 vim.keymap.set('n', 'N', 'Nzzzv', { desc = 'Prev match' })
 
