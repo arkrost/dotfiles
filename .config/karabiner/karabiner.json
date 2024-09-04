@@ -62,9 +62,6 @@
           } ],
           "type" : "basic"
         }, {
-          "to_if_alone" : [ {
-            "key_code" : "delete_or_backspace"
-          } ],
           "from" : {
             "key_code" : "right_option"
           },
