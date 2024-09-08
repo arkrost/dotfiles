@@ -346,7 +346,7 @@ require('lazy').setup(
       opts = {
         view_options = {
           show_hidden = true,
-        }
+        },
       },
       keys = {
         { '-', '<cmd>Oil<cr>', desc = 'Open oil' }
@@ -510,6 +510,12 @@ require('lazy').setup(
       'windwp/nvim-autopairs',
       opts = {},
       event = 'InsertEnter',
+    },
+    {
+      'MeanderingProgrammer/render-markdown.nvim',
+      ft = 'markdown',
+      opts = {},
+      dependencies = { 'nvim-treesitter/nvim-treesitter' },
     },
     {
       'mbbill/undotree',
