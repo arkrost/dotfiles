@@ -99,7 +99,7 @@
           "type" : "basic"
         }, {
           "from" : {
-            "key_code" : "j",
+            "key_code" : "h",
             "modifiers" : {
               "mandatory" : [ "right_command" ],
               "optional" : [ "any" ]
@@ -121,7 +121,7 @@
           "type" : "basic"
         }, {
           "from" : {
-            "key_code" : "k",
+            "key_code" : "j",
             "modifiers" : {
               "mandatory" : [ "right_command" ],
               "optional" : [ "any" ]
@@ -143,7 +143,7 @@
           "type" : "basic"
         }, {
           "from" : {
-            "key_code" : "i",
+            "key_code" : "k",
             "modifiers" : {
               "mandatory" : [ "right_command" ],
               "optional" : [ "any" ]
