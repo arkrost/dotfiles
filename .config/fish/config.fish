@@ -47,6 +47,7 @@ set -gx TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE "$HOME/docker.sock"
 set -gx TESTCONTAINERS_RYUK_DISABLED true
 
 set -gx CLOUD_HOME "$HOME/ALM/cloud"
+set -gx LOCAL_DOMAIN "arost-1.dev.alm.works"
 alias rebuild_cloud='$CLOUD_HOME/bootstrap/rebuild.sh'
 
 alias arost_1_env='$CLOUD_HOME/bootstrap/bfc.sh arost-1'
