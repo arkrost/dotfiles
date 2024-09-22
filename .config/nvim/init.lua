@@ -10,8 +10,8 @@ vim.opt.fileencoding = 'utf-8'
 
 vim.opt.number = true
 vim.opt.relativenumber = true
-vim.opt.signcolumn = 'yes'
 vim.opt.colorcolumn = '100'
+vim.opt.signcolumn = 'yes'
 vim.opt.laststatus = 2
 
 vim.opt.termguicolors = true
@@ -207,7 +207,14 @@ require('lazy').setup(
             ['@lsp.type.property'] = { link = 'Property' },
           }
         })
-        vim.cmd('colorscheme gruvbox')
+        -- vim.cmd('colorscheme gruvbox')
+      end
+    },
+    {
+      'p00f/alabaster.nvim',
+      lazy = false,
+      config = function()
+        vim.cmd.colorscheme('alabaster')
       end
     },
     {
@@ -232,7 +239,7 @@ require('lazy').setup(
       opts = {
         options = {
           icons_enabled = false,
-          theme = 'jellybeans',
+          theme = 'alabaster',
           component_separators = '|',
           section_separators = '',
         },
@@ -581,7 +588,7 @@ require('lazy').setup(
             ['<C-d>'] = cmp.mapping.scroll_docs(4),
             ['<C-c>'] = cmp.mapping.close(),
             ['<C-CR>'] = cmp.mapping.complete({}),
-            ['<CR>'] =  cmp.mapping.confirm({
+            ['<CR>'] = cmp.mapping.confirm({
               behavior = cmp.ConfirmBehavior.Replace,
               select = true,
             })
@@ -649,7 +656,7 @@ require('lazy').setup(
           end, { desc = 'Rename symbol with LSP' })
 
           -- `:ToggleInlayHints` command
-          vim.api.nvim_buf_create_user_command(bufnr, 'ToggleInlayHints', function (_)
+          vim.api.nvim_buf_create_user_command(bufnr, 'ToggleInlayHints', function(_)
             vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr }), { bufnr = bufnr })
           end, { desc = 'Toggle inlay hints' })
         end
