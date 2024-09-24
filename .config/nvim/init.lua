@@ -215,6 +215,9 @@ require('lazy').setup(
       lazy = false,
       config = function()
         vim.cmd.colorscheme('alabaster')
+        vim.api.nvim_set_hl(0, '@variable.builtin', { link = 'Constant' })
+        vim.api.nvim_set_hl(0, 'Operator', { link = 'Normal' })
+        vim.api.nvim_set_hl(0, '@punctuation.delimiter', { link = 'Normal' })
       end
     },
     {
