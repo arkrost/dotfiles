@@ -57,3 +57,26 @@ function logs -d 'Pretty-print logs from personal cluster'
 end
 
 set -gx CORE_MODULES 'backoffice,metadata,front,content,jira-integration,structure-integration,jira-egress,gantt-integration,item-attribute-store,item-attribute-subscription-hub,connect-lifecycle,tempo-integration,api-auth,post-deploy-manager,attribute-spec-compressor'
+
+function merge_cbr
+  set out 'out'
+  mkdir ./$out
+
+  for f in ./*.cbr
+    7z x $f -o$(basename $f .cbr)
+  end
+
+  for f in ./*.cbr
+    set f $(basename $f .cbr)
+    echo $f
+    for j in ./$f/*
+      set j $(basename $j)
+      mv "./$f/$j" "./$out/{$f}_$j"
+    end
+    rm -r $f
+  end
+
+  7z a $out.zip $out
+  mv $out.zip $out.cbz
+  rm -r $out
+end
