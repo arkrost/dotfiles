@@ -22,6 +22,8 @@
         [:!Q##k :down_arrow]
         [:!Q##i :up_arrow]
         [:!Q##l :right_arrow]
+        ; RIGHT_CONTROL + w
+        [:!Ww :!Odelete_or_backspace]
       ]
     }
   ]

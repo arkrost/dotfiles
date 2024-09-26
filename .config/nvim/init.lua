@@ -53,6 +53,10 @@ vim.opt.shortmess:append('aI')
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+-- macos basics
+vim.keymap.set({'i', 'c'}, '<M-BS>', '<C-w>', { noremap = true, silent = true })
+vim.keymap.set({'i', 'c'}, '<C-d>', '<Del>', { noremap = true, silent = true })
+
 -- clipboard register
 vim.keymap.set({ 'n', 'x' }, '<leader>\'', '<cmd>let @+=@"<CR>', { desc = '" to +' })
 vim.keymap.set({ 'n', 'x' }, '<leader>"', '<cmd>let @"=@+<CR>', { desc = '+ to "' })
