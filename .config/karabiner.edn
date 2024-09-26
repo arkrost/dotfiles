@@ -22,8 +22,6 @@
         [:!Q##k :down_arrow]
         [:!Q##i :up_arrow]
         [:!Q##l :right_arrow]
-        [:!Q##o :!Oright_arrow]
-        [:!Q##u :!Oleft_arrow]
       ]
     }
   ]
