@@ -16,7 +16,8 @@ font-thicken = true
 
 shell-integration-features=sudo
 
-foreground = ebdbb2
+# foreground = ebdbb2
+foreground = e0e0d7
 background = 1F1F28
 
 # black

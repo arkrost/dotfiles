@@ -54,8 +54,8 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- macos basics
-vim.keymap.set({'i', 'c'}, '<M-BS>', '<C-w>', { noremap = true, silent = true })
-vim.keymap.set({'i', 'c'}, '<C-d>', '<Del>', { noremap = true, silent = true })
+vim.keymap.set({ 'i', 'c' }, '<M-BS>', '<C-w>', { noremap = true, silent = true })
+vim.keymap.set({ 'i', 'c' }, '<C-d>', '<Del>', { noremap = true, silent = true })
 
 -- clipboard register
 vim.keymap.set({ 'n', 'x' }, '<leader>\'', '<cmd>let @+=@"<CR>', { desc = '" to +' })
@@ -215,13 +215,11 @@ require('lazy').setup(
       end
     },
     {
-      'p00f/alabaster.nvim',
+      'arkrost/alabaster.nvim',
+      dir = '~/Projects/alabaster.nvim',
       lazy = false,
       config = function()
         vim.cmd.colorscheme('alabaster')
-        vim.api.nvim_set_hl(0, '@variable.builtin', { link = 'Constant' })
-        vim.api.nvim_set_hl(0, 'Operator', { link = 'Normal' })
-        vim.api.nvim_set_hl(0, '@punctuation.delimiter', { link = 'Normal' })
       end
     },
     {
