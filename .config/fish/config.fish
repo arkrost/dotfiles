@@ -32,6 +32,7 @@ alias la='eza -la'
 alias ll='eza -TlL 2'
 alias c='clear'
 alias nv='nvim'
+alias aider='GEMINI_API_KEY=$(op read "op://API/gemini/credential") uv tool run aider --model=gemini/gemini-1.5-pro-latest'
 
 # integrations
 starship init fish | source
