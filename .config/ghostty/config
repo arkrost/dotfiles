@@ -4,7 +4,7 @@ window-height = 32
 window-width = 120
 
 confirm-close-surface = true
-mouse-hide-while-typing = true
+mouse-hide-while-typing = false
 
 font-size = 14
 font-family = IBM Plex Mono
