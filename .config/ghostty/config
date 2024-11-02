@@ -1,4 +1,5 @@
 command = /opt/homebrew/bin/fish
+# command = /opt/homebrew/bin/nu
 
 window-height = 32
 window-width = 120
@@ -18,7 +19,8 @@ shell-integration-features=sudo
 
 # foreground = ebdbb2
 foreground = e0e0d7
-background = 1F1F28
+# background = 1F1F28
+background = 000000
 
 # black
 palette = 0=#665c54

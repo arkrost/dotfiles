@@ -12,8 +12,8 @@ $env.config = {
 
 # alias up='brew update && brew upgrade && brew upgrade --cask && brew cleanup'
 
-alias l = exa -L 1 -Ta
-alias la = exa -la
+alias l = eza -L 1 -Ta
+alias la = eza -la
 alias c = clear
 alias rm = trash
 alias nv = nvim
