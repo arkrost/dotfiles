@@ -1,3 +1,0 @@
-inherits = "my_gruvbox"
-
-"ui.background" = { bg = "none" }
