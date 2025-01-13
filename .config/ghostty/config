@@ -6,6 +6,7 @@ window-width = 120
 
 confirm-close-surface = true
 mouse-hide-while-typing = false
+macos-option-as-alt = right
 
 font-size = 15
 font-family = IBM Plex Mono
