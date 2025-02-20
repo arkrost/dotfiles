@@ -24,7 +24,9 @@
   (setq initial-scratch-message nil)
   (setq inhibit-startup-message t)
   (setq make-backup-files nil)
+  (setq vc-follow-symlinks t)
   (global-display-line-numbers-mode t)
+  (defalias 'yes-or-no-p 'y-or-n-p)
 )
 
 (use-package gruber-darker-theme
@@ -32,3 +34,11 @@
   (load-theme 'gruber-darker t)
   (mapc (lambda (face) (set-face-bold face nil)) (face-list)) ; get rid of bold fonts
   (set-face-attribute 'default nil :font (font-spec :family "IBM Plex Mono" :size 14 :weight 'light)))
+
+(use-package dired
+  :straight nil
+  :init
+  (setq dired-create-destination-dirs 'ask)
+  (setq dired-recursive-deletes 'top)
+  (setq dired-recursive-copies 'always)
+  (setq dired-auto-revert-buffer #'dired-buffer-stale-p))
