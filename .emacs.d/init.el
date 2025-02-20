@@ -25,7 +25,7 @@
   (setq inhibit-startup-message t)
   (setq make-backup-files nil)
   (setq vc-follow-symlinks t)
-  (global-display-line-numbers-mode t)
+  (global-display-line-numbers-mode)
   (defalias 'yes-or-no-p 'y-or-n-p))
 
 (use-package gruber-darker-theme
@@ -42,4 +42,13 @@
   (setq dired-auto-revert-buffer #'dired-buffer-stale-p))
 
 (use-package magit)
+
+(use-package orderless
+    :custom
+    (completion-styles '(orderless basic))
+    (completion-category-overrides '((file (styles basic partial-completion)))))
+
+(use-package vertico
+  :config
+  (vertico-mode))
 
