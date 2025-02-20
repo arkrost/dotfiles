@@ -13,17 +13,11 @@
         [:##caps_lock :right_control nil {:alone :escape}]
         ; RIGHT_COMMAND is enter if pressed alone
         [:right_command :right_command nil {:alone :return_or_enter}]
-        ; RIGHT_OPTION is LEFT_SHIFT
-        [:right_option :left_shift nil]
-        ; RIGHT_SHIFTH to LEFT_OPTION
-        [:right_shift :left_option]
         ; RIGHT_COMMAND mode
         [:!Q##j :left_arrow]
         [:!Q##k :down_arrow]
         [:!Q##i :up_arrow]
         [:!Q##l :right_arrow]
-        ; RIGHT_CONTROL + w
-        [:!Ww :!Odelete_or_backspace]
       ]
     }
   ]
