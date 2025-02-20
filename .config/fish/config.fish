@@ -2,7 +2,7 @@
 eval (/opt/homebrew/bin/brew shellenv)
 
 # my paths
-fish_add_path -gm /opt/homebrew/opt/node@20/bin ~/.npm-packages/bin
+fish_add_path -gm /opt/homebrew/opt/node@18/bin ~/.npm-packages/bin
 fish_add_path -gm ~/.cargo/bin
 fish_add_path -gm ~/.local/bin
 
@@ -42,11 +42,11 @@ set -gx MAVEN_OPTS '-Djdk.tls.client.protocols=TLSv1.2'
 set -gx TESTCONTAINERS_RYUK_DISABLED true
 
 set -gx CDN_URL
-set -gx BASE_URL_US https://arost-1.dev.structure.app
-set -gx BASE_URL_EU https://arost-1.dev.structure.app
+set -gx BASE_URL_US arost-1.dev.structure.app
+set -gx BASE_URL_EU arost-1.dev.structure.app
 
 set -gx CLOUD_HOME "$HOME/ALM/cloud"
-set -gx LOCAL_DOMAIN "arost-1.dev.alm.works"
+set -gx LOCAL_DOMAIN "arost-1.dev.structure.app"
 alias rebuild_cloud='$CLOUD_HOME/bootstrap/rebuild.sh'
 
 alias arost_1_env='$CLOUD_HOME/bootstrap/bfc.sh arost-1'
