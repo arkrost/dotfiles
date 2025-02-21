@@ -25,13 +25,12 @@
   (setq inhibit-startup-message t)
   (setq make-backup-files nil)
   (setq vc-follow-symlinks t)
-  (global-display-line-numbers-mode)
-  (defalias 'yes-or-no-p 'y-or-n-p))
+  (setq use-short-answers t)
+  (global-display-line-numbers-mode))
 
 (use-package gruber-darker-theme
   :config
-  (load-theme 'gruber-darker t))
-  
+  (load-theme 'gruber-darker t))  
 
 (use-package dired
   :straight nil
@@ -41,7 +40,8 @@
   (setq dired-recursive-copies 'always)
   (setq dired-auto-revert-buffer #'dired-buffer-stale-p))
 
-(use-package magit)
+(use-package magit
+  :defer t)
 
 (use-package orderless
     :custom
