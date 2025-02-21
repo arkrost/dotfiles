@@ -25,7 +25,7 @@
   (setq inhibit-startup-message t)
   (setq make-backup-files nil)
   (setq vc-follow-symlinks t)
-  (setq use-short-answers t)
+  (defalias 'yes-or-no-p 'y-or-n-p)
   (global-display-line-numbers-mode))
 
 (use-package gruber-darker-theme
