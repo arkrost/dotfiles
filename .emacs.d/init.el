@@ -20,25 +20,32 @@
 ;; Configuration
 
 (use-package emacs
+  :custom
+  (initial-scratch-message nil)
+  (inhibit-startup-message t)
+  (make-backup-files nil)
+  (vc-follow-symlinks t)
   :config
-  (setq initial-scratch-message nil)
-  (setq inhibit-startup-message t)
-  (setq make-backup-files nil)
-  (setq vc-follow-symlinks t)
   (defalias 'yes-or-no-p 'y-or-n-p)
   (global-display-line-numbers-mode))
 
 (use-package gruber-darker-theme
   :config
-  (load-theme 'gruber-darker t))  
+  (load-theme 'gruber-darker t))
+
+(use-package treesit-auto
+  :custom
+  (treesit-auto-langs '(go gomod rust java kotlin json))
+  :config
+  (treesit-auto-add-to-auto-mode-alist 'all))
 
 (use-package dired
   :straight nil
-  :init
-  (setq dired-create-destination-dirs 'ask)
-  (setq dired-recursive-deletes 'top)
-  (setq dired-recursive-copies 'always)
-  (setq dired-auto-revert-buffer #'dired-buffer-stale-p))
+  :custom
+  (dired-create-destination-dirs 'ask)
+  (dired-recursive-deletes 'top)
+  (dired-recursive-copies 'always)
+  (dired-auto-revert-buffer #'dired-buffer-stale-p))
 
 (use-package magit
   :defer t)
@@ -51,4 +58,3 @@
 (use-package vertico
   :config
   (vertico-mode))
-
