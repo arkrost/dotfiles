@@ -25,9 +25,21 @@
   (inhibit-startup-message t)
   (make-backup-files nil)
   (vc-follow-symlinks t)
-  :config
+  (initial-major-mode 'fundamental-mode)
+   :config
   (defalias 'yes-or-no-p 'y-or-n-p)
-  (global-display-line-numbers-mode))
+  (global-display-line-numbers-mode)
+  ;; use symbols font in Private Use Areas
+  (dolist (range '((#xe000 . #xf8ff) (#xf0000 . #xfffff)))
+    (set-fontset-font t range "Symbols Nerd Font Mono"))
+  ;; no bold fonts
+  (defun disable-bold-fonts ()
+    "Disable bold fonts by setting any face with bold weight to normal."
+    (dolist (face (face-list))
+      (when (eq (face-attribute face :weight nil 'default) 'bold)
+	(set-face-attribute face nil :weight 'regular))))
+  (add-hook 'minibuffer-setup-hook 'disable-bold-fonts)
+  (add-hook 'change-major-mode-after-body-hook 'disable-bold-fonts))
 
 (use-package gruber-darker-theme
   :config
