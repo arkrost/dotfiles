@@ -70,3 +70,13 @@
 (use-package vertico
   :config
   (vertico-mode))
+
+(use-package perfect-margin
+  :preface
+  (defconst my-perfect-width 100)
+  :custom
+  (perfect-margin-visible-width my-perfect-width)
+  (split-width-threshold my-perfect-width)
+  (perfect-margin-ignore-regexps nil)
+  :config
+  (perfect-margin-mode t))
