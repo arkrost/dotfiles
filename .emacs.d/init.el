@@ -1,15 +1,15 @@
 (defvar bootstrap-version)
 (let ((bootstrap-file
        (expand-file-name
-        "straight/repos/straight.el/bootstrap.el"
-        (or (bound-and-true-p straight-base-dir)
-            user-emacs-directory)))
+	"straight/repos/straight.el/bootstrap.el"
+	(or (bound-and-true-p straight-base-dir)
+	    user-emacs-directory)))
       (bootstrap-version 7))
   (unless (file-exists-p bootstrap-file)
     (with-current-buffer
-        (url-retrieve-synchronously
-         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
-         'silent 'inhibit-cookies)
+	(url-retrieve-synchronously
+	 "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+	 'silent 'inhibit-cookies)
       (goto-char (point-max))
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
@@ -26,7 +26,8 @@
   (make-backup-files nil)
   (vc-follow-symlinks t)
   (initial-major-mode 'fundamental-mode)
-   :config
+  (display-line-numbers-width 5)
+  :config
   (defalias 'yes-or-no-p 'y-or-n-p)
   (global-display-line-numbers-mode)
   ;; use symbols font in Private Use Areas
@@ -40,6 +41,14 @@
 	(set-face-attribute face nil :weight 'regular))))
   (add-hook 'minibuffer-setup-hook 'disable-bold-fonts)
   (add-hook 'change-major-mode-after-body-hook 'disable-bold-fonts))
+
+(use-package whitespace
+  :custom
+  (whitespace-style '(face trailing empty))
+  (whitespace-empty-at-eob-regexp "^[ \t\n]\\([ \t\n]+\\)\\'")
+  :hook (before-save . whitespace-cleanup)
+  :config
+  (global-whitespace-mode))
 
 (use-package gruber-darker-theme
   :config
@@ -72,11 +81,9 @@
   (vertico-mode))
 
 (use-package perfect-margin
-  :preface
-  (defconst my-perfect-width 100)
   :custom
-  (perfect-margin-visible-width my-perfect-width)
-  (split-width-threshold my-perfect-width)
+  (perfect-margin-visible-width 90)
   (perfect-margin-ignore-regexps nil)
+  (perfect-margin-only-set-left-margin t)
   :config
   (perfect-margin-mode t))
