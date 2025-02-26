@@ -26,7 +26,8 @@
   (make-backup-files nil)
   (vc-follow-symlinks t)
   (initial-major-mode 'fundamental-mode)
-  (display-line-numbers-width 5)
+  (display-line-numbers-width 4)
+  (split-width-threshold 120)
   :config
   (defalias 'yes-or-no-p 'y-or-n-p)
   (global-display-line-numbers-mode)
@@ -79,11 +80,3 @@
 (use-package vertico
   :config
   (vertico-mode))
-
-(use-package perfect-margin
-  :custom
-  (perfect-margin-visible-width 90)
-  (perfect-margin-ignore-regexps nil)
-  (perfect-margin-only-set-left-margin t)
-  :config
-  (perfect-margin-mode t))
