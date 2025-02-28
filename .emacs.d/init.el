@@ -80,3 +80,8 @@
 (use-package vertico
   :config
   (vertico-mode))
+
+(use-package projectile
+  :bind-keymap ("s-p" . projectile-command-map)
+  :config
+  (projectile-mode))
