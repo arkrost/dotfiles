@@ -9,8 +9,8 @@
     { :des "internal keyboard"
       :rules [
         [:condi :apple-kbd]
-        ; CAPSLOCK is RIGHT_CONTROL
-        [:##caps_lock :right_control]
+        ; CAPSLOCK is RIGHT_CONTROL or escape if pressed alone
+        [:##caps_lock :right_control nil {:alone :escape}]
         ; RIGHT_COMMAND is enter if pressed alone
         [:right_command :right_command nil {:alone :return_or_enter}]
         ; RIGHT_COMMAND mode
