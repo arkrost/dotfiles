@@ -223,10 +223,6 @@ require('lazy').setup(
       end
     },
     {
-      'sho-87/kanagawa-paper.nvim',
-      lazy = false,
-    },
-    {
       'rose-pine/neovim',
       as = 'rose-pine',
       lazy = false,
