@@ -16,23 +16,9 @@ export EDITOR=nvim
 
 # completion
 autoload -Uz compinit && compinit -i
-zstyle ':completion:*' menu select
 
 # prompt
-autoload -Uz vcs_info
-
-zstyle ':vcs_info:*' enable git
-zstyle ':vcs_info:git*' formats '%F{2}%b%f'
-
-precmd () {
-  vcs_info
-}
-
-setopt PROMPT_SUBST
 PROMPT='%F{5}%n%f %~ %B%F{2}>%f%b '
-RPROMPT='${vcs_info_msg_0_}'
-
-setopt AUTOCD
 
 # history
 HISTFILE=~/.zhistory
@@ -44,19 +30,11 @@ setopt SHARE_HISTORY            # Share history between all sessions.
 setopt HIST_VERIFY              # Don't execute immediately upon history expansion.
 setopt HIST_IGNORE_SPACE        # Don't record an entry starting with a space.
 
-# keybindings
-bindkey '^[[3~' delete-char
-
-autoload -U up-line-or-beginning-search && zle -N up-line-or-beginning-search
-bindkey '^[[A' up-line-or-beginning-search
-
-autoload -U down-line-or-beginning-search && zle -N down-line-or-beginning-search
-bindkey '^[[B' down-line-or-beginning-search
+# emacs keybindings
+bindkey -e
 
 # aliases
 alias up='brew update && brew upgrade && brew upgrade --cask && brew cleanup'
-alias lock='chflags uchg'
-alias unlock='chflags nouchg'
 alias rm=trash
 alias c='clear'
 alias gbc='git br --merged | rg -v "\* .*" | xargs git br -D'
@@ -66,8 +44,10 @@ alias ll='eza -TlL 2'
 alias la='eza -la'
 alias nv='nvim'
 
-# almrc
-source "${ZDOTDIR:-$HOME}/.almrc"
+# tempo-io
+export CLOUD_HOME=~/ALM/cloud
+export LOCAL_DOMAIN=arost-1.dev.structure.app
+alias arost_1_env='$CLOUD_HOME/bootstrap/bfc.sh arost-1'
 
 # nix
 # NB: /nix/nix-installer uninstall
@@ -92,4 +72,18 @@ fi
 # base commands
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
-eval "$(atuin init zsh --disable-up-arrow)"
+eval "$(atuin init zsh --disable-up-arrow --disable-ctrl-r)" # just keep the history
+
+# zinit setup
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
+[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+source "${ZINIT_HOME}/zinit.zsh"
+
+# plugins
+zinit light Aloxaf/fzf-tab
+zinit light zuxfoucault/colored-man-pages_mod
+zinit light zdharma/fast-syntax-highlighting
+zinit light zsh-users/zsh-autosuggestions
+zinit light zsh-users/zsh-completions
+compinit -i # update completions
