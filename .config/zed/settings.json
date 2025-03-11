@@ -7,6 +7,9 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "features": {
+    "edit_prediction_provider": "zed"
+  },
   "assistant": {
     "default_model": {
       "provider": "copilot_chat",
@@ -20,9 +23,9 @@
     "metrics": false
   },
   "cursor_blink": false,
-  "buffer_font_size": 15,
+  "buffer_font_size": 16,
   "tab_size": 2,
   "relative_line_numbers": true,
   "remove_trailing_whitespace_on_save": true,
-  "vim_mode": true
+  "vim_mode": false
 }
