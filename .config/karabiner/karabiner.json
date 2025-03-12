@@ -13,6 +13,9 @@
       "rules" : [ {
         "description" : "internal keyboard",
         "manipulators" : [ {
+          "to_if_alone" : [ {
+            "key_code" : "escape"
+          } ],
           "from" : {
             "key_code" : "caps_lock",
             "modifiers" : {
@@ -42,27 +45,6 @@
           },
           "to" : [ {
             "key_code" : "right_command"
-          } ],
-          "conditions" : [ {
-            "identifiers" : [ {
-              "product_id" : 834,
-              "vendor_id" : 1452
-            }, {
-              "product_id" : 668,
-              "vendor_id" : 76
-            } ],
-            "type" : "device_if"
-          } ],
-          "type" : "basic"
-        }, {
-          "to_if_alone" : [ {
-            "key_code" : "escape"
-          } ],
-          "from" : {
-            "key_code" : "left_command"
-          },
-          "to" : [ {
-            "key_code" : "left_command"
           } ],
           "conditions" : [ {
             "identifiers" : [ {
@@ -151,6 +133,48 @@
           },
           "to" : [ {
             "key_code" : "right_arrow"
+          } ],
+          "conditions" : [ {
+            "identifiers" : [ {
+              "product_id" : 834,
+              "vendor_id" : 1452
+            }, {
+              "product_id" : 668,
+              "vendor_id" : 76
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "close_bracket",
+            "modifiers" : {
+              "mandatory" : [ "right_option" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "page_down"
+          } ],
+          "conditions" : [ {
+            "identifiers" : [ {
+              "product_id" : 834,
+              "vendor_id" : 1452
+            }, {
+              "product_id" : 668,
+              "vendor_id" : 76
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "open_bracket",
+            "modifiers" : {
+              "mandatory" : [ "right_option" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "page_up"
           } ],
           "conditions" : [ {
             "identifiers" : [ {

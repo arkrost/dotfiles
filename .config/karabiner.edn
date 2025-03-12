@@ -9,17 +9,18 @@
     { :des "internal keyboard"
       :rules [
         [:condi :apple-kbd]
-        ; CAPSLOCK is RIGHT_CONTROL
-        [:##caps_lock :right_control]
+        ; CAPSLOCK is RIGHT_CONTROL or ESCAPE if pressed alonw
+        [:##caps_lock :right_control nil {:alone :escape}]
         ; RIGHT_COMMAND is enter if pressed alone
         [:right_command :right_command nil {:alone :return_or_enter}]
-        ; LEFT_COMMAND is escape if pressed alone
-        [:left_command :left_command nil {:alone :escape}]
         ; RIGHT_COMMAND mode
         [:!Q##j :left_arrow]
         [:!Q##k :down_arrow]
         [:!Q##i :up_arrow]
         [:!Q##l :right_arrow]
+        ; RIGHT_OPTION mode
+        [:!Eclose_bracket :page_down]
+        [:!Eopen_bracket :page_up]
       ]
     }
   ]
