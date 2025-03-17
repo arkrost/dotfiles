@@ -187,6 +187,50 @@
             "type" : "device_if"
           } ],
           "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "semicolon",
+            "modifiers" : {
+              "mandatory" : [ "right_option" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "left_arrow",
+            "modifiers" : [ "left_option" ]
+          } ],
+          "conditions" : [ {
+            "identifiers" : [ {
+              "product_id" : 834,
+              "vendor_id" : 1452
+            }, {
+              "product_id" : 668,
+              "vendor_id" : 76
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "quote",
+            "modifiers" : {
+              "mandatory" : [ "right_option" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "right_arrow",
+            "modifiers" : [ "left_option" ]
+          } ],
+          "conditions" : [ {
+            "identifiers" : [ {
+              "product_id" : 834,
+              "vendor_id" : 1452
+            }, {
+              "product_id" : 668,
+              "vendor_id" : 76
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
         } ]
       } ]
     },

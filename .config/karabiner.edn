@@ -21,6 +21,8 @@
         ; RIGHT_OPTION mode
         [:!Eclose_bracket :page_down]
         [:!Eopen_bracket :page_up]
+        [:!Esemicolon :!Oleft_arrow]
+        [:!Equote :!Oright_arrow]
       ]
     }
   ]
