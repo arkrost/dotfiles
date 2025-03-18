@@ -9,6 +9,11 @@ fish_add_path -gm ~/.local/bin
 # Interactive config
 status is-interactive || exit
 
+function fish_user_key_bindings
+    fish_default_key_bindings -M insert
+    fish_vi_key_bindings --no-erase insert
+end
+
 set -g fish_greeting
 set -x fish_color_valid_path green -i
 set -x fish_pager_color_prefix yellow --bold

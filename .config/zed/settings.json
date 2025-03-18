@@ -27,5 +27,5 @@
   "tab_size": 2,
   "relative_line_numbers": true,
   "remove_trailing_whitespace_on_save": true,
-  "vim_mode": false
+  "vim_mode": true
 }
