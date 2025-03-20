@@ -23,7 +23,10 @@ set -x fish_color_command
 
 set -x EDITOR nvim
 set -x SHELL (which fish)
-set -x FZF_DEFAULT_OPTS '--cycle --layout=reverse'
+set -x FZF_DEFAULT_OPTS " \
+    --cycle --layout=reverse \
+    --color fg:188,bg:-1,hl:103,fg+:222,bg+:234,hl+:104 \
+    --color info:183,prompt:110,spinner:107,pointer:167,marker:215"
 
 alias gbc='git br | grep -v "*" | xargs git br -D'
 alias up='brew update && brew upgrade && brew cleanup'
