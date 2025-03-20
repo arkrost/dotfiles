@@ -24,7 +24,8 @@ set -x fish_color_command
 set -x EDITOR nvim
 set -x SHELL (which fish)
 set -x FZF_DEFAULT_OPTS " \
-    --cycle --layout=reverse \
+    --cycle --layout=reverse --no-bold \
+    --preview 'bat --style=numbers --color=always --line-range :500 {}'
     --color fg:188,bg:-1,hl:103,fg+:222,bg+:234,hl+:104 \
     --color info:183,prompt:110,spinner:107,pointer:167,marker:215"
 
