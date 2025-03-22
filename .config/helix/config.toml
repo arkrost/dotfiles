@@ -17,9 +17,9 @@ display-inlay-hints = false
 'esc' = ["collapse_selection", "keep_primary_selection"]
 'C-a' = "goto_line_start"
 'C-e' = "goto_line_end"
-'A-]' = "goto_next_paragraph"
-'A-[' = "goto_prev_paragraph"
-'a' = "insert_mode"
+'}' = "goto_next_paragraph"
+'{' = "goto_prev_paragraph"
+'C-g' = [":write-all", ":new", ":insert-output lazygit", ":buffer-close!", ":redraw", ":reload-all"]
 
 [keys.select]
 'i' = "extend_visual_line_up"
