@@ -45,6 +45,7 @@ alias la='eza -la'
 alias nv='nvim'
 
 # tempo-io
+export TESTCONTAINERS_RYUK_DISABLED=true
 export CLOUD_HOME=~/ALM/cloud
 export LOCAL_DOMAIN=arost-1.dev.structure.app
 alias arost_1_env='$CLOUD_HOME/bootstrap/bfc.sh arost-1'
