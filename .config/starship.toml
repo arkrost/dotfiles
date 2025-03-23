@@ -21,9 +21,8 @@ truncation_symbol = '…/'
 use_logical_path = false
 
 [git_branch]
-symbol = ''
 style = 'italic fg:cyan'
-format = '[$symbol $branch]($style)'
+format = '[$branch]($style)'
 
 [git_status]
 style = 'fg:cyan'

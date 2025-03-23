@@ -4,7 +4,7 @@ command = /opt/homebrew/bin/fish
 window-height = 32
 window-width = 120
 
-confirm-close-surface = true
+confirm-close-surface = false
 mouse-hide-while-typing = false
 macos-option-as-alt = right
 
@@ -20,38 +20,37 @@ shell-integration-features=sudo
 
 # foreground = ebdbb2
 foreground = e0e0d7
-background = 1F1F28
-# background = 000000
+background = 1f1f28
 
 # black
-palette = 0=#665c54
-palette = 8=#7c6f64
+palette = 0=#262626
+palette = 8=#585858
 
 # red
-palette = 1=#ea6962
-palette = 9=#e78a4e
+palette = 1=#d75f5f
+palette = 9=#ff8787
 
 # green
-palette = 2=#a9b665
-palette = 10=#a9b665
+palette = 2=#87af5f
+palette = 10=#afd75f
 
 # yellow
-palette = 3=#e9b143
-palette = 11=#e9b143
+palette = 3=#d7af5f
+palette = 11=#ffd787
 
 # blue
-palette = 4=#83a598
-palette = 12=#80aa9e
+palette = 4=#6699CC
+palette = 12=#87afd7
 
 # purple
-palette = 5=#d3869b
-palette = 13=#d3869b
+palette = 5=#8787af
+palette = 13=#d787af
 
 # aqua
-palette = 6=#89b482
+palette = 6=#80aa9e
 palette = 14=#89b482
 
 # white
-palette = 7=#a89984
-palette = 15=#bdae93
+palette = 7=#e4e4e4
+palette = 15=#ffffff
 
