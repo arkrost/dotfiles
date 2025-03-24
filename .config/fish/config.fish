@@ -38,7 +38,7 @@ alias l='eza -l'
 alias ll='eza -TlL 2'
 alias c='clear'
 alias nv='nvim'
-alias g='git'
+alias g='lazygit'
 
 # integrations
 starship init fish | source
