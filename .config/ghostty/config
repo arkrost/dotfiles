@@ -4,7 +4,7 @@ command = /opt/homebrew/bin/fish
 window-height = 32
 window-width = 120
 
-confirm-close-surface = false
+confirm-close-surface = true
 mouse-hide-while-typing = false
 macos-option-as-alt = right
 
