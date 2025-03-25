@@ -45,6 +45,7 @@ brew "stow"
 brew "tmux"
 brew "trash", link: true
 brew "uv"
+brew "yazi"
 brew "zoxide"
 brew "oven-sh/bun/bun"
 brew "yqrashawn/goku/goku"
