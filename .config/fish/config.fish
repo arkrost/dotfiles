@@ -39,6 +39,7 @@ alias ll='eza -TlL 2'
 alias c='clear'
 alias nv='nvim'
 alias g='lazygit'
+alias t='tmux a || tmux'
 
 # integrations
 starship init fish | source
