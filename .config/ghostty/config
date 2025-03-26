@@ -4,7 +4,7 @@ command = /opt/homebrew/bin/fish
 window-height = 32
 window-width = 120
 
-confirm-close-surface = true
+confirm-close-surface = false
 mouse-hide-while-typing = false
 macos-option-as-alt = right
 
@@ -16,7 +16,8 @@ font-style-italic = Light Italic
 font-style-bold-italic = Italic
 font-thicken = true
 
-shell-integration-features=sudo
+shell-integration-features = no-cursor, sudo
+cursor-style = bar
 
 # foreground = ebdbb2
 foreground = e0e0d7
