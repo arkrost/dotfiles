@@ -1,13 +1,12 @@
-command = "/opt/homebrew/bin/fish -c 'eval $TMUX_ATTACH_CMD'"
+command = /opt/homebrew/bin/fish
 # command = /opt/homebrew/bin/nu
 
 window-height = 32
 window-width = 120
 
-confirm-close-surface = false
+confirm-close-surface = true
 mouse-hide-while-typing = false
 macos-option-as-alt = right
-background-opacity = 0.95
 
 font-size = 15
 font-family = IBM Plex Mono

@@ -61,9 +61,6 @@ alias rebuild_cloud='$CLOUD_HOME/bootstrap/rebuild.sh'
 
 alias arost_1_env='$CLOUD_HOME/bootstrap/bfc.sh arost-1'
 
-set -Ux TMUX_ATTACH_CMD 'tmux attach -t (tmux list-sessions -F \'#{session_name}:#{?session_attached,attached,unattached}\' | grep \':unattached$\' | tail -n1 | cut -d: -f1) || tmux new-session'
-alias t=$TMUX_ATTACH_CMD
-
 function logs -d 'Pretty-print logs from personal cluster'
     stern -o raw "$argv[1]" | jq -rR '. as $raw | try (fromjson | (."@timestamp" | split("T") | last) +" \u001b[32m"+ .level +"\u001b[0m "+ (.thread_name) + " \u001b[33m" + (.attributeSpec) +"\u001b[0m [\u001b[34m"+ (.logger_name | split(".") | last) +"\u001b[0m] - "+.message + .stack_trace) catch ("\u001b[31m" + $raw + "\u001b[0m")'
 end
