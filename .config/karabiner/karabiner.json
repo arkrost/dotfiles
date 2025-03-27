@@ -13,14 +13,8 @@
       "rules" : [ {
         "description" : "internal keyboard",
         "manipulators" : [ {
-          "to_if_alone" : [ {
-            "key_code" : "escape"
-          } ],
           "from" : {
-            "key_code" : "caps_lock",
-            "modifiers" : {
-              "optional" : [ "any" ]
-            }
+            "key_code" : "caps_lock"
           },
           "to" : [ {
             "key_code" : "right_control"
@@ -133,6 +127,27 @@
           },
           "to" : [ {
             "key_code" : "right_arrow"
+          } ],
+          "conditions" : [ {
+            "identifiers" : [ {
+              "product_id" : 834,
+              "vendor_id" : 1452
+            }, {
+              "product_id" : 668,
+              "vendor_id" : 76
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "to_if_alone" : [ {
+            "shell_command" : "open /Applications/Ghostty.app"
+          } ],
+          "from" : {
+            "key_code" : "right_option"
+          },
+          "to" : [ {
+            "key_code" : "right_option"
           } ],
           "conditions" : [ {
             "identifiers" : [ {

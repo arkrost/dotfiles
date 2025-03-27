@@ -9,8 +9,8 @@
     { :des "internal keyboard"
       :rules [
         [:condi :apple-kbd]
-        ; CAPSLOCK is RIGHT_CONTROL or ESCAPE if pressed alonw
-        [:##caps_lock :right_control nil {:alone :escape}]
+        ; CAPSLOCK is RIGHT_CONTROL
+        [:caps_lock :right_control]
         ; RIGHT_COMMAND is enter if pressed alone
         [:right_command :right_command nil {:alone :return_or_enter}]
         ; RIGHT_COMMAND mode
@@ -19,6 +19,7 @@
         [:!Q##i :up_arrow]
         [:!Q##l :right_arrow]
         ; RIGHT_OPTION mode
+        [:right_option :right_option nil {:alone "open /Applications/Ghostty.app"}]
         [:!Eclose_bracket :page_down]
         [:!Eopen_bracket :page_up]
         [:!Esemicolon :!Oleft_arrow]
