@@ -13,6 +13,9 @@
       "rules" : [ {
         "description" : "internal keyboard",
         "manipulators" : [ {
+          "to_if_alone" : [ {
+            "key_code" : "escape"
+          } ],
           "from" : {
             "key_code" : "caps_lock"
           },
