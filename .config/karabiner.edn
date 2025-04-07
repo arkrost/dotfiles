@@ -19,7 +19,6 @@
         [:!Q##i :up_arrow]
         [:!Q##l :right_arrow]
         ; RIGHT_OPTION mode
-        [:right_option :right_option nil {:alone "open /Applications/Ghostty.app"}]
         [:!Eclose_bracket :page_down]
         [:!Eopen_bracket :page_up]
         [:!Esemicolon :!Oleft_arrow]
