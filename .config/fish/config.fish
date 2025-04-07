@@ -34,11 +34,12 @@ alias gbc='git br | grep -v "*" | xargs git br -D'
 alias up='brew update && brew upgrade && brew cleanup'
 
 alias rm='trash'
-alias l='eza -l'
-alias ll='eza -TlL 2'
-alias c='clear'
-alias nv='nvim'
-alias g='lazygit'
+abbr -a l eza -l
+abbr -a ll eza -TlL 2
+abbr -a c clear
+abbr -a g lazygit
+abbr -a d lazydocker
+abbr -a nv nvim
 
 # integrations
 starship init fish | source
