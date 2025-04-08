@@ -517,72 +517,22 @@ require('lazy').setup(
       end,
     },
     {
-      'L3MON4D3/LuaSnip',
-      dependencies = {
-        'rafamadriz/friendly-snippets',
+      'saghen/blink.cmp',
+      lazy = false,
+      dependencies = { 'rafamadriz/friendly-snippets' },
+      opts = {
+        keymap = {
+          preset = 'enter',
+          ['<C-e>'] = { 'hide', 'show' },
+          ['<C-d>'] = { 'show_documentation', 'hide_documentation' },
+        },
+        completion = {
+          documentation = { auto_show = false }
+        },
+        sources = {
+          default = { 'lsp', 'path', 'snippets', 'buffer' },
+        },
       },
-      config = function()
-        require('luasnip.loaders.from_vscode').lazy_load()
-        require('luasnip.config').setup({})
-      end
-    },
-    {
-      'hrsh7th/nvim-cmp',
-      dependencies = {
-        'hrsh7th/cmp-nvim-lsp',
-        'hrsh7th/cmp-path',
-        'hrsh7th/cmp-buffer',
-        'L3MON4D3/LuaSnip',
-        'saadparwaiz1/cmp_luasnip',
-        'onsails/lspkind.nvim'
-      },
-      opts = function()
-        local cmp = require('cmp')
-        local luasnip = require('luasnip')
-        local lspkind = require('lspkind')
-        return {
-          snippet = {
-            expand = function(args)
-              luasnip.lsp_expand(args.body)
-            end,
-          },
-          formatting = {
-            format = lspkind.cmp_format({
-              mode = 'symbol_text',
-              before = function(_, vim_item)
-                vim_item.menu = ''
-                return vim_item
-              end
-            }),
-          },
-          mapping = cmp.mapping.preset.insert {
-            ['<C-j>'] = cmp.mapping(function()
-              if luasnip.locally_jumpable(1) then
-                luasnip.jump(1)
-              end
-            end, { 'i', 's' }),
-            ['<C-k>'] = cmp.mapping(function()
-              if luasnip.locally_jumpable(-1) then
-                luasnip.jump(-1)
-              end
-            end, { 'i', 's' }),
-            ['<C-u>'] = cmp.mapping.scroll_docs(-4),
-            ['<C-d>'] = cmp.mapping.scroll_docs(4),
-            ['<C-c>'] = cmp.mapping.close(),
-            ['<C-CR>'] = cmp.mapping.complete({}),
-            ['<CR>'] = cmp.mapping.confirm({
-              behavior = cmp.ConfirmBehavior.Replace,
-              select = true,
-            })
-          },
-          sources = {
-            { name = 'nvim_lsp' },
-            { name = 'luasnip' },
-            { name = 'path' },
-            { name = 'buffer' },
-          }
-        }
-      end,
     },
     {
       'github/copilot.vim',
@@ -600,8 +550,8 @@ require('lazy').setup(
       'neovim/nvim-lspconfig',
       dependencies = {
         'nvim-telescope/telescope.nvim', -- see on_attach keys
-        { 'folke/neodev.nvim',    opts = {} },
-        { 'hrsh7th/cmp-nvim-lsp', dependencies = { 'hrsh7th/nvim-cmp' } },
+        { 'folke/neodev.nvim', opts = {} },
+        { 'saghen/blink.cmp' },
         {
           'j-hui/fidget.nvim',
           opts = {
@@ -644,7 +594,8 @@ require('lazy').setup(
         end
 
         local capabilities = vim.lsp.protocol.make_client_capabilities()
-        capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+        -- capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+        capabilities = require('blink.cmp').get_lsp_capabilities(capabilities)
 
         local servers = {
           rust_analyzer = {
