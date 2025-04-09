@@ -18,6 +18,7 @@ set -g fish_greeting
 set -x fish_color_valid_path green -i
 set -x fish_pager_color_prefix yellow --bold
 set -x fish_pager_color_progress magenta
+set -x fish_color_autosuggestion brblack
 set -x fish_color_param
 set -x fish_color_command
 
