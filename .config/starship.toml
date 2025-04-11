@@ -18,7 +18,7 @@ style = 'bold blue'
 truncate_to_repo = false
 truncation_length = 8
 truncation_symbol = '…/'
-use_logical_path = false
+use_logical_path = true
 
 [git_branch]
 style = 'italic fg:cyan'
