@@ -518,7 +518,8 @@ require('lazy').setup(
     },
     {
       'saghen/blink.cmp',
-      lazy = false,
+      build = 'cargo build --release',
+      event = { "InsertEnter", "CmdLineEnter" },
       dependencies = { 'rafamadriz/friendly-snippets' },
       opts = {
         keymap = {
@@ -532,6 +533,7 @@ require('lazy').setup(
         sources = {
           default = { 'lsp', 'path', 'snippets', 'buffer' },
         },
+        fuzzy = { implementation = 'rust' },
       },
     },
     {
