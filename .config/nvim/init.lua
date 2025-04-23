@@ -235,18 +235,6 @@ require('lazy').setup(
       end
     },
     {
-      'nvim-lualine/lualine.nvim',
-      event = 'VeryLazy',
-      opts = {
-        options = {
-          icons_enabled = false,
-          theme = 'alabaster',
-          component_separators = '|',
-          section_separators = '',
-        },
-      },
-    },
-    {
       'lukas-reineke/indent-blankline.nvim',
       main = 'ibl',
       opts = {
