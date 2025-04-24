@@ -438,6 +438,25 @@ require('lazy').setup(
       opts = {},
     },
     {
+      'tpope/vim-fugitive',
+      cmd = {
+        'G',
+        'Git',
+        'Gdiffsplit',
+        'Gvdiffsplit',
+        'Gread',
+        'Gwrite',
+        'Ggrep',
+        'Gmove',
+        'Gdelete',
+        'Gbrowse',
+        'Gclog'
+      },
+      keys = {
+        { '<leader>g', '<cmd>Gedit :<cr>', desc = 'Git status' }
+      }
+    },
+    {
       'lewis6991/gitsigns.nvim',
       event = { 'BufRead', 'BufNewFile' },
       opts = {
