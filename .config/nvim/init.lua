@@ -38,7 +38,7 @@ vim.opt.sidescrolloff = 10
 vim.opt.cmdheight = 1
 
 vim.opt.inccommand = 'split'
-vim.opt.backspace = 'start,eol,indent'
+vim.opt.backspace = { 'start', 'eol', 'indent' }
 
 vim.opt.list = true
 vim.opt.listchars = { tab = '» ', leadmultispace = '┊ ', trail = '␣', nbsp = '⍽' }
@@ -47,6 +47,9 @@ vim.opt.foldlevelstart = 99
 vim.opt.foldmethod = 'indent' -- or 'expr' to use treesitter
 
 vim.opt.shortmess:append('aI')
+
+vim.opt.path:append({'**'})
+vim.opt.wildignore:append({'*/node_modules/*'})
 
 --[[ Keymaps ]]
 
