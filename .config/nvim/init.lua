@@ -56,6 +56,8 @@ vim.opt.wildignore:append({'*/node_modules/*'})
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+vim.keymap.set('n', 'wq', '<cmd>bdelete<cr>', { desc = 'Close buffer' })
+
 -- macos basics
 vim.keymap.set({ 'i', 'c' }, '<M-BS>', '<C-w>', { noremap = true, silent = true })
 vim.keymap.set({ 'i', 'c' }, '<C-d>', '<Del>', { noremap = true, silent = true })
@@ -77,33 +79,22 @@ vim.keymap.set('n', 'N', 'Nzzzv', { desc = 'Prev match' })
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'Move line down' })
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'Move line up' })
 
--- tabs
-vim.keymap.set('n', '<C-t>', vim.cmd.tabnew, { silent = true, desc = 'New Tab' })
-vim.keymap.set('n', 'wq', '<cmd>bdelete<cr>', { desc = 'Close buffer' })
-vim.keymap.set('n', ',t', vim.cmd.tabnext, { desc = 'Next tab' })
-vim.keymap.set('n', ',T', vim.cmd.tabprevious, { desc = 'Prev tab' })
-
 -- diagnostics
-vim.keymap.set('n', ',d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
-vim.keymap.set('n', ',D', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
 vim.keymap.set('n', '<leader>D', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 vim.keymap.set('n', '<leader>d', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
 -- quickfixlist
 vim.keymap.set('n', '<leader>q', vim.cmd.copen, { desc = 'Open quickfix list' })
-vim.keymap.set('n', ',q', function()
+vim.keymap.set('n', ']q', function()
   return pcall(vim.cmd.cnext) or pcall(vim.cmd.cfirst) or vim.notify('No errors')
 end
 , { desc = 'Next quickfix item' })
-vim.keymap.set('n', ',Q', function()
+vim.keymap.set('n', '[q', function()
   return pcall(vim.cmd.cprevious) or pcall(vim.cmd.clast) or vim.notify('No errors')
 end, { desc = 'Prev quickfix item' })
 
--- save
-vim.keymap.set('n', ',,', vim.cmd.update, { desc = 'Save' })
-
 -- folds
-vim.keymap.set('n', ',Z', function()
+vim.keymap.set('n', '[z', function()
   local count = vim.v.count1
   local curLnum = vim.api.nvim_win_get_cursor(0)[1]
   local cnt = 0
@@ -123,7 +114,7 @@ vim.keymap.set('n', ',Z', function()
   end
 end, { desc = 'Prev closed fold' })
 
-vim.keymap.set('n', ',z', function()
+vim.keymap.set('n', ']z', function()
   local count = vim.v.count1
   local curLnum = vim.api.nvim_win_get_cursor(0)[1]
   local lineCount = vim.api.nvim_buf_line_count(0)
@@ -226,18 +217,6 @@ require('lazy').setup(
       end
     },
     {
-      'rose-pine/neovim',
-      as = 'rose-pine',
-      lazy = false,
-    },
-    {
-      'Lokaltog/vim-monotone',
-      lazy = false,
-      config = function()
-        vim.g.monotone_color = { 40, 20, 80 }
-      end
-    },
-    {
       'lukas-reineke/indent-blankline.nvim',
       main = 'ibl',
       opts = {
@@ -309,8 +288,6 @@ require('lazy').setup(
         { '<leader>b', function() require('telescope.builtin').buffers() end,            desc = 'Find buffers' },
         { '<leader>d', function() require('telescope.builtin').diagnostics() end,        desc = 'Open diagnostics list' },
         { '<leader>q', function() require('telescope.builtin').quickfix() end,           desc = 'Open quickfix list' },
-        { ';',         function() require('telescope').extensions.cmdline.cmdline() end, desc = 'Cmdline' },
-        { ';',         function() require('telescope').extensions.cmdline.visual() end,  desc = 'Cmdline',              mode = 'v' },
         { '<leader>/', function() require('telescope.builtin').live_grep() end,          desc = 'Grep files' },
         {
           '<leader>/',
@@ -439,71 +416,14 @@ require('lazy').setup(
     },
     {
       'tpope/vim-fugitive',
-      cmd = {
-        'G',
-        'Git',
-        'Gdiffsplit',
-        'Gvdiffsplit',
-        'Gread',
-        'Gwrite',
-        'Ggrep',
-        'Gmove',
-        'Gdelete',
-        'Gbrowse',
-        'Gclog'
-      },
+      event = 'VeryLazy',
       keys = {
         { '<leader>g', '<cmd>Gedit :<cr>', desc = 'Git status' }
       }
     },
     {
       'lewis6991/gitsigns.nvim',
-      event = { 'BufRead', 'BufNewFile' },
-      opts = {
-        on_attach = function(bufnr)
-          local gs = package.loaded.gitsigns
-
-          local function map(mode, l, r, opts)
-            opts = opts or {}
-            opts.buffer = bufnr
-            vim.keymap.set(mode, l, r, opts)
-          end
-
-          -- Navigation
-          map({ 'n', 'v' }, ',h', function()
-            vim.schedule(function()
-              gs.next_hunk()
-            end)
-            return '<Ignore>'
-          end, { expr = true, desc = 'Jump to next hunk' })
-
-          map({ 'n', 'v' }, ',H', function()
-            vim.schedule(function()
-              gs.prev_hunk()
-            end)
-            return '<Ignore>'
-          end, { expr = true, desc = 'Jump to previous hunk' })
-
-          -- Actions
-          -- visual mode
-          map('v', '<leader>hs', function()
-            gs.stage_hunk({ vim.fn.line '.', vim.fn.line 'v' })
-          end, { desc = 'stage git hunk' })
-          map('v', '<leader>hX', function()
-            gs.reset_hunk({ vim.fn.line '.', vim.fn.line 'v' })
-          end, { desc = 'reset git hunk' })
-          -- normal mode
-          map('n', '<leader>hs', gs.stage_hunk, { desc = 'git stage hunk' })
-          map('n', '<leader>hX', gs.reset_hunk, { desc = 'git reset hunk' })
-          map('n', '<leader>hu', gs.undo_stage_hunk, { desc = 'undo stage hunk' })
-          map('n', '<leader>hp', gs.preview_hunk, { desc = 'preview git hunk' })
-          map('n', '<leader>hb', function() gs.blame_line({ full = false }) end, { desc = 'git blame line' })
-          map('n', '<leader>hd', gs.diffthis, { desc = 'git diff against index' })
-          map('n', '<leader>hD', function() gs.diffthis('~') end, { desc = 'git diff against last commit' })
-          -- Text object
-          map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', { desc = 'select git hunk' })
-        end,
-      },
+      event = 'VeryLazy'
     },
     {
       'windwp/nvim-autopairs',
