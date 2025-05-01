@@ -6,7 +6,7 @@ window-width = 120
 
 confirm-close-surface = true
 mouse-hide-while-typing = false
-macos-option-as-alt = right
+macos-option-as-alt = true
 
 background-opacity = 0.9
 background-blur = 1
