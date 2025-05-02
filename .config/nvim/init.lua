@@ -449,22 +449,25 @@ require('lazy').setup(
     },
     {
       'saghen/blink.cmp',
-      build = 'cargo build --release',
-      event = { "InsertEnter", "CmdLineEnter" },
+      event = { 'InsertEnter', 'CmdLineEnter' },
       dependencies = { 'rafamadriz/friendly-snippets' },
+      version = '1.*',
       opts = {
-        keymap = {
-          preset = 'enter',
-          ['<C-e>'] = { 'hide', 'show' },
-          ['<C-d>'] = { 'show_documentation', 'hide_documentation' },
-        },
         completion = {
-          documentation = { auto_show = false }
+          menu = { auto_show = false },
+          documentation = { auto_show = true, auto_show_delay_ms = 0 },
+          ghost_text = { enabled = true },
+          trigger = { show_in_snippet = false },
         },
-        sources = {
-          default = { 'lsp', 'path', 'snippets', 'buffer' },
+        signature = { enabled = true },
+        keymap = {
+          preset = 'default',
+          ['<C-e>'] = { 'show', 'show_documentation', 'hide' },
+          ['<C-c>'] = { 'hide_documentation', 'cancel', 'fallback_to_mappings' },
+          ['<Tab>'] = { 'accept', 'snippet_forward', 'fallback' },
+          ['<C-n>'] = { function(cmp) return cmp.select_next({ on_ghost_text = true }) end, 'fallback_to_mappings' },
+          ['<C-p>'] = { function(cmp) return cmp.select_prev({ on_ghost_text = true }) end, 'fallback_to_mappings' }
         },
-        fuzzy = { implementation = 'rust' },
       },
     },
     {
