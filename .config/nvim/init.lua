@@ -163,8 +163,13 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require('lazy').setup(
-  {
+require('lazy').setup({
+  defaults = { lazy = true },
+  install = { missing = true },
+  ui = {
+    border = 'rounded',
+  },
+  spec = {
     {
       'ellisonleao/gruvbox.nvim',
       lazy = false,
@@ -589,22 +594,4 @@ require('lazy').setup(
       end
     },
   },
-  {
-    defaults = { lazy = true },
-    install = {
-      missing = true,
-      colorscheme = { 'gruvbox', 'habamax' },
-      performance = {
-        rtp = {
-          disabled_plugins = {
-            'gzip',
-            'tarPlugin',
-            'tohtml',
-            'tutor',
-            'zipPlugin',
-          },
-        },
-      },
-    }
-  }
-)
+})
