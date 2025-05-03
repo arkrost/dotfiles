@@ -483,6 +483,11 @@ require('lazy').setup({
           ['<C-n>'] = { function(cmp) return cmp.select_next({ on_ghost_text = true }) end, 'fallback_to_mappings' },
           ['<C-p>'] = { function(cmp) return cmp.select_prev({ on_ghost_text = true }) end, 'fallback_to_mappings' }
         },
+        cmdline = {
+          keymap = {
+            ['<CR>'] = { 'accept', 'fallback' },
+          },
+        },
       },
     },
     {
