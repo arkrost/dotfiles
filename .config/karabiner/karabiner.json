@@ -13,9 +13,6 @@
       "rules" : [ {
         "description" : "internal keyboard",
         "manipulators" : [ {
-          "to_if_alone" : [ {
-            "key_code" : "escape"
-          } ],
           "from" : {
             "key_code" : "caps_lock",
             "modifiers" : {
@@ -45,6 +42,27 @@
           },
           "to" : [ {
             "key_code" : "right_command"
+          } ],
+          "conditions" : [ {
+            "identifiers" : [ {
+              "product_id" : 834,
+              "vendor_id" : 1452
+            }, {
+              "product_id" : 668,
+              "vendor_id" : 76
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "to_if_alone" : [ {
+            "key_code" : "escape"
+          } ],
+          "from" : {
+            "key_code" : "left_option"
+          },
+          "to" : [ {
+            "key_code" : "left_option"
           } ],
           "conditions" : [ {
             "identifiers" : [ {
