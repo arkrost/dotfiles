@@ -454,8 +454,18 @@ require('lazy').setup(
       version = '1.*',
       opts = {
         completion = {
-          menu = { auto_show = false },
-          documentation = { auto_show = true, auto_show_delay_ms = 0 },
+          menu = {
+            auto_show = false,
+            draw = { gap = 3 },
+            border = 'rounded',
+          },
+          documentation = {
+            auto_show = true,
+            auto_show_delay_ms = 0,
+            window = {
+              border = 'rounded'
+            }
+          },
           ghost_text = { enabled = true },
           trigger = { show_in_snippet = false },
         },
