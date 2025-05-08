@@ -368,6 +368,7 @@ require('lazy').setup({
           'css',
           'rust',
           'toml',
+          'yaml',
           'lua',
           'go',
           'markdown',
@@ -491,16 +492,13 @@ require('lazy').setup({
       },
     },
     {
-      'github/copilot.vim',
-      cmd = 'Copilot',
-      config = function()
-        vim.g.copilot_assume_mapped = true
-        vim.g.copilot_filetypes = {
-          ['*'] = false,
-          ['lua'] = true,
-          ['rust'] = true,
-        }
-      end
+      'olimorris/codecompanion.nvim',
+      dependencies = {
+        'nvim-lua/plenary.nvim',
+        'nvim-treesitter/nvim-treesitter',
+      },
+      event = 'VeryLazy',
+      opts = {},
     },
     {
       'neovim/nvim-lspconfig',
