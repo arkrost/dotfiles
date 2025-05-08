@@ -422,13 +422,6 @@ require('lazy').setup({
       opts = {},
     },
     {
-      'tpope/vim-fugitive',
-      event = 'VeryLazy',
-      keys = {
-        { '<leader>g', '<cmd>Gedit :<cr>', desc = 'Git status' }
-      }
-    },
-    {
       'lewis6991/gitsigns.nvim',
       event = 'VeryLazy'
     },
