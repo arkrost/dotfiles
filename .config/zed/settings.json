@@ -10,7 +10,7 @@
   "features": {
     "edit_prediction_provider": "zed"
   },
-  "assistant": {
+  "agent": {
     "default_model": {
       "provider": "copilot_chat",
       "model": "gpt-4o"
@@ -27,5 +27,6 @@
   "tab_size": 2,
   "relative_line_numbers": true,
   "remove_trailing_whitespace_on_save": true,
-  "vim_mode": true
+  "vim_mode": true,
+  "format_on_save": "language_server"
 }
