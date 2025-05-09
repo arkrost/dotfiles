@@ -432,7 +432,7 @@ require('lazy').setup({
     },
     {
       'MeanderingProgrammer/render-markdown.nvim',
-      ft = 'markdown',
+      ft = { 'markdown', 'codecompanion' },
       opts = {},
       dependencies = { 'nvim-treesitter/nvim-treesitter' },
     },
@@ -491,26 +491,29 @@ require('lazy').setup({
         'nvim-treesitter/nvim-treesitter',
       },
       event = 'VeryLazy',
-      opts = {
-        display = {
-          chat = {
-            window = {
-              position = 'right'
+      config = function ()
+        require('codecompanion').setup({
+          display = {
+            chat = {
+              window = {
+                position = 'right'
+              }
             }
+          },
+          strategies = {
+            -- chat = {
+            --   adapter = 'gemini',
+            -- },
+            -- inline = {
+            --   adapter = 'gemini'
+            -- },
+            -- cmd = {
+            --   adapter = 'gemini'
+            -- }
           }
-        },
-        strategies = {
-          -- chat = {
-          --   adapter = 'gemini',
-          -- },
-          -- inline = {
-          --   adapter = 'gemini'
-          -- },
-          -- cmd = {
-          --   adapter = 'gemini'
-          -- }
-        }
-      },
+        })
+        vim.cmd([[cab cc CodeCompanion]])
+      end
     },
     {
       'neovim/nvim-lspconfig',
