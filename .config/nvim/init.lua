@@ -491,7 +491,26 @@ require('lazy').setup({
         'nvim-treesitter/nvim-treesitter',
       },
       event = 'VeryLazy',
-      opts = {},
+      opts = {
+        display = {
+          chat = {
+            window = {
+              position = 'right'
+            }
+          }
+        },
+        strategies = {
+          -- chat = {
+          --   adapter = 'gemini',
+          -- },
+          -- inline = {
+          --   adapter = 'gemini'
+          -- },
+          -- cmd = {
+          --   adapter = 'gemini'
+          -- }
+        }
+      },
     },
     {
       'neovim/nvim-lspconfig',
