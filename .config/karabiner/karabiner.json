@@ -14,6 +14,34 @@
         "description" : "internal keyboard",
         "manipulators" : [ {
           "from" : {
+            "simultaneous" : [ {
+              "key_code" : "j"
+            }, {
+              "key_code" : "k"
+            } ],
+            "simultaneous_options" : {
+              "detect_key_down_uninterruptedly" : false,
+              "key_down_order" : "insensitive",
+              "key_up_order" : "insensitive",
+              "key_up_when" : "any"
+            }
+          },
+          "to" : [ {
+            "key_code" : "escape"
+          } ],
+          "conditions" : [ {
+            "identifiers" : [ {
+              "product_id" : 834,
+              "vendor_id" : 1452
+            }, {
+              "product_id" : 668,
+              "vendor_id" : 76
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
             "key_code" : "caps_lock",
             "modifiers" : {
               "optional" : [ "any" ]
