@@ -48,6 +48,8 @@ brew "trash", link: true
 brew "uv"
 brew "yazi"
 brew "zoxide"
+brew "homebrew-zathura/zathura/zathura"
+brew "homebrew-zathura/zathura/zathura-pdf-mupdf"
 brew "oven-sh/bun/bun"
 brew "yqrashawn/goku/goku"
 cask "1password-cli"
