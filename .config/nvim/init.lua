@@ -172,7 +172,7 @@ require('lazy').setup({
   spec = {
     {
       'ellisonleao/gruvbox.nvim',
-      lazy = false,
+      -- lazy = false,
       config = function()
         require('gruvbox').setup({
           palette_overrides = {
@@ -210,7 +210,16 @@ require('lazy').setup({
             ['@lsp.type.property'] = { link = 'Property' },
           }
         })
-        -- vim.cmd('colorscheme gruvbox')
+        vim.cmd('colorscheme gruvbox')
+      end
+    },
+    {
+      'vague2k/vague.nvim',
+      -- lazy = false,
+      config = function()
+        require('vague').setup({ transparent = true })
+        vim.cmd('colorscheme vague')
+        vim.cmd(':hi statusline guibg=NONE')
       end
     },
     {
