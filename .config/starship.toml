@@ -29,8 +29,8 @@ style = 'fg:cyan'
 format = '[$all_status$ahead_behind ]($style)'
 
 [character]
-success_symbol = '[](green)'
-error_symbol = '[✘](red) '
+success_symbol = '[\$](bold green)'
+error_symbol = '[\$](bold red) '
 
 [cmd_duration]
 min_time = 0
