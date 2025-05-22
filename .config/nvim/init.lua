@@ -65,6 +65,14 @@ vim.keymap.set({ 'i', 'c' }, '<C-d>', '<Del>', { noremap = true, silent = true }
 -- clipboard register
 vim.keymap.set({ 'n', 'x' }, '<leader>\'', '<cmd>let @+=@"<CR>', { desc = '" to +' })
 vim.keymap.set({ 'n', 'x' }, '<leader>"', '<cmd>let @"=@+<CR>', { desc = '+ to "' })
+vim.keymap.set('n', 'Y', '"+Y')
+vim.keymap.set({ 'n', 'x' }, 'y', function ()
+  if vim.v.register == '"' then
+    return '"+y'
+  else
+    return '"'.. vim.v.register.. 'y'
+  end
+end, { expr = true, silent = true, desc = 'Yank to clipboard'})
 
 -- save position
 vim.keymap.set('n', 'J', 'mzJ`z', { desc = 'Join lines' })
