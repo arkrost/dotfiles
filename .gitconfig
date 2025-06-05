@@ -1,7 +1,6 @@
 [user]
   name = Arkady Rost
   email = 1239844+arkrost@users.noreply.github.com
-  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAvP0r0e6WDYJznVngZX5IyrBBgI0UCKn8ZFIviFpt0e
 [alias]
   co = checkout
   ci = commit
@@ -39,7 +38,3 @@
   cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c '$wincmd J'
 [pull]
   rebase = true
-[gpg]
-  format = ssh
-[commit]
-  gpgsign = true
