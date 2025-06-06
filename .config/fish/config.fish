@@ -50,6 +50,7 @@ atuin init fish --disable-up-arrow | source
 # ALM
 set -gx JAVA_HOME (/usr/libexec/java_home -v 17)
 set -gx MAVEN_OPTS '-Djdk.tls.client.protocols=TLSv1.2'
+set -gx DOCKER_HOST "unix:///Users/$USER/.colima/docker.sock"
 
 set -gx TESTCONTAINERS_RYUK_DISABLED true
 
@@ -57,7 +58,7 @@ set -gx CDN_URL
 set -gx BASE_URL_US arost-1.dev.structure.app
 set -gx BASE_URL_EU arost-1.dev.structure.app
 
-set -gx CLOUD_HOME "$HOME/ALM/cloud"
+set -gx CLOUD_HOME "$HOME/Projects/cloud"
 set -gx LOCAL_DOMAIN "arost-1.dev.structure.app"
 alias rebuild_cloud='$CLOUD_HOME/bootstrap/rebuild.sh'
 
