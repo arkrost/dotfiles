@@ -1,7 +1,7 @@
 These are my personal configs. Exec
 
 ```
-stow --dir "$HOME/Documents/configs" --target "$HOME" .
+stow --no-folding --dir "$HOME/Documents/configs" --target "$HOME" .
 ```
 
 to link the configs and exec
