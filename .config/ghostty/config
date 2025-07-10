@@ -59,3 +59,4 @@ palette = 14=#89b482
 palette = 7=#e4e4e4
 palette = 15=#ffffff
 
+keybind = shift+enter=text:\n
