@@ -2,7 +2,7 @@
 eval (/opt/homebrew/bin/brew shellenv)
 
 # my paths
-fish_add_path -gm /opt/homebrew/opt/node@18/bin ~/.npm-packages/bin
+fish_add_path -gm /opt/homebrew/opt/node@20/bin ~/.npm-packages/bin
 fish_add_path -gm ~/.cargo/bin
 fish_add_path -gm ~/.local/bin
 
