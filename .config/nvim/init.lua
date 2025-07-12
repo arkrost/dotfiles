@@ -223,11 +223,13 @@ require('lazy').setup({
     },
     {
       'vague2k/vague.nvim',
-      -- lazy = false,
+      lazy = false,
       config = function()
         require('vague').setup({ transparent = true })
         vim.cmd('colorscheme vague')
         vim.cmd(':hi statusline guibg=NONE')
+
+        -- vim.cmd.colorscheme('vague')
       end
     },
     {
