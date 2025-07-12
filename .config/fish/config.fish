@@ -48,7 +48,7 @@ zoxide init fish | source
 atuin init fish --disable-up-arrow | source
 
 # ALM
-set -gx JAVA_HOME (/usr/libexec/java_home -v 17)
+set -gx JAVA_HOME (/usr/libexec/java_home -v 21)
 set -gx MAVEN_OPTS '-Djdk.tls.client.protocols=TLSv1.2'
 set -gx DOCKER_HOST "unix:///Users/$USER/.colima/docker.sock"
 
