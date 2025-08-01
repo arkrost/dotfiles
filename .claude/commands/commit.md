@@ -3,23 +3,20 @@ allowed-tools: [Bash, Read, Glob, TodoWrite, Edit]
 description: "Git commit with intelligent message"
 ---
 
-## Purpose
-Execute Git commit with intelligent message
-
 ## Execution
-Follow this workflow:
-
-1. **Check git status**: Run `git status --porcelain` to see what files are staged
-2. **Auto-stage if needed**: If no files are staged, automatically stage all modified and new files
-3. **Analyze changes**: Run `git diff --cached` to understand what changes are being committed
-4. **Extract context**:
+1. **Check staging area**: Run `git status --porcelain` and interpret output
+2. **Auto-stage changes** if nothing is staged for commit
+2. **Analyze changes**: Run `git diff --cached` to understand what will be committed
+3. **Extract context**:
    - Analyze the diff to determine the nature of changes
    - Determine if multiple distinct logical changes are present
-5. **Generate commit message**: Create a commit message following the format below
-6. **Execute commit**: Run `git commit` with the generated message
+3. **Generate message**: Create commit message:
+   - Based on change analysis
+   - Concise summary focusing on what and why
+   - Maintain Git best practices and conventions
+4. **Commit**: Execute `git commit` with generated message (no coauthored text)
 
-## Important notes
-- If specific files are already staged, the command will only commit those files
-- If no files are staged, it will automatically stage all modified and new files
-- The commit message will be constructed based on the changes detected
-- NEVER add coauthored text to commit message
+## Claude Code Integration
+- Uses Bash for Git command execution
+- Leverages Read for repository analysis
+- Applies TodoWrite for operation tracking
