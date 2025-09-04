@@ -450,12 +450,6 @@ require('lazy').setup({
       event = 'InsertEnter',
     },
     {
-      'MeanderingProgrammer/render-markdown.nvim',
-      ft = { 'markdown', 'codecompanion' },
-      opts = {},
-      dependencies = { 'nvim-treesitter/nvim-treesitter' },
-    },
-    {
       'mbbill/undotree',
       cmd = 'UndotreeToggle',
       keys = {
@@ -502,37 +496,6 @@ require('lazy').setup({
           },
         },
       },
-    },
-    {
-      'olimorris/codecompanion.nvim',
-      dependencies = {
-        'nvim-lua/plenary.nvim',
-        'nvim-treesitter/nvim-treesitter',
-      },
-      event = 'VeryLazy',
-      config = function ()
-        require('codecompanion').setup({
-          display = {
-            chat = {
-              window = {
-                position = 'right'
-              }
-            }
-          },
-          strategies = {
-            -- chat = {
-            --   adapter = 'gemini',
-            -- },
-            -- inline = {
-            --   adapter = 'gemini'
-            -- },
-            -- cmd = {
-            --   adapter = 'gemini'
-            -- }
-          }
-        })
-        vim.cmd([[cab cc CodeCompanion]])
-      end
     },
     {
       'neovim/nvim-lspconfig',
