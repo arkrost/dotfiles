@@ -569,12 +569,13 @@ require('lazy').setup({
         }
 
         for server, config in pairs(servers) do
-          require('lspconfig')[server].setup({
+          vim.lsp.config(server, {
             capabilities = capabilities,
             on_attach = on_attach,
             settings = config.settings,
             filetypes = config.filetypes,
           })
+          vim.lsp.enable(server)
         end
       end
     },
