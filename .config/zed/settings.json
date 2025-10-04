@@ -15,9 +15,8 @@
       "provider": "copilot_chat",
       "model": "gpt-4o"
     },
-    "version": "2"
   },
-  "theme": "Ayu Mirage",
+  "theme": "Alabaster",
   "ui_font_size": 16,
   "telemetry": {
     "diagnostics": false,
