@@ -51,6 +51,9 @@ atuin init fish --disable-up-arrow | source
 if set -q GLM_API_KEY
     set -gx ANTHROPIC_BASE_URL 'https://api.z.ai/api/anthropic'
     set -gx ANTHROPIC_AUTH_TOKEN $GLM_API_KEY
+    set -gx ANTHROPIC_DEFAULT_HAIKU_MODEL glm-4.5-air
+    set -gx ANTHROPIC_DEFAULT_SONNET_MODEL glm-4.6
+    set -gx ANTHROPIC_DEFAULT_OPUS_MODEL glm-4.6
 end
 
 # ALM
