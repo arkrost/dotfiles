@@ -47,6 +47,12 @@ starship init fish | source
 zoxide init fish | source
 atuin init fish --disable-up-arrow | source
 
+# claude code GLM
+if set -q GLM_API_KEY
+    set -gx ANTHROPIC_BASE_URL 'https://api.z.ai/api/anthropic'
+    set -gx ANTHROPIC_AUTH_TOKEN $GLM_API_KEY
+end
+
 # ALM
 set -gx JAVA_HOME (/usr/libexec/java_home -v 21)
 set -gx MAVEN_OPTS '-Djdk.tls.client.protocols=TLSv1.2'
