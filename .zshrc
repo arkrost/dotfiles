@@ -14,8 +14,26 @@ rustup completions zsh rustup > ~/.zfunc/_rustup
 export LC_ALL='en_US.UTF-8'
 export EDITOR=nvim
 
-# completion
-autoload -Uz compinit && compinit -i
+# zinit setup
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
+[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+source "${ZINIT_HOME}/zinit.zsh"
+
+# plugins
+zinit light Aloxaf/fzf-tab
+zinit light zuxfoucault/colored-man-pages_mod
+zinit light zsh-users/zsh-autosuggestions
+zinit light zsh-users/zsh-completions
+zinit light olets/zsh-abbr
+
+# completions
+autoload -Uz compinit
+zicompinit # or compinit -i instead
+zicdreplay
+
+# plugin setup
+zstyle ':fzf-tab:*' fzf-flags $FZF_THEME
 
 # prompt
 PROMPT='%F{5}%n%f %~ %B%F{2}>%f%b '
@@ -34,19 +52,22 @@ setopt HIST_IGNORE_SPACE        # Don't record an entry starting with a space.
 bindkey -e
 
 # aliases
-alias up='brew update && brew upgrade && brew upgrade --cask && brew cleanup'
 alias rm=trash
-alias c='clear'
-alias gbc='git br --merged | rg -v "\* .*" | xargs git br -D'
 
-alias l='eza -l'
-alias ll='eza -TlL 2'
-alias la='eza -la'
-alias nv='nvim'
+abbr -S -q c='clear'
+abbr -S -q g='lazygit'
+abbr -S -q nv='nvim'
+
+abbr -S -q up='brew update && brew upgrade && brew upgrade --cask && brew cleanup'
+abbr -S -q gbc='git br --merged | rg -v "\* .*" | xargs git br -D'
+
+abbr -S -q l='eza -l'
+abbr -S -q ll='eza -TlL 2'
+abbr -S -q la='eza -la'
 
 # tempo-io
 export TESTCONTAINERS_RYUK_DISABLED=true
-export CLOUD_HOME=~/ALM/cloud
+export CLOUD_HOME=~/Projects/cloud
 export LOCAL_DOMAIN=arost-1.dev.structure.app
 alias arost_1_env='$CLOUD_HOME/bootstrap/bfc.sh arost-1'
 
@@ -84,20 +105,6 @@ fi
 # base commands
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
-eval "$(atuin init zsh --disable-up-arrow --disable-ctrl-r)" # just keep the history
-
-# zinit setup
-ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
-[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
-[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
-source "${ZINIT_HOME}/zinit.zsh"
-
-# plugins
-zinit light Aloxaf/fzf-tab
-zinit light zuxfoucault/colored-man-pages_mod
-zinit light zdharma/fast-syntax-highlighting
-zinit light zsh-users/zsh-autosuggestions
-zinit light zsh-users/zsh-completions
-compinit -i # update completions
-zstyle ':fzf-tab:*' fzf-flags $FZF_THEME
+eval "$(atuin init zsh --disable-up-arrow)"
+# eval "$(atuin init zsh --disable-up-arrow --disable-ctrl-r)" # just keep the history
 
