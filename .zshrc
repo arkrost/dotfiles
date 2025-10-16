@@ -63,7 +63,18 @@ fi
 # fzf
 # NB: /opt/homebrew/opt/fzf/install
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export FZF_DEFAULT_OPTS='--cycle --layout=reverse'
+FZF_THEME=(
+  --cycle
+  --layout=reverse
+  --color fg:7,bg:-1,hl:4,fg+:11,bg+:0,hl+:4
+  --color pointer:1,spinner:2,marker:3,prompt:4,info:5
+)
+
+FZF_PREVIEW=(
+  "--preview 'bat --style=numbers --color=always --line-range :500 {}'"
+)
+
+export FZF_DEFAULT_OPTS="$FZF_THEME $FZF_PREVIEW"
 
 # kubernetes
 if [ $commands[kubectl] ]; then
@@ -88,3 +99,5 @@ zinit light zdharma/fast-syntax-highlighting
 zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-completions
 compinit -i # update completions
+zstyle ':fzf-tab:*' fzf-flags $FZF_THEME
+

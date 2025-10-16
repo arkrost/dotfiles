@@ -24,11 +24,10 @@ set -x fish_color_command
 
 set -x EDITOR nvim
 set -x SHELL (which fish)
-set -x FZF_DEFAULT_OPTS " \
-    --cycle --layout=reverse --no-bold \
+set -x FZF_DEFAULT_OPTS "--cycle --layout=reverse
     --preview 'bat --style=numbers --color=always --line-range :500 {}'
-    --color fg:188,bg:-1,hl:103,fg+:222,bg+:234,hl+:104 \
-    --color info:183,prompt:110,spinner:107,pointer:167,marker:215"
+    --color fg:7,bg:-1,hl:4,fg+:11,bg+:0,hl+:4
+    --color pointer:1,spinner:2,marker:3,prompt:4,info:5"
 set -x BAT_THEME base16
 
 alias gbc='git br | grep -v "*" | xargs git br -D'
