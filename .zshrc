@@ -29,6 +29,7 @@ bindkey -e
 FZF_THEME=(
   --cycle
   --layout=reverse
+  --no-bold
   --color fg:7,bg:-1,hl:4,fg+:11,bg+:0,hl+:4
   --color pointer:1,spinner:2,marker:3,prompt:4,info:5
 )
@@ -59,7 +60,7 @@ export CARAPACE_BRIDGES='zsh,fish,bash'
 source <(carapace _carapace)
 
 zstyle ':completion:*' menu no
-zstyle ':fzf-tab:*' fzf-flags $FZF_THEME --bind=tab:accept
+zstyle ':fzf-tab:*' fzf-flags $FZF_THEME
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
 
 # aliases
