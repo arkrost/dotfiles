@@ -67,8 +67,10 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
 alias rm=trash
 
 abbr -S -q c='clear'
-abbr -S -q g='lazygit'
+abbr -S -q ..='cd ..'
 abbr -S -q nv='nvim'
+abbr -S -q g='lazygit'
+abbr -S -q d='lazydocker'
 
 abbr -S -q up='brew update && brew upgrade && brew cleanup'
 abbr -S -q gbc='git br --merged | rg -v "\* .*" | xargs git br -D'
