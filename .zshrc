@@ -99,6 +99,10 @@ eval "$(atuin init zsh --disable-up-arrow)"
 # eval "$(atuin init zsh --disable-up-arrow --disable-ctrl-r)" # just keep the history
 
 # tempo-io
+export JAVA_HOME=$(/usr/libexec/java_home -v 21)
+export MAVEN_OPTS='-Djdk.tls.client.protocols=TLSv1.2'
+export DOCKER_HOST="unix:///Users/$USER/.colima/docker.sock"
+
 export TESTCONTAINERS_RYUK_DISABLED=true
 export CLOUD_HOME=~/Projects/cloud
 export LOCAL_DOMAIN=arost-1.dev.structure.app
