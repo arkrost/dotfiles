@@ -50,6 +50,7 @@ source "${ZINIT_HOME}/zinit.zsh"
 zinit light Aloxaf/fzf-tab
 zinit light olets/zsh-abbr
 zinit light zsh-users/zsh-autosuggestions
+zinit light jscutlery/nx-completion
 
 # completions
 autoload -Uz compinit
