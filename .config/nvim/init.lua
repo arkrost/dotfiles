@@ -51,6 +51,8 @@ vim.opt.shortmess:append('aI')
 vim.opt.path:append({'**'})
 vim.opt.wildignore:append({'*/node_modules/*'})
 
+vim.opt.grepprg = 'rg --vimgrep --smart-case --hidden'
+
 --[[ Keymaps ]]
 
 vim.g.mapleader = ' '
