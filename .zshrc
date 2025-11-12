@@ -106,5 +106,9 @@ export DOCKER_HOST="unix:///Users/$USER/.colima/docker.sock"
 
 export TESTCONTAINERS_RYUK_DISABLED=true
 export CLOUD_HOME=~/Projects/cloud
-export LOCAL_DOMAIN=arost-1.dev.structure.app
-alias arost_1_env='$CLOUD_HOME/bootstrap/bfc.sh arost-1'
+
+arost_env() {
+  local name="$1"
+  export LOCAL_DOMAIN="arost-${name}.dev.structure.app"
+  "$CLOUD_HOME/bootstrap/bfc.sh" "arost-${name}"
+}
