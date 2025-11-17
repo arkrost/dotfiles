@@ -8,7 +8,7 @@ confirm-close-surface = true
 mouse-hide-while-typing = false
 macos-option-as-alt = true
 
-background-opacity = 0.85
+background-opacity = 0.95
 background-blur = 1
 
 font-size = 15
