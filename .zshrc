@@ -99,6 +99,16 @@ eval "$(zoxide init zsh)"
 eval "$(atuin init zsh --disable-up-arrow)"
 # eval "$(atuin init zsh --disable-up-arrow --disable-ctrl-r)" # just keep the history
 
+magic() {
+  trackpad='28:FF:3C:E6:5F:47'
+  keyboard='AC:97:38:6B:F3:F1'
+  blueutil --disconnect $keyboard
+  blueutil --disconnect $trackpad
+  sleep 1
+  blueutil --connect $keyboard
+  blueutil --connect $trackpad
+}
+
 # tempo-io
 export JAVA_HOME=$(/usr/libexec/java_home -v 21)
 export MAVEN_OPTS='-Djdk.tls.client.protocols=TLSv1.2'
