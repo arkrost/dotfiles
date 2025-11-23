@@ -18,6 +18,15 @@
         "@upstash/context7-mcp@latest"
       ],
       "enabled": true
+    },
+    "deepwiki": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "mcp-deepwiki@latest"
+      ],
+      "enabled": true
     }
   }
 }
