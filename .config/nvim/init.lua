@@ -158,47 +158,6 @@ function vim.getVisualSelection()
   end
 end
 
---[[ Centring ]]
-
--- 1. Set this to your full-screen Neovim width
--- :lua print(vim.api.nvim_win_get_width(0))  -- run this in a maximized terminal
-local full_screen = 167
-
--- 2. How wide you want your actual text area to be
-local text_width = 100       -- e.g. 80, 90, 100 columns
-
--- %l=line number, %s=sign column(diagnostics, Git signs, breakpoints, etc)
-local base_statuscolumn = '%l %s'
-
--- 4. Compute “wide” version with left padding
-local padding = math.floor((full_screen - text_width) / 2)
-local padded_statuscolumn = string.rep(" ", padding) .. base_statuscolumn
-
--- 5. Set default + autocmd to toggle padding depending on window width
-vim.o.statuscolumn = base_statuscolumn
-
-vim.api.nvim_create_autocmd({
-  'BufEnter',
-  'BufWinEnter',
-  'BufWinLeave',
-  'WinEnter',
-  'WinLeave',
-  'WinResized',
-  'VimResized',
-}, {
-  callback = function()
-    local winwidth = vim.api.nvim_win_get_width(0)
-
-    -- If this window is “large enough” (basically the main one),
-    -- use the padded version to center; otherwise, normal.
-    if winwidth > (full_screen / 2) then
-      vim.o.statuscolumn = padded_statuscolumn
-    else
-      vim.o.statuscolumn = base_statuscolumn
-    end
-  end,
-})
-
 --[[ Plugins ]]
 
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
