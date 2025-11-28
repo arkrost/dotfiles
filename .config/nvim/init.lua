@@ -53,6 +53,18 @@ vim.opt.wildignore:append({'*/node_modules/*'})
 
 vim.opt.grepprg = 'rg --vimgrep --smart-case --hidden'
 
+vim.opt.diffopt = {
+  'internal',
+  'filler',
+  'closeoff',
+  'vertical',
+  'algorithm:histogram',
+  'indent-heuristic',
+  'linematch:60',
+  -- await nvim 0.12
+  -- 'inline:char'
+}
+
 --[[ Keymaps ]]
 
 vim.g.mapleader = ' '
@@ -90,8 +102,8 @@ vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'Move line down' })
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'Move line up' })
 
 -- diagnostics
-vim.keymap.set('n', '<leader>D', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
-vim.keymap.set('n', '<leader>d', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+vim.keymap.set('n', ',,', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
+vim.keymap.set('n', '<leader>D', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
 -- quickfixlist
 vim.keymap.set('n', '<leader>q', vim.cmd.copen, { desc = 'Open quickfix list' })
