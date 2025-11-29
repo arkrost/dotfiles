@@ -43,6 +43,8 @@ vim.opt.backspace = { 'start', 'eol', 'indent' }
 vim.opt.list = true
 vim.opt.listchars = { tab = '» ', leadmultispace = '┊ ', trail = '␣', nbsp = '⍽' }
 
+vim.opt.wildchar = 9 -- ensure <Tab> triggers cmdline completion
+
 vim.opt.foldlevelstart = 99
 vim.opt.foldmethod = 'indent' -- or 'expr' to use treesitter
 
@@ -52,6 +54,8 @@ vim.opt.path:append({'**'})
 vim.opt.wildignore:append({'*/node_modules/*'})
 
 vim.opt.grepprg = 'rg --vimgrep --smart-case --hidden'
+vim.opt.completeopt = { 'menu', 'menuone', 'noinsert', 'fuzzy', 'preview' }
+vim.opt.pumheight = 10
 
 vim.opt.diffopt = {
   'internal',
@@ -70,11 +74,8 @@ vim.opt.diffopt = {
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
-vim.keymap.set('n', 'wq', '<cmd>bdelete<cr>', { desc = 'Close buffer' })
-
--- macos basics
-vim.keymap.set({ 'i', 'c' }, '<M-BS>', '<C-w>', { noremap = true, silent = true })
-vim.keymap.set({ 'i', 'c' }, '<C-d>', '<Del>', { noremap = true, silent = true })
+vim.keymap.set('n', ',wq', '<cmd>bdelete<cr>', { desc = 'Close buffer' })
+vim.keymap.set('n', ',qq', '<cmd>bdelete!<cr>', { desc = 'Close buffer (force)' })
 
 -- clipboard register
 vim.keymap.set({ 'n', 'x' }, '<leader>\'', '<cmd>let @+=@"<CR>', { desc = '" to +' })
@@ -114,6 +115,14 @@ end
 vim.keymap.set('n', '[q', function()
   return pcall(vim.cmd.cprevious) or pcall(vim.cmd.clast) or vim.notify('No errors')
 end, { desc = 'Prev quickfix item' })
+
+-- completion
+vim.keymap.set('i', '<C-z>', function()
+  if vim.fn.pumvisible() == 1 then
+    return '<C-n>'
+  end
+  return '<C-x><C-o>'
+end, { expr = true, silent = true, desc = 'Toggle completion menu' })
 
 -- folds
 vim.keymap.set('n', '[z', function()
@@ -506,49 +515,10 @@ require('lazy').setup({
       end,
     },
     {
-      'saghen/blink.cmp',
-      event = { 'InsertEnter', 'CmdLineEnter' },
-      dependencies = { 'rafamadriz/friendly-snippets' },
-      version = '1.*',
-      opts = {
-        completion = {
-          menu = {
-            auto_show = false,
-            draw = { gap = 3 },
-            border = 'rounded',
-          },
-          documentation = {
-            auto_show = true,
-            auto_show_delay_ms = 0,
-            window = {
-              border = 'rounded'
-            }
-          },
-          ghost_text = { enabled = true },
-          trigger = { show_in_snippet = false },
-        },
-        signature = { enabled = true },
-        keymap = {
-          preset = 'default',
-          ['<C-e>'] = { 'show', 'show_documentation', 'hide' },
-          ['<C-c>'] = { 'hide_documentation', 'cancel', 'fallback_to_mappings' },
-          ['<Tab>'] = { 'accept', 'snippet_forward', 'fallback' },
-          ['<C-n>'] = { function(cmp) return cmp.select_next({ on_ghost_text = true }) end, 'fallback_to_mappings' },
-          ['<C-p>'] = { function(cmp) return cmp.select_prev({ on_ghost_text = true }) end, 'fallback_to_mappings' }
-        },
-        cmdline = {
-          keymap = {
-            ['<CR>'] = { 'accept', 'fallback' },
-          },
-        },
-      },
-    },
-    {
       'neovim/nvim-lspconfig',
       dependencies = {
         'nvim-telescope/telescope.nvim', -- see on_attach keys
         { 'folke/neodev.nvim', opts = {} },
-        { 'saghen/blink.cmp' },
         {
           'j-hui/fidget.nvim',
           opts = {
@@ -560,7 +530,7 @@ require('lazy').setup({
       },
       event = { 'BufReadPre', 'BufNewFile' },
       config = function()
-        local on_attach = function(_, bufnr)
+        local on_attach = function(client, bufnr)
           local nmap = function(keys, func, desc)
             vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
           end
@@ -588,11 +558,13 @@ require('lazy').setup({
           vim.api.nvim_buf_create_user_command(bufnr, 'ToggleInlayHints', function(_)
             vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr }), { bufnr = bufnr })
           end, { desc = 'Toggle inlay hints' })
+
+          if client.supports_method('textDocument/completion') then
+            vim.lsp.completion.enable(true, client.id, bufnr, { autotrigger = true })
+          end
         end
 
         local capabilities = vim.lsp.protocol.make_client_capabilities()
-        -- capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
-        capabilities = require('blink.cmp').get_lsp_capabilities(capabilities)
 
         local servers = {
           rust_analyzer = {
