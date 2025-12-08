@@ -514,6 +514,28 @@ require('lazy').setup({
         vim.g.undotree_SetFocusWhenToggle = 1
       end,
     },
+        {
+      'ThePrimeagen/harpoon',
+      dependencies = {
+        'nvim-lua/plenary.nvim',
+      },
+      event = 'BufRead',
+      keys = {
+        { '<leader>ma', function() require('harpoon.mark').add_file() end,        desc = 'Mark file' },
+        { '<leader>mm', function() require('harpoon.ui').toggle_quick_menu() end, desc = 'View marks' },
+        { '<A-1>',        function() require('harpoon.ui').nav_file(1) end,          desc = 'Select 1' },
+        { '<A-2>',        function() require('harpoon.ui').nav_file(2) end,          desc = 'Select 2' },
+        { '<A-3>',        function() require('harpoon.ui').nav_file(3) end,          desc = 'Select 3' },
+        { '<A-4>',        function() require('harpoon.ui').nav_file(4) end,          desc = 'Select 4' },
+        { '<A-5>',        function() require('harpoon.ui').nav_file(5) end,          desc = 'Select 5' },
+        { '<A-6>',        function() require('harpoon.ui').nav_file(6) end,          desc = 'Select 6' },
+        { '<A-7>',        function() require('harpoon.ui').nav_file(7) end,          desc = 'Select 7' },
+        { '<A-8>',        function() require('harpoon.ui').nav_file(8) end,          desc = 'Select 8' },
+        { '<A-9>',        function() require('harpoon.ui').nav_file(9) end,          desc = 'Select 9' },
+        { '<A-0>',        function() require('harpoon.ui').nav_file(0) end,          desc = 'Select 10' },
+      },
+      opts = {},
+    },
     {
       'neovim/nvim-lspconfig',
       dependencies = {
