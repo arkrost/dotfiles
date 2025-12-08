@@ -32,10 +32,10 @@
   tool = nvimdiff
   prompt = true
 [mergetool "nvimdiff"]
-  cmd = nvim -d "$LOCAL" "$REMOTE" -c 'wincmd J' "$MERGED"
+  cmd = nvim -d "$MERGED" "$LOCAL" "$REMOTE" -c 'wincmd J'
 [mergetool "nvimdiff2"]
   cmd = nvim -d "$LOCAL" "$MERGED" "$REMOTE"
 [mergetool "nvimdiff3"]
-  cmd = nvim -d "$LOCAL" "$BASE" "$REMOTE" -c 'wincmd J' "$MERGED"
+  cmd = nvim -d "$MERGED" "$LOCAL" "$BASE" "$REMOTE" -c 'wincmd J'
 [pull]
   rebase = true
