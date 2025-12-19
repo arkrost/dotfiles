@@ -1,6 +1,8 @@
 path=(~/.local/bin $path)
 #node
 path=(/opt/homebrew/opt/node@22/bin ~/.npm-packages/bin $path)
+# bun
+path=(~/.bun/bin $path)
 # haskell
 path=(~/.cabal/bin ~/.ghcup/bin $path)
 
