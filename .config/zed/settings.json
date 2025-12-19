@@ -21,9 +21,7 @@
   "minimap": {
     "show": "never"
   },
-  "buffer_font_fallbacks": [
-    "Symbols Nerd Font Mono"
-  ],
+  "buffer_font_fallbacks": ["Symbols Nerd Font Mono"],
   "buffer_font_family": "IBM Plex Mono",
   "features": {
     "edit_prediction_provider": "zed"
@@ -32,7 +30,7 @@
     "default_model": {
       "provider": "copilot_chat",
       "model": "gpt-4o"
-    },
+    }
   },
   "theme": {
     "mode": "system",
@@ -46,10 +44,10 @@
   },
   "cursor_blink": false,
   "buffer_font_size": 16.0,
-  "buffer_font_weight": 100,
+  "buffer_font_weight": 400,
   "tab_size": 2,
-  "relative_line_numbers": true,
+  "relative_line_numbers": "enabled",
   "remove_trailing_whitespace_on_save": true,
   "vim_mode": true,
-  "format_on_save": "language_server"
+  "format_on_save": "on"
 }
