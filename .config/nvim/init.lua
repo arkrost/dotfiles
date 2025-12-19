@@ -124,6 +124,13 @@ vim.keymap.set('i', '<C-z>', function()
   return '<C-x><C-o>'
 end, { expr = true, silent = true, desc = 'Toggle completion menu' })
 
+-- terminal
+vim.keymap.set('t', '<Esc><Esc>', [[<C-\><C-n>]], { silent = true, desc = 'Exit terminal mode' })
+
+-- macos
+vim.keymap.set('i', '<M-BS>', '<C-w>', { silent = true, desc = 'Kill word (mac)'})
+vim.keymap.set('c', '<M-BS>', '<C-w>', { desc = 'Kill word (mac)'})
+
 -- folds
 vim.keymap.set('n', '[z', function()
   local count = vim.v.count1
@@ -278,8 +285,30 @@ require('lazy').setup({
       end,
     },
     {
+      'tpope/vim-fugitive',
+      lazy = false,
+    },
+    {
       'tpope/vim-sleuth',
       lazy = false,
+    },
+    {
+      'folke/snacks.nvim',
+      lazy = false,
+      config = {
+        picker = {
+          sources = {
+            git_log = {
+              confirm = function(picker, item)
+                if not item then return end
+                vim.fn.setreg("+", item.commit)
+                vim.notify("Copied " .. item.commit)
+                picker:close()
+              end,
+            },
+          }
+        }
+      }
     },
     {
       'folke/which-key.nvim',
@@ -519,18 +548,18 @@ require('lazy').setup({
       },
       event = 'BufRead',
       keys = {
-        { '<leader>ma', function() require('harpoon.mark').add_file() end,        desc = 'Mark file' },
-        { '<leader>mm', function() require('harpoon.ui').toggle_quick_menu() end, desc = 'View marks' },
-        { '<A-1>',        function() require('harpoon.ui').nav_file(1) end,          desc = 'Select 1' },
-        { '<A-2>',        function() require('harpoon.ui').nav_file(2) end,          desc = 'Select 2' },
-        { '<A-3>',        function() require('harpoon.ui').nav_file(3) end,          desc = 'Select 3' },
-        { '<A-4>',        function() require('harpoon.ui').nav_file(4) end,          desc = 'Select 4' },
-        { '<A-5>',        function() require('harpoon.ui').nav_file(5) end,          desc = 'Select 5' },
-        { '<A-6>',        function() require('harpoon.ui').nav_file(6) end,          desc = 'Select 6' },
-        { '<A-7>',        function() require('harpoon.ui').nav_file(7) end,          desc = 'Select 7' },
-        { '<A-8>',        function() require('harpoon.ui').nav_file(8) end,          desc = 'Select 8' },
-        { '<A-9>',        function() require('harpoon.ui').nav_file(9) end,          desc = 'Select 9' },
-        { '<A-0>',        function() require('harpoon.ui').nav_file(0) end,          desc = 'Select 10' },
+        { '<leader>ma',   function() require('harpoon.mark').add_file() end,        desc = 'Mark file' },
+        { '<leader>mm',   function() require('harpoon.ui').toggle_quick_menu() end, desc = 'View marks' },
+        { '<M-1>',        function() require('harpoon.ui').nav_file(1) end,          desc = 'Select 1' },
+        { '<M-2>',        function() require('harpoon.ui').nav_file(2) end,          desc = 'Select 2' },
+        { '<M-3>',        function() require('harpoon.ui').nav_file(3) end,          desc = 'Select 3' },
+        { '<M-4>',        function() require('harpoon.ui').nav_file(4) end,          desc = 'Select 4' },
+        { '<M-5>',        function() require('harpoon.ui').nav_file(5) end,          desc = 'Select 5' },
+        { '<M-6>',        function() require('harpoon.ui').nav_file(6) end,          desc = 'Select 6' },
+        { '<M-7>',        function() require('harpoon.ui').nav_file(7) end,          desc = 'Select 7' },
+        { '<M-8>',        function() require('harpoon.ui').nav_file(8) end,          desc = 'Select 8' },
+        { '<M-9>',        function() require('harpoon.ui').nav_file(9) end,          desc = 'Select 9' },
+        { '<M-0>',        function() require('harpoon.ui').nav_file(0) end,          desc = 'Select 10' },
       },
       opts = {},
     },
