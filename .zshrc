@@ -114,6 +114,8 @@ magic() {
 # tempo-io
 export JAVA_HOME=$(/usr/libexec/java_home -v 21)
 export MAVEN_OPTS='-Djdk.tls.client.protocols=TLSv1.2'
+
+export COMPOSE_ANSI=always
 export DOCKER_HOST="unix:///Users/$USER/.colima/docker.sock"
 
 export TESTCONTAINERS_RYUK_DISABLED=true
