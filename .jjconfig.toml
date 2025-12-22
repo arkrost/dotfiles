@@ -1,0 +1,6 @@
+[revset-aliases]
+'closest_bookmark(to)' = 'heads(::to & bookmarks())'
+
+[aliases]
+tug = ["bookmark", "move", "-f", "closest_bookmark(@-)", "-t", "@-"]
+
