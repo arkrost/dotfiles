@@ -41,6 +41,7 @@ brew "stern"
 brew "stow"
 brew "tmux"
 brew "trash", link: true
+brew "tree-sitter-cli"
 brew "uv"
 brew "zoxide"
 brew "oven-sh/bun/bun"
