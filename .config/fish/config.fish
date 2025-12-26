@@ -30,8 +30,8 @@ set -x FZF_DEFAULT_OPTS "--cycle --layout=reverse
     --color pointer:1,spinner:2,marker:3,prompt:4,info:5"
 set -x BAT_THEME base16
 
-alias gbc='git br | grep -v "*" | xargs git br -D'
-alias up='brew update && brew upgrade && brew cleanup'
+abbr -a gbc 'git br | grep -v "*" | xargs git br -D'
+abbr -a up 'brew update && brew upgrade && brew cleanup'
 
 alias rm='trash'
 abbr -a l eza -l
