@@ -67,17 +67,6 @@ map('n', '<leader>d', vim.diagnostic.open_float, { desc = 'Open diagnostic popup
 map({ 'n', 'x' }, '<leader>\'', '<cmd>let @+=@"<CR>', { desc = '" to +' })
 map({ 'n', 'x' }, '<leader>"', '<cmd>let @"=@+<CR>', { desc = '+ to "' })
 
--- completion
-map('i', '<C-z>', function()
-  if vim.fn.pumvisible() == 1 then
-    return '<Down>'
-  end
-  if vim.bo.omnifunc ~= '' then
-    return '<C-x><C-o>'
-  end
-  return '<C-x><C-p>'
-end, { expr = true, silent = true, desc = 'Toggle completion menu' })
-
 -- terminal
 map('t', '<Esc><Esc>', [[<C-\><C-n>]], { silent = true, desc = 'Exit terminal mode' })
 
@@ -114,6 +103,7 @@ vim.pack.add({
   { src = 'https://github.com/stevearc/oil.nvim' },
   { src = 'https://github.com/lewis6991/gitsigns.nvim' },
   { src = 'https://github.com/mbbill/undotree' },
+  { src = 'https://github.com/saghen/blink.cmp', version = vim.version.range('^1') },
   --treesitter
   { src = 'https://github.com/nvim-treesitter/nvim-treesitter' },
   { src = 'https://github.com/nvim-treesitter/nvim-treesitter-context' }, -- note: does not require setup({..})
@@ -123,6 +113,7 @@ vim.pack.add({
   { src = 'https://github.com/vague2k/vague.nvim' },
   { src = 'https://github.com/arkrost/alabaster.nvim' },
 })
+
 
 require('which-key').setup({
   icons = {
@@ -146,8 +137,52 @@ require('gitsigns').setup({
 vim.g.undotree_SetFocusWhenToggle = 1
 map('n', '<leader>u', vim.cmd.UndotreeToggle, { desc = 'Undo tree' })
 
---[[ Pickers ]]
+require('blink.cmp').setup({
+  completion = {
+    menu = {
+      auto_show = false,
+      draw = { gap = 3 },
+      border = 'rounded',
+    },
+    documentation = {
+      auto_show = true,
+      auto_show_delay_ms = 0,
+      window = {
+        border = 'rounded'
+      }
+    },
+    ghost_text = { enabled = true },
+    trigger = { show_in_snippet = false },
+  },
+  sources = {
+    default = { 'lsp', 'path', 'snippets', 'buffer' },
+  },
+  signature = { enabled = true },
+  keymap = {
+    preset = 'default',
+    ['<C-z>'] = { 'show', 'select_next' },
+    ['<C-e>'] = { 'show_documentation', 'hide_documentation' },
+    ['<C-c>'] = { 'cancel', 'fallback_to_mappings' },
+    ['<Tab>'] = { 'accept', 'snippet_forward', 'fallback' },
+    ['<C-n>'] = { function(cmp) return cmp.select_next({ on_ghost_text = true }) end, 'fallback_to_mappings' },
+    ['<C-p>'] = { function(cmp) return cmp.select_prev({ on_ghost_text = true }) end, 'fallback_to_mappings' },
+    ['<CR>'] = {
+      function(cmp)
+        if cmp.is_menu_visible() then
+          return cmp.accept()
+        end
+      end,
+      'fallback'
+    },
+  },
+  cmdline = {
+    keymap = {
+      ['<CR>'] = { 'accept', 'fallback' },
+    },
+  },
+})
 
+--[[ Pickers ]]
 map('n', '<leader>/', function() Snacks.picker.grep({ hidden = true }) end, { desc = 'Grep' })
 map('n', '<leader>b', function() Snacks.picker.buffers() end, { desc = 'Buffers' })
 map('n', '<leader>o', function() Snacks.picker.treesitter() end, { desc = 'Outline' })
@@ -277,8 +312,6 @@ vim.lsp.config['lua_ls'] = {
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('MyLspOnAttach', {}),
   callback = function(args)
-    local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
-
     -- `:Format` command
     vim.api.nvim_buf_create_user_command(args.buf, 'Format', function(_)
       vim.lsp.buf.format()
@@ -293,12 +326,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.api.nvim_buf_create_user_command(args.buf, 'CodeActions', function(_)
       vim.lsp.buf.code_action()
     end, { desc = 'Code Actions' })
-
-    if client.server_capabilities.completionProvider then
-      local chars = {}; for i = 32, 126 do table.insert(chars, string.char(i)) end
-      client.server_capabilities.completionProvider.triggerCharacters = chars
-      vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
-    end
   end
 })
 
