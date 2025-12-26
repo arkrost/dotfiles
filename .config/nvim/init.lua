@@ -56,17 +56,18 @@ vim.opt.diffopt = {                                                         -- d
 
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
+local map = vim.keymap.set
 
-vim.keymap.set('n', ',,', '<cmd>update<cr>', { desc = 'Update' })
-vim.keymap.set('n', ',wq', '<cmd>bdelete<cr>', { desc = 'Close buffer' })
-vim.keymap.set('n', ',qq', '<cmd>bdelete!<cr>', { desc = 'Close buffer (force)' })
+map('n', '<leader>w', '<cmd>update<cr>', { desc = 'Update' })
+map('n', '<leader>q', '<cmd>bdelete<cr>', { desc = 'Close buffer' })
+map('n', '<leader>Q', '<cmd>bdelete!<cr>', { desc = 'Close buffer (force)' })
 
 -- clipboard register
-vim.keymap.set({ 'n', 'x' }, '<leader>\'', '<cmd>let @+=@"<CR>', { desc = '" to +' })
-vim.keymap.set({ 'n', 'x' }, '<leader>"', '<cmd>let @"=@+<CR>', { desc = '+ to "' })
+map({ 'n', 'x' }, '<leader>\'', '<cmd>let @+=@"<CR>', { desc = '" to +' })
+map({ 'n', 'x' }, '<leader>"', '<cmd>let @"=@+<CR>', { desc = '+ to "' })
 
 -- completion
-vim.keymap.set('i', '<C-z>', function()
+map('i', '<C-z>', function()
   if vim.fn.pumvisible() == 1 then
     return '<Down>'
   end
@@ -77,16 +78,33 @@ vim.keymap.set('i', '<C-z>', function()
 end, { expr = true, silent = true, desc = 'Toggle completion menu' })
 
 -- terminal
-vim.keymap.set('t', '<Esc><Esc>', [[<C-\><C-n>]], { silent = true, desc = 'Exit terminal mode' })
+map('t', '<Esc><Esc>', [[<C-\><C-n>]], { silent = true, desc = 'Exit terminal mode' })
 
 -- macos
-vim.keymap.set('i', '<M-BS>', '<C-w>', { silent = true, desc = 'Kill word (mac)' })
-vim.keymap.set('c', '<M-BS>', '<C-w>', { desc = 'Kill word (mac)' })
+map('i', '<M-BS>', '<C-w>', { silent = true, desc = 'Kill word (mac)' })
+map('c', '<M-BS>', '<C-w>', { desc = 'Kill word (mac)' })
+
+-- tabs
+for i = 1, 8 do
+  map({ 'n', 't' }, '<leader>' .. i, '<cmd>tabnext ' .. i .. '<cr>')
+end
 
 --[[ Plugins ]]
 vim.api.nvim_create_user_command('PackUpdate', function()
   vim.pack.update()
-end, { desc = 'vim.pack.update()' })
+end, { desc = 'Update vim.pack plugins' })
+
+vim.api.nvim_create_user_command('PackClean', function()
+  local unused_plugins = {}
+
+  for _, plugin in ipairs(vim.pack.get()) do
+    if not plugin.active then
+      table.insert(unused_plugins, plugin.spec.name)
+    end
+  end
+
+  vim.pack.del(unused_plugins)
+end, { desc = 'Cleanup unused vim.pack plugins' })
 
 vim.pack.add({
   { src = 'https://github.com/neovim/nvim-lspconfig' },
@@ -111,36 +129,36 @@ require('which-key').setup({
     breadcrumb = '>>',
   }
 })
-vim.keymap.set('n', '?', '<cmd>WhichKey<cr>', { desc = 'Help keys' })
+map('n', '?', '<cmd>WhichKey<cr>', { desc = 'Help keys' })
 
 require('oil').setup({
   view_options = {
     show_hidden = true,
   },
 })
-vim.keymap.set('n', '-', '<cmd>Oil<cr>', { desc = 'Open oil' })
+map('n', '-', '<cmd>Oil<cr>', { desc = 'Open oil' })
 
 require('gitsigns').setup({
   attach_to_untracked = true,
 })
 
 vim.g.undotree_SetFocusWhenToggle = 1
-vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle, { desc = 'Undo tree' })
+map('n', '<leader>u', vim.cmd.UndotreeToggle, { desc = 'Undo tree' })
 
 --[[ Pickers ]]
 
-vim.keymap.set('n', '<leader>/', function() Snacks.picker.grep({ hidden = true }) end, { desc = 'Grep' })
-vim.keymap.set('n', '<leader>b', function() Snacks.picker.buffers() end, { desc = 'Buffers' })
-vim.keymap.set('n', '<leader>o', function() Snacks.picker.treesitter() end, { desc = 'Outline' })
-vim.keymap.set('n', '<leader>f', function() Snacks.picker.files({ hidden = true }) end, { desc = 'Files' })
-vim.keymap.set('n', '<leader>gf', function() Snacks.picker.git_files() end, { desc = 'Git Files' })
-vim.keymap.set('n', '<leader>d', function() Snacks.picker.diagnostics_buffer() end, { desc = 'Buffer Diagnostics' })
+map('n', '<leader>/', function() Snacks.picker.grep({ hidden = true }) end, { desc = 'Grep' })
+map('n', '<leader>b', function() Snacks.picker.buffers() end, { desc = 'Buffers' })
+map('n', '<leader>o', function() Snacks.picker.treesitter() end, { desc = 'Outline' })
+map('n', '<leader>f', function() Snacks.picker.files({ hidden = true }) end, { desc = 'Files' })
+map('n', '<leader>gf', function() Snacks.picker.git_files() end, { desc = 'Git Files' })
+map('n', '<leader>d', function() Snacks.picker.diagnostics_buffer() end, { desc = 'Buffer Diagnostics' })
 
 -- lsp
-vim.keymap.set('n', "gd", function() Snacks.picker.lsp_definitions() end, { desc = "Goto Definition" })
-vim.keymap.set('n', "gD", function() Snacks.picker.lsp_declarations() end, { desc = "Goto Declaration" })
-vim.keymap.set('n', "grr", function() Snacks.picker.lsp_references() end, { desc = "References" })
-vim.keymap.set('n', "gri", function() Snacks.picker.lsp_implementations() end, { desc = "Goto Implementation" })
+map('n', "gd", function() Snacks.picker.lsp_definitions() end, { desc = "Goto Definition" })
+map('n', "gD", function() Snacks.picker.lsp_declarations() end, { desc = "Goto Declaration" })
+map('n', "grr", function() Snacks.picker.lsp_references() end, { desc = "References" })
+map('n', "gri", function() Snacks.picker.lsp_implementations() end, { desc = "Goto Implementation" })
 
 --[[ Treesitter ]]
 local treesitter_langs = {
@@ -192,12 +210,12 @@ local ts_select = function(obj)
   end
 end
 
-vim.keymap.set({ 'x', 'o' }, 'aa', ts_select('@parameter.outer'))
-vim.keymap.set({ 'x', 'o' }, 'ia', ts_select('@parameter.inner'))
-vim.keymap.set({ 'x', 'o' }, 'af', ts_select('@function.outer'))
-vim.keymap.set({ 'x', 'o' }, 'if', ts_select('@function.inner'))
-vim.keymap.set({ 'x', 'o' }, 'ac', ts_select('@class.outer'))
-vim.keymap.set({ 'x', 'o' }, 'ic', ts_select('@class.inner'))
+map({ 'x', 'o' }, 'aa', ts_select('@parameter.outer'))
+map({ 'x', 'o' }, 'ia', ts_select('@parameter.inner'))
+map({ 'x', 'o' }, 'af', ts_select('@function.outer'))
+map({ 'x', 'o' }, 'if', ts_select('@function.inner'))
+map({ 'x', 'o' }, 'ac', ts_select('@class.outer'))
+map({ 'x', 'o' }, 'ic', ts_select('@class.inner'))
 
 --[[ Theme ]]
 require('gruvbox').setup({
@@ -255,9 +273,8 @@ vim.lsp.config['lua_ls'] = {
   }
 }
 
-vim.keymap.set('n', ',.', '<cmd>CodeActions<cr>', { desc = 'Code Actions' })
-vim.keymap.set('n', ',=', '<cmd>Format<cr>', { desc = 'Format' })
-vim.keymap.set('n', ',r', '<cmd>Rename<cr>', { desc = 'Rename' })
+map('n', '<leader>.', '<cmd>CodeActions<cr>', { desc = 'Code Actions' })
+map('n', '<leader>=', '<cmd>Format<cr>', { desc = 'Format' })
 
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('MyLspOnAttach', {}),
