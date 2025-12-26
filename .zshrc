@@ -65,6 +65,7 @@ source <(carapace _carapace)
 zstyle ':completion:*' menu no
 zstyle ':fzf-tab:*' fzf-flags $FZF_THEME
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
+zstyle ':fzf-tab:complete:*' query-string ''
 
 # aliases
 alias rm=trash
