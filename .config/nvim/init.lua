@@ -61,6 +61,7 @@ local map = vim.keymap.set
 map('n', '<leader>w', '<cmd>update<cr>', { desc = 'Update' })
 map('n', '<leader>q', '<cmd>bdelete<cr>', { desc = 'Close buffer' })
 map('n', '<leader>Q', '<cmd>bdelete!<cr>', { desc = 'Close buffer (force)' })
+map('n', '<leader>d', vim.diagnostic.open_float, { desc = 'Open diagnostic popup' })
 
 -- clipboard register
 map({ 'n', 'x' }, '<leader>\'', '<cmd>let @+=@"<CR>', { desc = '" to +' })
@@ -152,7 +153,7 @@ map('n', '<leader>b', function() Snacks.picker.buffers() end, { desc = 'Buffers'
 map('n', '<leader>o', function() Snacks.picker.treesitter() end, { desc = 'Outline' })
 map('n', '<leader>f', function() Snacks.picker.files({ hidden = true }) end, { desc = 'Files' })
 map('n', '<leader>gf', function() Snacks.picker.git_files() end, { desc = 'Git Files' })
-map('n', '<leader>d', function() Snacks.picker.diagnostics_buffer() end, { desc = 'Buffer Diagnostics' })
+map('n', '<leader>D', function() Snacks.picker.diagnostics_buffer() end, { desc = 'Buffer Diagnostics' })
 
 -- lsp
 map('n', "gd", function() Snacks.picker.lsp_definitions() end, { desc = "Goto Definition" })
@@ -273,9 +274,6 @@ vim.lsp.config['lua_ls'] = {
   }
 }
 
-map('n', '<leader>.', '<cmd>CodeActions<cr>', { desc = 'Code Actions' })
-map('n', '<leader>=', '<cmd>Format<cr>', { desc = 'Format' })
-
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('MyLspOnAttach', {}),
   callback = function(args)
@@ -291,12 +289,11 @@ vim.api.nvim_create_autocmd('LspAttach', {
       vim.lsp.buf.rename()
     end, { desc = 'Rename symbol with LSP' })
 
-    if client:supports_method('textDocument/codeAction', args.buf) then
-      -- `:CodeActions` command
-      vim.api.nvim_buf_create_user_command(args.buf, 'CodeActions', function(_)
-        vim.lsp.buf.code_action()
-      end, { desc = 'Code Actions' })
-    end
+    -- `:CodeActions` command
+    vim.api.nvim_buf_create_user_command(args.buf, 'CodeActions', function(_)
+      vim.lsp.buf.code_action()
+    end, { desc = 'Code Actions' })
+
     if client.server_capabilities.completionProvider then
       local chars = {}; for i = 32, 126 do table.insert(chars, string.char(i)) end
       client.server_capabilities.completionProvider.triggerCharacters = chars
