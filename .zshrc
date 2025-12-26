@@ -59,9 +59,6 @@ autoload -Uz compinit
 zicompinit # or compinit -i instead
 zicdreplay
 
-export CARAPACE_BRIDGES='zsh,fish,bash'
-source <(carapace _carapace)
-
 zstyle ':completion:*' menu no
 zstyle ':fzf-tab:*' fzf-flags $FZF_THEME
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
