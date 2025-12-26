@@ -139,8 +139,8 @@ vim.keymap.set('n', '<leader>d', function() Snacks.picker.diagnostics_buffer() e
 -- lsp
 vim.keymap.set('n', "gd", function() Snacks.picker.lsp_definitions() end, { desc = "Goto Definition" })
 vim.keymap.set('n', "gD", function() Snacks.picker.lsp_declarations() end, { desc = "Goto Declaration" })
-vim.keymap.set('n', "gr", function() Snacks.picker.lsp_references() end, { desc = "References" })
-vim.keymap.set('n', "gI", function() Snacks.picker.lsp_implementations() end, { desc = "Goto Implementation" })
+vim.keymap.set('n', "grr", function() Snacks.picker.lsp_references() end, { desc = "References" })
+vim.keymap.set('n', "gri", function() Snacks.picker.lsp_implementations() end, { desc = "Goto Implementation" })
 
 --[[ Treesitter ]]
 local treesitter_langs = {
