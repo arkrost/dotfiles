@@ -20,11 +20,13 @@ font-style-bold-italic = Italic
 font-thicken = true
 
 shell-integration-features = no-cursor, sudo
-cursor-style = bar
+cursor-style = block
+cursor-style-blink=false
 
 # foreground = ebdbb2
 foreground = e0e0d7
 background = 1f1f28
+cursor-color = d7af5f
 
 # black
 palette = 0=#262626
