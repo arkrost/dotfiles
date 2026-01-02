@@ -11,7 +11,7 @@ $character
 # """
 
 [directory]
-format = '[$path]($style)'
+format = '[$path ]($style)'
 home_symbol = '~'
 repo_root_style = 'bold fg:yellow'
 style = 'bold blue'
