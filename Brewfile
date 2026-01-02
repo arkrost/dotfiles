@@ -42,6 +42,8 @@ brew "tmux"
 brew "trash", link: true
 brew "tree-sitter-cli"
 brew "uv"
+brew "zig"
+brew "zls"
 brew "zoxide"
 brew "jetbrains/utils/kotlin-lsp"
 brew "oven-sh/bun/bun"

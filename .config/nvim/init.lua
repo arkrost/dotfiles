@@ -340,4 +340,4 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end
 })
 
-vim.lsp.enable({ 'lua_ls', 'ts_ls', 'rust_analyzer', 'kotlin_lsp' })
+vim.lsp.enable({ 'lua_ls', 'ts_ls', 'rust_analyzer', 'kotlin_lsp', 'zls' })
