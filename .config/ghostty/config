@@ -8,8 +8,8 @@ confirm-close-surface = true
 mouse-hide-while-typing = false
 macos-option-as-alt = true
 
-background-opacity = 0.95
-background-blur = 1
+background-opacity = 0.97
+background-blur = 5
 
 font-size = 15
 font-family = IBM Plex Mono

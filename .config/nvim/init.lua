@@ -266,6 +266,7 @@ map({ 'x', 'o' }, 'ic', ts_select('@class.inner'))
 
 --[[ Theme ]]
 require('gruvbox').setup({
+  transparent_mode = true,
   palette_overrides = {
     dark0 = '#1F1F28',
     dark1 = '#2A2A37',
@@ -303,9 +304,8 @@ require('gruvbox').setup({
 })
 
 require('vague').setup({ transparent = true })
--- vim.cmd(':hi statusline guibg=NONE')
 
-vim.cmd.colorscheme('alabaster')
+vim.cmd.colorscheme('gruvbox')
 
 -- [[ LSP ]]
 vim.lsp.config['lua_ls'] = {
