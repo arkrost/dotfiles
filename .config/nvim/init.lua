@@ -145,8 +145,7 @@ require('blink.cmp').setup({
       border = 'rounded',
     },
     documentation = {
-      auto_show = true,
-      auto_show_delay_ms = 0,
+      auto_show = false,
       window = {
         border = 'rounded'
       }
@@ -180,6 +179,17 @@ require('blink.cmp').setup({
       ['<CR>'] = { 'accept', 'fallback' },
     },
   },
+})
+
+require('snacks').setup({
+  indent = {
+    indent = {
+      char = '┊'
+    },
+    scope = {
+      enabled = false
+    }
+  }
 })
 
 --[[ Pickers ]]
@@ -217,9 +227,10 @@ local treesitter_langs = {
   'zig',
   'diff',
   'fish',
+  'regex'
 }
 
--- require('nvim-treesitter').install(treesitter_langs, { summary = true })
+require('nvim-treesitter').install(treesitter_langs, { summary = false })
 
 vim.api.nvim_create_autocmd('FileType', {
   pattern = treesitter_langs,
