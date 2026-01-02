@@ -71,8 +71,22 @@ map({ 'n', 'x' }, '<leader>"', '<cmd>let @"=@+<CR>', { desc = '+ to "' })
 map('t', '<Esc><Esc>', [[<C-\><C-n>]], { silent = true, desc = 'Exit terminal mode' })
 
 -- macos
-map('i', '<M-BS>', '<C-w>', { silent = true, desc = 'Kill word (mac)' })
-map('c', '<M-BS>', '<C-w>', { desc = 'Kill word (mac)' })
+map({ 'i', 'c'}, '<M-BS>', '<C-w>', { desc = 'Kill word (mac)' })
+
+map('i', '<M-b>', '<C-o>b', { silent = true, desc = 'Move word back' })
+map('i', '<M-f>', '<C-o>w', { silent = true, desc = 'Move word forward' })
+map({ 'n', 'x' }, '<M-b>', 'b', { desc = 'Move word back' })
+map({ 'n', 'x' }, '<M-f>', 'e', { desc = 'Move word forward' })
+map('i', '<M-Left>',  '<M-b>')
+map('i', '<M-Right>', '<M-f>')
+
+map('i', '<M-Up>',   '<C-o>{', { desc = 'Paragraph backward' })
+map('i', '<M-Down>', '<C-o>}', { desc = 'Paragraph forward' })
+map({ 'n','x' }, '<M-Up>',   '{', { desc = 'Paragraph backward' })
+map({ 'n','x' }, '<M-Down>', '}', { desc = 'Paragraph forward' })
+
+map('i', '<C-a>', '<Home>', { desc = 'Home' })
+map('i', '<C-e>', '<End>', { desc = 'End' })
 
 -- tabs
 for i = 1, 8 do
@@ -159,7 +173,7 @@ require('blink.cmp').setup({
   keymap = {
     preset = 'default',
     ['<C-z>'] = { 'show', 'select_next' },
-    ['<C-e>'] = { 'show_documentation', 'hide_documentation' },
+    ['<C-d>'] = { 'show_documentation', 'hide_documentation' },
     ['<C-c>'] = { 'cancel', 'fallback_to_mappings' },
     ['<Tab>'] = { 'accept', 'snippet_forward', 'fallback' },
     ['<C-n>'] = { function(cmp) return cmp.select_next({ on_ghost_text = true }) end, 'fallback_to_mappings' },
