@@ -111,7 +111,6 @@ vim.pack.add({
   -- themes
   { src = 'https://github.com/ellisonleao/gruvbox.nvim' },
   { src = 'https://github.com/vague2k/vague.nvim' },
-  { src = 'https://github.com/arkrost/alabaster.nvim' },
 })
 
 
