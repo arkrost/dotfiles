@@ -22,7 +22,6 @@ font-thicken = true
 shell-integration-features = no-cursor, sudo
 cursor-style = bar
 
-
 # foreground = ebdbb2
 foreground = e0e0d7
 background = 1f1f28
