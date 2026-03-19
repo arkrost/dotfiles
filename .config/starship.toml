@@ -2,7 +2,8 @@ add_newline = false
 
 format = """
 $directory\
-$character
+$git_branch\
+$character\
 """
 
 # right_format = """
@@ -11,7 +12,7 @@ $character
 # """
 
 [directory]
-format = '[$path ]($style)'
+format = '[$path]($style)'
 home_symbol = '~'
 repo_root_style = 'bold fg:yellow'
 style = 'bold blue'
@@ -21,16 +22,18 @@ truncation_symbol = '…/'
 use_logical_path = true
 
 [git_branch]
-style = 'italic fg:cyan'
-format = '[$branch]($style)'
+style = 'fg:bright-purple'
+format = '[\($branch\)]($style)'
+truncation_length = 12
+truncation_symbol = '…'
 
 [git_status]
 style = 'fg:cyan'
 format = '[$all_status$ahead_behind ]($style)'
 
 [character]
-success_symbol = '[|](bold green)'
-error_symbol = '[|](bold red)'
+success_symbol = ' [|](bold green)'
+error_symbol = ' [|](bold red)'
 
 [cmd_duration]
 min_time = 0
