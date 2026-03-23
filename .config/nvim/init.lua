@@ -73,8 +73,8 @@ map('t', '<Esc><Esc>', [[<C-\><C-n>]], { silent = true, desc = 'Exit terminal mo
 -- macos
 map({ 'i', 'c'}, '<M-BS>', '<C-w>', { desc = 'Kill word (mac)' })
 
-map('i', '<M-b>', '<C-o>b', { silent = true, desc = 'Move word back' })
-map('i', '<M-f>', '<C-o>w', { silent = true, desc = 'Move word forward' })
+map('i', '<M-b>', '<C-Left>', { silent = true, desc = 'Move word back' })
+map('i', '<M-f>', '<M-Right>', { silent = true, desc = 'Move word forward' })
 map({ 'n', 'x' }, '<M-b>', 'b', { desc = 'Move word back' })
 map({ 'n', 'x' }, '<M-f>', 'e', { desc = 'Move word forward' })
 map('i', '<M-Left>',  '<M-b>')
@@ -125,6 +125,7 @@ vim.pack.add({
   -- themes
   { src = 'https://github.com/ellisonleao/gruvbox.nvim' },
   { src = 'https://github.com/vague2k/vague.nvim' },
+  { src = 'https://github.com/dchinmay2/alabaster.nvim' },
 })
 
 
@@ -318,7 +319,28 @@ require('gruvbox').setup({
 
 require('vague').setup({ transparent = true })
 
-vim.cmd.colorscheme('gruvbox')
+local setup_alabaster = function ()
+  vim.cmd.colorscheme('alabaster')
+
+  vim.api.nvim_set_hl(0, 'Normal', { bg = nil })
+  vim.api.nvim_set_hl(0, 'Visual', { bg = '#223249' })
+  vim.api.nvim_set_hl(0, 'StatusLine', { bg = '#363646'  })
+  vim.api.nvim_set_hl(0, 'NormalFloat', { bg = '#2A2A37'  })
+  vim.api.nvim_set_hl(0, 'FloatBorder', { bg = '#2A2A37' })
+  vim.api.nvim_set_hl(0, 'Pmenu', { bg = '#2A2A37' })
+  vim.api.nvim_set_hl(0, 'PmenuSel', { bg = '#223249' })
+  vim.api.nvim_set_hl(0, 'PmenuSbar', { bg = '#363646' })
+  vim.api.nvim_set_hl(0, 'PmenuThumb', { bg = '#6699CC'})
+  vim.api.nvim_set_hl(0, 'ColorColumn', { bg = '#363646' })
+  vim.api.nvim_set_hl(0, 'Folded', { bg = '#2A2A37', fg = '#7d7d7d' })
+  vim.api.nvim_set_hl(0, 'Comment', { fg = '#ffd787' })
+  vim.api.nvim_set_hl(0, '@attribute', { fg = '#80aa9e' })
+  vim.api.nvim_set_hl(0, '@keyword', { fg = '#8787af' })
+  vim.api.nvim_set_hl(0, '@keyword.function', { fg = '#8787af' })
+  vim.api.nvim_set_hl(0, '@operator', { link = 'Normal' })
+end
+
+setup_alabaster()
 
 -- [[ LSP ]]
 vim.lsp.config['lua_ls'] = {
