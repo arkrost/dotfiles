@@ -83,6 +83,8 @@ abbr -S -q l='eza -l'
 abbr -S -q ll='eza -TlL 2'
 abbr -S -q la='eza -la'
 
+alias pi='bunx @mariozechner/pi-coding-agent@latest'
+
 # nix
 # NB: /nix/nix-installer uninstall
 nix_path='/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
