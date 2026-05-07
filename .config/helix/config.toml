@@ -14,16 +14,15 @@ select = "underline"
 display-inlay-hints = false
 
 [keys.normal]
-'esc' = ["collapse_selection", "keep_primary_selection"]
 'C-a' = "goto_line_start"
 'C-e' = "goto_line_end"
 '}' = "goto_next_paragraph"
 '{' = "goto_prev_paragraph"
-'C-g' = [":write-all", ":new", ":insert-output lazygit", ":buffer-close!", ":redraw", ":reload-all"]
+'Cmd-c' = "yank_to_clipboard"
+'Cmd-s' = ':update'
 
 [keys.select]
-'i' = "extend_visual_line_up"
-'k' = "extend_visual_line_down"
-'j' = "extend_char_left"
-'C-a' = "goto_line_start"
-'C-e' = "goto_line_end"
+'Cmd-c' = "yank_to_clipboard"
+
+[editor.file-picker]
+hidden = false
