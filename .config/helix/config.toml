@@ -21,6 +21,10 @@ display-inlay-hints = false
 'Cmd-c' = "yank_to_clipboard"
 'Cmd-s' = ':update'
 
+[keys.normal.space]
+'E' = "file_explorer"
+'e' = "file_explorer_in_current_buffer_directory"
+
 [keys.select]
 'Cmd-c' = "yank_to_clipboard"
 
