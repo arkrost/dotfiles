@@ -120,7 +120,7 @@ export COMPOSE_ANSI=always
 export DOCKER_HOST="unix:///Users/$USER/.colima/docker.sock"
 
 export TESTCONTAINERS_RYUK_DISABLED=true
-export CLOUD_HOME=~/Projects/cloud
+export CLOUD_HOME=~/Projects/cloud/master/
 export LOCAL_DOMAIN=arost-1.dev.structure.app
 
 arost_env() {
