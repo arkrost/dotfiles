@@ -1,4 +1,4 @@
-theme = "kanagawa"
+theme = 'kanagawa'
 
 [editor]
 mouse = false
@@ -6,27 +6,40 @@ text-width = 100
 rulers = [100]
 
 [editor.cursor-shape]
-insert = "bar"
-normal = "block"
-select = "underline"
+insert = 'bar'
+normal = 'block'
+select = 'underline'
 
 [editor.lsp]
 display-inlay-hints = false
 
-[keys.normal]
-'C-a' = "goto_line_start"
-'C-e' = "goto_line_end"
-'}' = "goto_next_paragraph"
-'{' = "goto_prev_paragraph"
-'Cmd-c' = "yank_to_clipboard"
-'Cmd-s' = ':update'
-
-[keys.normal.space]
-'E' = "file_explorer"
-'e' = "file_explorer_in_current_buffer_directory"
-
-[keys.select]
-'Cmd-c' = "yank_to_clipboard"
-
 [editor.file-picker]
 hidden = false
+
+[keys.normal]
+'C-a' = 'goto_line_start'
+'C-e' = 'goto_line_end'
+'A-b' = ['move_prev_word_start', 'collapse_selection']
+'A-f' = ['move_next_word_end', 'collapse_selection']
+'}' = 'goto_next_paragraph'
+'{' = 'goto_prev_paragraph'
+'Cmd-c' = 'yank_to_clipboard'
+'Cmd-s' = ':update'
+'A-/' = 'goto_word'
+
+[keys.normal.space]
+'E' = 'file_explorer'
+'e' = 'file_explorer_in_current_buffer_directory'
+
+[keys.insert]
+'C-a' = 'goto_line_start'
+'C-e' = ['goto_line_end', 'move_char_right']
+'A-b' = ['move_prev_word_start', 'collapse_selection']
+'A-f' = ['normal_mode', 'move_next_word_end', 'append_mode', 'collapse_selection']
+
+[keys.select]
+'Cmd-c' = 'yank_to_clipboard'
+'C-a' = 'goto_line_start'
+'C-e' = 'goto_line_end'
+'A-b' = 'extend_prev_word_start'
+'A-f' = 'extend_next_word_end'

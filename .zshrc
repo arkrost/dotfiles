@@ -7,7 +7,7 @@ path=(~/.bun/bin $path)
 path=(~/.cabal/bin ~/.ghcup/bin $path)
 
 export LC_ALL='en_US.UTF-8'
-export EDITOR=nvim
+export EDITOR=hx
 
 # prompt
 PROMPT='%F{5}%n%f %~ %B%F{2}>%f%b '
