@@ -71,6 +71,7 @@ zstyle ':fzf-tab:complete:*' query-string ''
 alias rm=trash
 
 abbr -S -q c='clear'
+abbr -S -q e='hx'
 abbr -S -q ..='cd ..'
 abbr -S -q nv='nvim'
 abbr -S -q g='lazygit'
