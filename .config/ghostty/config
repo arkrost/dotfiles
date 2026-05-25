@@ -27,6 +27,8 @@ cursor-style-blink=false
 foreground = e0e0d7
 background = 1f1f28
 cursor-color = d7af5f
+selection-background = 2d4f67
+selection-foreground = e0e0d7
 
 # black
 palette = 0=#262626
