@@ -39,3 +39,5 @@
   cmd = nvim -d "$MERGED" "$LOCAL" "$BASE" "$REMOTE" -c 'wincmd J'
 [pull]
   rebase = true
+[push]
+	default = upstream
