@@ -24,8 +24,6 @@ hidden = false
 '}' = 'goto_next_paragraph'
 '{' = 'goto_prev_paragraph'
 'Cmd-c' = 'yank_to_clipboard'
-'Cmd-s' = ':update'
-'A-/' = 'goto_word'
 
 [keys.normal.space]
 'E' = 'file_explorer'
