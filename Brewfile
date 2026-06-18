@@ -1,6 +1,6 @@
-tap "bell-sw/liberica"
+tap "bell-sw/liberica", trusted: true
 tap "jetbrains/utils"
-tap "jundot/omlx", "https://github.com/jundot/omlx"
+tap "jundot/omlx", "https://github.com/jundot/omlx", trusted: true
 tap "oven-sh/bun"
 brew "atuin"
 brew "awscli"
@@ -16,6 +16,7 @@ brew "docker-compose"
 brew "dust"
 brew "eza"
 brew "fd"
+brew "ffmpeg"
 brew "fish"
 brew "fzf"
 brew "gh"
@@ -49,9 +50,9 @@ brew "uv"
 brew "zig"
 brew "zls"
 brew "zoxide"
-brew "jetbrains/utils/kotlin-lsp"
+brew "jetbrains/utils/kotlin-lsp", trusted: true
 brew "jundot/omlx/omlx"
-brew "oven-sh/bun/bun"
+brew "oven-sh/bun/bun", trusted: true
 cask "1password-cli"
 cask "appcleaner"
 cask "font-ibm-plex-mono"
