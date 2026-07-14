@@ -77,7 +77,7 @@ abbr -S -q nv='nvim'
 abbr -S -q g='lazygit'
 abbr -S -q d='lazydocker'
 
-abbr -S -q up='brew update && brew upgrade && brew cleanup'
+abbr -S -q up='brew update && brew upgrade -y && brew cleanup'
 abbr -S -q gbc='git br --merged | rg -v "\* .*" | xargs git br -D'
 
 abbr -S -q l='eza -l'
