@@ -1,17 +1,16 @@
 tap "bell-sw/liberica", trusted: true
-tap "jetbrains/utils"
+tap "jetbrains/utils", "https://github.com/JetBrains/homebrew-utils"
 tap "jundot/omlx", "https://github.com/jundot/omlx", trusted: true
 tap "oven-sh/bun"
 brew "atuin"
 brew "awscli"
 brew "bat"
-brew "bob"
 brew "bottom"
 brew "carapace"
 brew "cloudflared"
 brew "colima"
 brew "coreutils"
-brew "docker", link: false
+brew "docker"
 brew "docker-compose"
 brew "dust"
 brew "eza"
