@@ -13,15 +13,6 @@ import { truncateToWidth, visibleWidth } from "@earendil-works/pi-tui";
 
 const SESSION_SEPARATOR = " \u2022 "; // •
 
-const THINKING_SYMBOLS: Record<string, string> = {
-  off: "\u2205", // ∅
-  minimal: "\u2581", // ▁
-  low: "\u2582", // ▂
-  medium: "\u2584", // ▄
-  high: "\u25cf", // ●
-  xhigh: "\u25ce", // ◎
-};
-
 const FOOTER_THEME: Record<string, string> = {
   pwd: "mdHeading",
   session: "mdLink",
@@ -63,10 +54,6 @@ export default function (pi: ExtensionAPI) {
           // --- Session name ---
           const sessionName = ctx.sessionManager.getSessionName();
 
-          // --- Model info ---
-          const modelName = ctx.model?.id || "no-model";
-          let modelStr = modelName;
-
           // --- Thinking level ---
           let thinkingLevel = "off";
           for (const e of ctx.sessionManager.getBranch()) {
@@ -74,13 +61,8 @@ export default function (pi: ExtensionAPI) {
               thinkingLevel = (e as { thinkingLevel: string }).thinkingLevel;
             }
           }
-          modelStr += ` ${THINKING_SYMBOLS[thinkingLevel] ?? THINKING_SYMBOLS.off}`;
 
-          if (footerData.getAvailableProviderCount() > 1 && ctx.model) {
-            modelStr = `(${ctx.model.provider}) ${modelStr}`;
-          } else if (ctx.model?.provider) {
-            modelStr = `${ctx.model.provider} ${modelStr}`;
-          }
+          let modelStr = `${thinkingLevel} `;
 
           // LINE 1
           let line1Left = footerFg("pwd", pwd);
