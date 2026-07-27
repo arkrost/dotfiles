@@ -1,5 +1,6 @@
 # command = /opt/homebrew/bin/fish
 # command = /opt/homebrew/bin/nu
+# command = /opt/homebrew/bin/herdr
 
 window-height = 32
 window-width = 120
