@@ -1,6 +1,4 @@
 tap "bell-sw/liberica", trusted: true
-tap "jetbrains/utils", "https://github.com/JetBrains/homebrew-utils"
-tap "jundot/omlx", "https://github.com/jundot/omlx", trusted: true
 tap "oven-sh/bun"
 brew "atuin"
 brew "awscli"
@@ -43,6 +41,7 @@ brew "ripgrep"
 brew "starship"
 brew "stern"
 brew "stow"
+brew "tailscale"
 brew "tmux"
 brew "trash", link: true
 brew "tree-sitter-cli"
@@ -50,7 +49,6 @@ brew "uv"
 brew "zig"
 brew "zls"
 brew "zoxide"
-brew "jundot/omlx/omlx"
 brew "oven-sh/bun/bun", trusted: true
 cask "1password-cli"
 cask "appcleaner"
