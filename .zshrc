@@ -78,6 +78,7 @@ abbr -S -q g='lazygit'
 abbr -S -q d='lazydocker'
 
 abbr -S -q up='brew update && brew upgrade -y && brew cleanup'
+abbr -S -q dump='brew bundle dump --no-describe --force'
 abbr -S -q gbc='git br --merged | rg -v "\* .*" | xargs git br -D'
 
 abbr -S -q l='eza -l'
