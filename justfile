@@ -2,7 +2,7 @@
 
 # Link configs to home directory
 link:
-	stow --no-folding --target "$HOME" .
+	pkgx stow --no-folding --target "$HOME" .
 
 # Install applications via brew
 install:
@@ -10,7 +10,7 @@ install:
 
 # Unlink configs from home directory
 unlink:
-	stow --target "$HOME" -D .
+	pkgx stow --target "$HOME" -D .
 
 # Show help
 help:

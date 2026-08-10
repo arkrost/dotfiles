@@ -55,7 +55,6 @@ zoxide init fish | source
 atuin init fish --disable-up-arrow | source
 
 # ALM
-set -gx JAVA_HOME (/usr/libexec/java_home -v 25)
 set -gx MAVEN_OPTS '-Djdk.tls.client.protocols=TLSv1.2'
 set -gx COMPOSE_ANSI always
 set -gx DOCKER_HOST "unix:///Users/$USER/.colima/docker.sock"
@@ -68,7 +67,6 @@ set -gx BASE_URL_EU arost-1.dev.structure.app
 
 set -gx CLOUD_HOME "$HOME/Projects/cloud/master/"
 set -gx LOCAL_DOMAIN "arost-1.dev.structure.app"
-alias rebuild_cloud='$CLOUD_HOME/bootstrap/rebuild.sh'
 
 function arost_env
     set name $argv[1]
