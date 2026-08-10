@@ -2,7 +2,9 @@
 eval (/opt/homebrew/bin/brew shellenv)
 
 # my paths
-fish_add_path -gm /opt/homebrew/opt/node@22/bin ~/.npm-packages/bin
+fish_add_path -gm /opt/homebrew/opt/node@24/bin ~/.npm-packages/bin
+fish_add_path -gm ~/.bun/bin
+fish_add_path -gm ~/.cabal/bin ~/.ghcup/bin
 fish_add_path -gm ~/.cargo/bin
 fish_add_path -gm ~/.local/bin
 
@@ -22,42 +24,40 @@ set -x fish_color_autosuggestion brblack
 set -x fish_color_param
 set -x fish_color_command
 
-set -x EDITOR nvim
+set -x EDITOR hx
 set -x SHELL (which fish)
-set -x FZF_DEFAULT_OPTS "--cycle --layout=reverse
+set -x FZF_DEFAULT_OPTS "--cycle --layout=reverse --no-bold
     --preview 'bat --style=numbers --color=always --line-range :500 {}'
     --color fg:7,bg:-1,hl:4,fg+:11,bg+:0,hl+:4
     --color pointer:1,spinner:2,marker:3,prompt:4,info:5"
 set -x BAT_THEME base16
 
-abbr -a gbc 'git br | grep -v "*" | xargs git br -D'
-abbr -a up 'brew update && brew upgrade && brew cleanup'
+abbr -a gbc 'git br --merged | rg -v "\\* .*" | xargs git br -D'
+abbr -a up 'brew update && brew upgrade -y && brew cleanup'
+abbr -a dump 'brew bundle dump --no-describe --force'
 
 alias rm='trash'
-abbr -a l eza -l
-abbr -a ll eza -TlL 2
 abbr -a c clear
+abbr -a .. 'cd ..'
+
+abbr -a e hx
+abbr -a nv nvim
 abbr -a g lazygit
 abbr -a d lazydocker
-abbr -a nv nvim
+
+abbr -a l eza -l
+abbr -a ll eza -TlL 2
+abbr -a la eza -la
 
 # integrations
 starship init fish | source
 zoxide init fish | source
 atuin init fish --disable-up-arrow | source
 
-# claude code GLM
-if set -q GLM_API_KEY
-    set -gx ANTHROPIC_BASE_URL 'https://api.z.ai/api/anthropic'
-    set -gx ANTHROPIC_AUTH_TOKEN $GLM_API_KEY
-    set -gx ANTHROPIC_DEFAULT_HAIKU_MODEL glm-4.5-air
-    set -gx ANTHROPIC_DEFAULT_SONNET_MODEL glm-4.6
-    set -gx ANTHROPIC_DEFAULT_OPUS_MODEL glm-4.6
-end
-
 # ALM
-set -gx JAVA_HOME (/usr/libexec/java_home -v 21)
+set -gx JAVA_HOME (/usr/libexec/java_home -v 25)
 set -gx MAVEN_OPTS '-Djdk.tls.client.protocols=TLSv1.2'
+set -gx COMPOSE_ANSI always
 set -gx DOCKER_HOST "unix:///Users/$USER/.colima/docker.sock"
 
 set -gx TESTCONTAINERS_RYUK_DISABLED true
@@ -66,35 +66,12 @@ set -gx CDN_URL
 set -gx BASE_URL_US arost-1.dev.structure.app
 set -gx BASE_URL_EU arost-1.dev.structure.app
 
-set -gx CLOUD_HOME "$HOME/Projects/cloud"
+set -gx CLOUD_HOME "$HOME/Projects/cloud/master/"
 set -gx LOCAL_DOMAIN "arost-1.dev.structure.app"
 alias rebuild_cloud='$CLOUD_HOME/bootstrap/rebuild.sh'
 
-alias arost_1_env='$CLOUD_HOME/bootstrap/bfc.sh arost-1'
-
-function logs -d 'Pretty-print logs from personal cluster'
-    stern -o raw "$argv[1]" | jq -rR '. as $raw | try (fromjson | (."@timestamp" | split("T") | last) +" \u001b[32m"+ .level +"\u001b[0m "+ (.thread_name) + " \u001b[33m" + (.attributeSpec) +"\u001b[0m [\u001b[34m"+ (.logger_name | split(".") | last) +"\u001b[0m] - "+.message + .stack_trace) catch ("\u001b[31m" + $raw + "\u001b[0m")'
-end
-
-function merge_cbr
-    set out out
-    mkdir ./$out
-
-    for f in ./*.cbr
-        7z x $f -o$(basename $f .cbr)
-    end
-
-    for f in ./*.cbr
-        set f $(basename $f .cbr)
-        echo $f
-        for j in ./$f/*
-            set j $(basename $j)
-            mv "./$f/$j" "./$out/{$f}_$j"
-        end
-        rm -r $f
-    end
-
-    7z a $out.zip $out
-    mv $out.zip $out.cbz
-    rm -r $out
+function arost_env
+    set name $argv[1]
+    set -gx LOCAL_DOMAIN "arost-$name.dev.structure.app"
+    "$CLOUD_HOME/bootstrap/bfc.sh" "arost-$name"
 end
