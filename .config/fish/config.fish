@@ -37,6 +37,8 @@ abbr -a up 'brew update && brew upgrade -y && brew cleanup'
 abbr -a dump 'brew bundle dump --no-describe --force'
 
 alias rm='trash'
+alias pi='pkgx +node@24 -- pi'
+
 abbr -a c clear
 abbr -a .. 'cd ..'
 
