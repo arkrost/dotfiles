@@ -3,7 +3,7 @@ theme = 'mytheme'
 [editor]
 mouse = false
 text-width = 100
-rulers = [100]
+rulers = [] # hide rulers for now https://github.com/helix-editor/helix/issues/13161
 
 [editor.soft-wrap]
 enable = true
