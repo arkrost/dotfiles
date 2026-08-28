@@ -4,6 +4,7 @@ eval (/opt/homebrew/bin/brew shellenv)
 # my paths
 fish_add_path -gm /opt/homebrew/opt/node@24/bin ~/.npm-packages/bin
 fish_add_path -gm ~/.local/bin
+fish_add_path -gm ~/.local/share/mise/shims
 
 # Interactive config
 status is-interactive || exit
@@ -34,7 +35,6 @@ abbr -a up 'brew update && brew upgrade -y && brew cleanup'
 abbr -a dump 'brew bundle dump --no-describe --force'
 
 alias rm='trash'
-alias pi='pkgx +node@24 -- pi'
 
 abbr -a c clear
 abbr -a .. 'cd ..'

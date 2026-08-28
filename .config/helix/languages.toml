@@ -1,2 +1,13 @@
 [language-server.rust-analyzer.config.check]
 command = "clippy"
+
+[[language]]
+name = "kotlin"
+language-servers = ["kmp-lsp"]
+
+[[language]]
+name = "java"
+language-servers = ["kmp-lsp"]
+
+[language-server.kmp-lsp]
+command = "kmp-lsp"
