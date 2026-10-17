@@ -29,6 +29,7 @@ set -x FZF_DEFAULT_OPTS "--cycle --layout=reverse --no-bold
     --color fg:7,bg:-1,hl:4,fg+:11,bg+:0,hl+:4
     --color pointer:1,spinner:2,marker:3,prompt:4,info:5"
 set -x BAT_THEME base16
+set -x MISE_MINIMUM_RELEASE_AGE 0s
 
 abbr -a gbc 'git br --merged | rg -v "\\* .*" | xargs git br -D'
 abbr -a up 'brew update && brew upgrade -y && brew cleanup'
