@@ -2,7 +2,7 @@
 eval (/opt/homebrew/bin/brew shellenv)
 
 # my paths
-fish_add_path -gm /opt/homebrew/opt/node@24/bin ~/.npm-packages/bin
+fish_add_path -gm ~/.npm-packages/bin
 fish_add_path -gm ~/.local/bin
 fish_add_path -gm ~/.local/share/mise/shims
 
@@ -32,7 +32,7 @@ set -x BAT_THEME base16
 set -x MISE_MINIMUM_RELEASE_AGE 0s
 
 abbr -a gbc 'git br --merged | rg -v "\\* .*" | xargs git br -D'
-abbr -a up 'brew update && brew upgrade -y && brew cleanup'
+abbr -a up 'brew update && brew upgrade && mise upgrade && mise prune --yes && brew cleanup'
 abbr -a dump 'brew bundle dump --no-describe --force'
 
 alias rm='trash'
