@@ -8,10 +8,11 @@
  * Enabled by default. Toggle with /custom-footer
  */
 
+import type { AssistantMessage } from "@earendil-works/pi-ai";
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import { truncateToWidth, visibleWidth } from "@earendil-works/pi-tui";
 
-const SESSION_SEPARATOR = " \u2022 "; // •
+const SEPARATOR = " \u2022 "; // •
 
 const FOOTER_THEME: Record<string, string> = {
   pwd: "mdHeading",
@@ -19,6 +20,7 @@ const FOOTER_THEME: Record<string, string> = {
   percentDim: "dim",
   percentWarn: "warning",
   model: "dim",
+  cache: "dim",
 };
 
 export default function (pi: ExtensionAPI) {
@@ -27,12 +29,13 @@ export default function (pi: ExtensionAPI) {
   let extensions_enabled = true;
 
   const createFooter = (ctx: any) => {
-    return (_tui: any, theme: any, footerData: any) => {
+    return (tui: any, theme: any, footerData: any) => {
+      const unsubscribe = footerData.onBranchChange(() => tui.requestRender());
       const footerTheme = colors_enabled ? FOOTER_THEME : {};
       const footerFg = (name: string, text: string) => theme.fg(footerTheme[name] || "dim", text);
 
       return {
-        dispose: () => {},
+        dispose: unsubscribe,
         invalidate: () => {},
         render: (width: number): string[] => {
           // --- Context usage ---
@@ -43,6 +46,26 @@ export default function (pi: ExtensionAPI) {
             contextPercent === null || contextPercent === undefined || Number.isNaN(contextPercent)
               ? "?%"
               : `${contextPercent.toFixed(1)}%`;
+
+          // --- Latest completed request cache usage ---
+          let latestAssistant: AssistantMessage | undefined;
+          for (const entry of ctx.sessionManager.getBranch()) {
+            if (entry.type !== "message" || entry.message.role !== "assistant") continue;
+            const message = entry.message as AssistantMessage;
+            if (latestAssistant === undefined || message.timestamp > latestAssistant.timestamp) {
+              latestAssistant = message;
+            }
+          }
+
+          let cacheText = "cache —";
+          if (latestAssistant) {
+            const { input, cacheRead, cacheWrite } = latestAssistant.usage;
+            const totalInput = input + cacheRead + cacheWrite;
+            if (totalInput > 0) {
+              const hitRate = Math.round((cacheRead / totalInput) * 100);
+              cacheText = `cache ${hitRate}%`;
+            }
+          }
 
           // --- PWD ---
           let pwd = ctx.sessionManager.getCwd();
@@ -62,15 +85,28 @@ export default function (pi: ExtensionAPI) {
             }
           }
 
-          let modelStr = `${thinkingLevel} `;
+          // --- Current model ---
+          const currentModel = ctx.model;
+          let modelName = currentModel?.id || "no-model";
+          if (currentModel && Array.isArray(ctx.scopedModels)) {
+            const sameNameCount = ctx.scopedModels.filter(
+              (entry: { model?: { id?: string } }) => entry.model?.id === currentModel.id,
+            ).length;
+            if (sameNameCount > 1) {
+              modelName = `[${currentModel.provider}] ${currentModel.id}`;
+            }
+          }
+
+          let modelStr = `${modelName}${SEPARATOR}${thinkingLevel}`;
 
           // LINE 1
           let line1Left = footerFg("pwd", pwd);
           if (sessionName) {
-            line1Left += theme.fg("dim", SESSION_SEPARATOR) + footerFg("session", sessionName);
+            line1Left += theme.fg("dim", SEPARATOR) + footerFg("session", sessionName);
           }
           const percentColor = contextPercentValue < 60 ? "percentDim" : "percentWarn";
-          line1Left += theme.fg("dim", SESSION_SEPARATOR) + footerFg(percentColor, contextPercentStr);
+          line1Left += theme.fg("dim", SEPARATOR) + footerFg(percentColor, `ctx ${contextPercentStr}`);
+          line1Left += theme.fg("dim", SEPARATOR) + footerFg("cache", cacheText);
 
           const line1Right = footerFg("model", modelStr);
           const lines = [joinLR(line1Left, line1Right, width)];
