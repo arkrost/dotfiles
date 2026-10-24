@@ -32,7 +32,7 @@ set -x BAT_THEME base16
 set -x MISE_MINIMUM_RELEASE_AGE 0s
 
 abbr -a gbc 'git br --merged | rg -v "\\* .*" | xargs git br -D'
-abbr -a up 'brew update && brew upgrade && mise upgrade && mise prune --yes && brew cleanup'
+abbr -a up 'brew update && brew upgrade --yes && mise upgrade && mise prune --yes && brew cleanup'
 abbr -a dump 'brew bundle dump --no-describe --force'
 
 alias rm='trash'
