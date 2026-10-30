@@ -1,0 +1,5 @@
+{
+  "billing": {
+    "subscription": ["openai-codex"]
+  }
+}
