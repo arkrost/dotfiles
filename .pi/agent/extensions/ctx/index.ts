@@ -52,23 +52,10 @@ export default function (pi: ExtensionAPI) {
         if (!ctx.sessionManager.getSessionFile()) throw new Error("This is an in-memory session. Start a persistent session before using /ctx.");
         pi.sendMessage({
           customType: "saved-context",
-          content: `Context supplied by the user (${source}):\n\n${content}`,
+          content: content,
           display: true,
           details: { source, bytes: Buffer.byteLength(content, "utf8") },
         }, { triggerTurn: false });
-        // Pi 1.4 buffers a fresh session until it contains a user/assistant entry.
-        // Use the public SessionManager append API (not a model prompt or private
-        // flush method) to persist the snapshot before the first model turn.
-        // SessionManager remains authoritative for context on the next prompt.
-        if (!ctx.sessionManager.getEntries().some(entry => entry.type === "message" &&
-          (entry.message.role === "user" || entry.message.role === "assistant"))) {
-          (ctx.sessionManager as SessionManager).appendMessage({
-            role: "user",
-            content: "Context was prepared with /ctx. Wait for my next message before starting work.",
-            timestamp: Date.now(),
-          });
-        }
-        ctx.ui.notify("Context saved in this session. The model was not started.", "info");
       } catch (error) {
         ctx.ui.notify(error instanceof Error ? error.message : String(error), "error");
       }
