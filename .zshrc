@@ -1,10 +1,6 @@
 path=(~/.local/bin $path)
-#node
-path=(/opt/homebrew/opt/node@24/bin ~/.npm-packages/bin $path)
-# bun
-path=(~/.bun/bin $path)
-# haskell
-path=(~/.cabal/bin ~/.ghcup/bin $path)
+# mise
+path=(~/.local/share/mise/shims $path)
 
 export LC_ALL='en_US.UTF-8'
 export EDITOR=hx
@@ -59,9 +55,6 @@ autoload -Uz compinit
 zicompinit # or compinit -i instead
 zicdreplay
 
-export CARAPACE_BRIDGES='zsh,fish,bash'
-source <(carapace _carapace)
-
 zstyle ':completion:*' menu no
 zstyle ':fzf-tab:*' fzf-flags $FZF_THEME
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
@@ -85,18 +78,8 @@ abbr -S -q l='eza -l'
 abbr -S -q ll='eza -TlL 2'
 abbr -S -q la='eza -la'
 
-# nix
-# NB: /nix/nix-installer uninstall
-nix_path='/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
-[ -f $nix_path ] && source $nix_path
-
 # rust
 [ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
-
-# ocaml
-if [ $commands[opam] ]; then
-  source <(opam env)
-fi
 
 # base commands
 eval "$(starship init zsh)"
@@ -105,7 +88,6 @@ eval "$(atuin init zsh --disable-up-arrow)"
 # eval "$(atuin init zsh --disable-up-arrow --disable-ctrl-r)" # just keep the history
 
 # tempo-io
-export JAVA_HOME=$(/usr/libexec/java_home -v 25)
 export MAVEN_OPTS='-Djdk.tls.client.protocols=TLSv1.2'
 
 export COMPOSE_ANSI=always
