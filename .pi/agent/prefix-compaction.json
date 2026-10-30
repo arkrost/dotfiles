@@ -1,0 +1,11 @@
+{
+  "enabled": true,
+  "overrides": {
+    "claude-bridge": {
+      "reasoning": "low"
+    },
+    "openai-codex": {
+      "reasoning": "inherit"
+    }
+  }
+}
