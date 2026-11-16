@@ -57,7 +57,6 @@ atuin init fish --disable-up-arrow | source
 # ALM
 set -gx MAVEN_OPTS '-Djdk.tls.client.protocols=TLSv1.2'
 set -gx COMPOSE_ANSI always
-set -gx DOCKER_HOST "unix:///Users/$USER/.colima/docker.sock"
 
 set -gx TESTCONTAINERS_RYUK_DISABLED true
 
@@ -65,7 +64,7 @@ set -gx CDN_URL
 set -gx BASE_URL_US arost-1.dev.structure.app
 set -gx BASE_URL_EU arost-1.dev.structure.app
 
-set -gx CLOUD_HOME "$HOME/Projects/cloud/master/"
+set -gx CLOUD_HOME "$HOME/Projects/structure/cloud/"
 set -gx LOCAL_DOMAIN "arost-1.dev.structure.app"
 
 function arost_env
