@@ -6,4 +6,5 @@ Brewfile
 nix
 README.md
 justfile
+rex-settings\.plist
 

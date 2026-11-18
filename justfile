@@ -12,6 +12,14 @@ install:
 unlink:
 	pkgx stow --target "$HOME" -D .
 
+# Import Rex settings
+rex-import:
+	defaults import com.superlogical.rex "{{justfile_directory()}}/rex-settings.plist"
+
+# Export Rex settings
+rex-export:
+	defaults export com.superlogical.rex "{{justfile_directory()}}/rex-settings.plist"
+
 # Show help
 help:
 	@just --list
