@@ -4,7 +4,6 @@ eval (/opt/homebrew/bin/brew shellenv)
 # my paths
 fish_add_path -gm ~/.npm-packages/bin
 fish_add_path -gm ~/.local/bin
-fish_add_path -gm ~/.local/share/mise/shims
 
 # Interactive config
 status is-interactive || exit

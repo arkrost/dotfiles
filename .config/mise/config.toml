@@ -22,3 +22,6 @@ ripgrep = "latest"
 rust = "stable"
 starship = "latest"
 zoxide = "latest"
+
+[settings]
+activate_shims = false

@@ -1,6 +1,4 @@
 path=(~/.local/bin $path)
-# mise
-path=(~/.local/share/mise/shims $path)
 
 export LC_ALL='en_US.UTF-8'
 export EDITOR=hx
