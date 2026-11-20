@@ -15,7 +15,7 @@ import { truncateToWidth, visibleWidth } from "@earendil-works/pi-tui";
 const SEPARATOR = " \u2022 "; // •
 
 const FOOTER_THEME: Record<string, string> = {
-  pwd: "mdHeading",
+  pwd: "thinkingMax",
   session: "mdLink",
   percentDim: "dim",
   percentWarn: "warning",
